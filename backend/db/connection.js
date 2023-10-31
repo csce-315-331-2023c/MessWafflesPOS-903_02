@@ -13,7 +13,7 @@ const pool = new Pool({
     ssl: {rejectUnauthorized: false}
 });
 
-export const query = async (text, params) => {
+const query = async (text, params) => {
     const start = Date.now()
     const res = await pool.query(text, params)
     const duration = Date.now() - start
@@ -21,4 +21,4 @@ export const query = async (text, params) => {
     return res
 }
 
-export default pool;
+export { pool, query }
