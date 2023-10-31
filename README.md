@@ -3,11 +3,14 @@
 
 # Frontend setup:
 Pure React:
+
 npx create-react-app client
 
 Next.js:
+
 npx create-next-app@latest
 
 # Backend setup:
 npm init
+
 npm i express pg cors
