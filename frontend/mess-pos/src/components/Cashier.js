@@ -13,11 +13,11 @@ const Cashier = () => {
             Add items section has two subsections: 'categories' and 'items'
             For now, we'll only implement main items */}
             {/* checkout */}
-            <div>
+            <div id= "itemsSection" class="col-4 border">
                 Checkout
             </div>
             {/* items */}
-            <div>
+            <div id="menuSection" class = "col-8 border">
                 Items
                 <Button variant="primary" size="lg">
           Large button
