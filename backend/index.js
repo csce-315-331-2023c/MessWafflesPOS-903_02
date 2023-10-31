@@ -2,7 +2,7 @@
 import express from 'express';
 
 // file requires
-import pool from './db/connection.js';
+import {pool} from './db/connection.js';
 import mountRoutes from './routes/routes.js';
 
 const port = 3000;
@@ -33,5 +33,5 @@ process.on('SIGINT', function() {
 
 // start application
 app.listen(port, () => {
-    console.log('listening at http://localhost:${port}');
+    console.log(`listening at http://localhost:${port}`);
 });
