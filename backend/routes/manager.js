@@ -1,20 +1,22 @@
-import express from 'express';
-import pool from '../db/connection.js';
-const router = express.Router();
+import Router from 'express-promise-router';
+import * as db from '../db/connection.js';
+
+const router = new Router();
 
 // example route
-router.get('/items', (req, res) => {
-    pool.query("SELECT * FROM items", function (err, result){
-        if(err) throw err;
+router.get('/items', async (req, res) => {
+    try {
+        const result = await db.query("SELECT * FROM items");
         res.send(result);
-    });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
+    }
 });
 
-router.get('/inventory', (req, res) => {
-    pool.query("SELECT * FROM inventory", function (err, result){
-        if(err) throw err;
-        res.send(result);
-    });
+router.get('/inventory', async (req, res) => {
+    const result = await db.query("SELECT * FROM inventory");
+    res.send(result);
 });
 
 export default router;
