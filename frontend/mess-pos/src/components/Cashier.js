@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Cashier.css"
+import Button from 'react-bootstrap/Button'
 
 const Cashier = () => {
     function getItems() {
@@ -18,6 +19,9 @@ const Cashier = () => {
             {/* items */}
             <div>
                 Items
+                <Button variant="primary" size="lg">
+          Large button
+        </Button>{' '}
             </div>
         </main>
     )
