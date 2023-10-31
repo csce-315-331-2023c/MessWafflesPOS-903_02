@@ -13,17 +13,19 @@ router.get('/items', async (req, res) => {
         res.status(500).send("Server error");
     }
 });
+
 router.post('/inventory', async(req,res) => {
     const{item,quantity} = req.body
     try{
-    await db.query('INSERT INTO inventory (item, quantity) VALUES ($1, $2)',[item,quantity])
-        response.status(201).send(`Added ingredient ${item}`)
+        await db.query('INSERT INTO inventory (item, quantity) VALUES ($1, $2)',[item,quantity])
+        res.status(201).send(`Added ingredient ${item}`)
     }
     catch (err) {
         console.error(err);
         res.status(500).send("Server error");
     }
 });
+
 router.get('/inventory', async (req, res) => {
     const result = await db.query("SELECT * FROM inventory");
     res.send(result);

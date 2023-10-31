@@ -2,7 +2,7 @@
 import express from 'express';
 
 // file requires
-import {pool} from './db/connection.js';
+import { pool } from './db/connection.js';
 import mountRoutes from './routes/routes.js';
 
 const port = 3000;
