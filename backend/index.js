@@ -1,23 +1,14 @@
-//requires
-const express = require('express');
-      cashier = require('./routes/cashier');
-      manager = require('./routes/manager');
-const { Pool } = require('pg');
-const dotenv = require('dotenv').config();
-    
+// package requires
+import express from 'express';
+
+// file requires
+import cashier from './routes/cashier.js';
+import manager from './routes/manager.js';
+import pool from './db/connection.js';
+
 // create express app
 const app = express();
 const port = 3000;
-
-// create pool
-const pool = new Pool({
-    user: process.env.PSQL_USER,
-    host: process.env.PSQL_HOST,
-    database: process.env.PSQL_DATABASE,
-    password: process.env.PSQL_PASSWORD,
-    port: process.env.PSQL_PORT,
-    ssl: {rejectUnauthorized: false}
-});
 
 // check connection
 var connected = true;
