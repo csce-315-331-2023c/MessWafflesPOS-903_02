@@ -1,5 +1,7 @@
 #cashierSection {
-    min-height: 90vh;
+    min-height: 85vh;
     background-color: whitesmoke;
     color: black;
+    display: flex;
+    justify-content: space-between;
 }

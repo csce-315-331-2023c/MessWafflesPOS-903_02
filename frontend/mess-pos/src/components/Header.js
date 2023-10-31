@@ -3,7 +3,7 @@ import "./Header.css"
 
 const Header = () => {
   return (
-    <header>Mess Waffles</header>
+    <header><h1>Mess Waffles</h1></header>
   )
 }
 
