@@ -1,5 +1,6 @@
 // package requires
 import express from 'express';
+import cors from 'cors'
 
 // file requires
 import { pool } from './db/connection.js';
@@ -9,6 +10,12 @@ const port = 5000;
 
 // create express app and mount routes
 const app = express();
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    next();
+  })
 mountRoutes(app);
 
 // check connection
