@@ -1,5 +1,6 @@
 // package requires
 import express from 'express';
+import cors from 'cors';
 
 // file requires
 import { pool } from './db/connection.js';
@@ -9,6 +10,7 @@ const port = 3000;
 
 // create express app and mount routes
 const app = express();
+app.use(cors());
 mountRoutes(app);
 
 // check connection
