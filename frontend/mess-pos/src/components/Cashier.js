@@ -16,7 +16,6 @@ const Cashier = () => {
                 console.log(err);
             })
     },[]);
-    console.log(items);
     var entrees = [];
     var drinks = [];
     var seasonal = [];
@@ -35,14 +34,23 @@ const Cashier = () => {
     var entreesList = [];
     var drinksList = [];
     var seasonalList =[];
+    function addOrder(name, price) {
+        if (orders.has(name)) {
+            orders.set(name, {price: price, quantity: orders.get(name).quantity + 1})
+        }
+        else {
+            orders.set(name, {price: price, quantity: 1});
+        }
+        console.log(name, orders.get(name).quantity, orders.get(name).price);
+    }
     entrees.forEach((item, index)=> {
-        entreesList.push( <Button key={index} variant="primary" size="lg">{item.item}</Button>)
+        entreesList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
     })
     drinks.forEach((item, index)=> {
-        drinksList.push( <Button key={index} variant="primary" size="lg">{item.item}</Button>)
+        drinksList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
     })
     seasonal.forEach((item, index)=> {
-        seasonalList.push( <Button key={index} variant="primary" size="lg">{item.item}</Button>)
+        seasonalList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
     })
     return (
         <main id='cashierSection'>        
