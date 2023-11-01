@@ -6,10 +6,17 @@
     justify-content: space-between;
 }
 
-#itemsSection{
-    
+.checkout{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
-#menuSection{
 
+  
+.itemsCol ul li {
+    display: block; /* Display list items vertically */
+    margin: 5px 0; /* Optional spacing between list items */
 }
+
