@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react'
 import "./Cashier.css"
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
+import Tab from 'react-bootstrap/Tab'
+import Tabs from 'react-bootstrap/Tabs'
 
 const Cashier = () => {
     const [items, setItems] = useState([]);
@@ -9,13 +11,16 @@ const Cashier = () => {
     useEffect(() => {
         axios.get('http://localhost:5000/manager/items')
             .then(response => {
-                console.log(response.data);
+                setItems(response.data);
             })
             .catch(err => {
                 console.log(err);
             })
-    })
-
+    },[]);
+    console.log(items);
+    for(let i = 0; i < items.rowCount; i++){
+        console.log(JSON.stringify(items.rows[i].item));
+    }
     return (
         <main id='cashierSection'>        
             {/* Cashier has two sections: A checkout section, and a Add items sections, roughly 4:6 or 3:7
@@ -28,7 +33,11 @@ const Cashier = () => {
             </div>
             {/* items */}
             <div id="menuSection" className="col-8 border">
-                Items
+                <Tabs defaultActiveKey="entree">
+                    <Tab eventKey="entree" title="Entrees">Tab Content for Entree</Tab>
+                    <Tab eventKey="drink" title="Drinks">Tab Content for Dr</Tab>
+                    <Tab eventKey="seasonal" title="Seasonal Items">Tab Content for SZN</Tab>
+                </Tabs>
             </div>
         </main>
     )
