@@ -15,3 +15,26 @@ packages installed:
 - cors
 - express-promise-router
 - nodemon
+
+# Sprint 1 Minutes:
+Meeting Notes (10/24/2023 at 7:30pm CST, Online):
+- Wrote out Project 3's design and management document
+- Discussed tech stack and meeting schedule for Project 3
+- Constructed task road map for Project 3's sprints
+
+Meeting Notes (10/27/2023 at 7:30pm CST, Online):
+- Planned project 3 sprint 1 direction
+- Using MERN stack for development (except with PostgreSQL)
+- Same roles in general as project 2: Arvind (frontend for manager), Kris (frontend for cashier), Will (backend for manager), Hemanth (backend for cashier), Jude (project manager)
+- Training with MERN technologies in prep for Sunday (Oct. 29th) meeting
+
+Meeting Notes (10/29/2023 at 7:30pm CST, Online):
+- Discussed user stories/tasks for sprint 1 Scrum board
+- Determined tasks for each for each member
+- Started the planning/development process for sprint 1
+- Using React with Next.js and Node.js for frontend and backend development respectively
+
+Meeting Notes (10/31/2023 at 7:30pm CST, Online):
+- Finished initial construction of backend with SQL queries
+- Discussed end of sprint 1 plans for next sprint
+- Determined site deployment platform
