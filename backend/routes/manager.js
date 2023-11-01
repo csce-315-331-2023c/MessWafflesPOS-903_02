@@ -39,8 +39,13 @@ router.delete('/items', async(req,res) => {
 });
 
 router.get('/inventory', async (req, res) => {
-    const result = await db.query("SELECT * FROM inventory ORDER BY item");
-    res.send(result);
+    try {
+        const result = await db.query("SELECT * FROM inventory ORDER BY item");
+        res.send(result);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
+    }
 });
 
 router.post('/inventory', async(req,res) => {

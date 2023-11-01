@@ -12,7 +12,6 @@ const port = 5000;
 const app = express();
 app.use(cors())
 mountRoutes(app);
-
 // check connection
 var connected = true;
 pool.connect()
