@@ -6,11 +6,11 @@ import cors from 'cors';
 import { pool } from './db/connection.js';
 import mountRoutes from './routes/routes.js';
 
-const port = 3000;
+const port = 5000;
 
 // create express app and mount routes
 const app = express();
-app.use(cors());
+app.use(cors())
 mountRoutes(app);
 
 // check connection
