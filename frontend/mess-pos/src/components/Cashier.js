@@ -7,7 +7,6 @@ import Tabs from 'react-bootstrap/Tabs'
 
 const Cashier = () => {
     const [items, setItems] = useState([]);
-
     useEffect(() => {
         axios.get('http://localhost:5000/manager/items')
             .then(response => {
@@ -34,7 +33,9 @@ const Cashier = () => {
             {/* items */}
             <div id="menuSection" className="col-8 border">
                 <Tabs defaultActiveKey="entree">
-                    <Tab eventKey="entree" title="Entrees">Tab Content for Entree</Tab>
+                    <Tab eventKey="entree" title="Entrees">
+                        
+                    </Tab>
                     <Tab eventKey="drink" title="Drinks">Tab Content for Dr</Tab>
                     <Tab eventKey="seasonal" title="Seasonal Items">Tab Content for SZN</Tab>
                 </Tabs>
