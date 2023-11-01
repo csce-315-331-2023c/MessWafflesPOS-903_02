@@ -17,9 +17,33 @@ const Cashier = () => {
             })
     },[]);
     console.log(items);
+    var entrees = [];
+    var drinks = [];
+    var seasonal = [];
+    const orders = new Map();
     for(let i = 0; i < items.rowCount; i++){
-        console.log(JSON.stringify(items.rows[i].item));
+        if(JSON.stringify(items.rows[i].category) == "\"entree\"") {
+            entrees.push({item: JSON.stringify(items.rows[i].item), price: JSON.stringify(items.rows[i].price)});
+        }
+        else if(JSON.stringify(items.rows[i].category) == "\"drinks\"") {
+            drinks.push({item: JSON.stringify(items.rows[i].item), price: JSON.stringify(items.rows[i].price)});
+        }
+        else if(JSON.stringify(items.rows[i].category) == "\"seasonal\"") {
+            seasonal.push({item: JSON.stringify(items.rows[i].item), price: JSON.stringify(items.rows[i].price)});
+        }
     }
+    var entreesList = [];
+    var drinksList = [];
+    var seasonalList =[];
+    entrees.forEach((item, index)=> {
+        entreesList.push( <Button key={index} variant="primary" size="lg">{item.item}</Button>)
+    })
+    drinks.forEach((item, index)=> {
+        drinksList.push( <Button key={index} variant="primary" size="lg">{item.item}</Button>)
+    })
+    seasonal.forEach((item, index)=> {
+        seasonalList.push( <Button key={index} variant="primary" size="lg">{item.item}</Button>)
+    })
     return (
         <main id='cashierSection'>        
             {/* Cashier has two sections: A checkout section, and a Add items sections, roughly 4:6 or 3:7
@@ -34,10 +58,10 @@ const Cashier = () => {
             <div id="menuSection" className="col-8 border">
                 <Tabs defaultActiveKey="entree">
                     <Tab eventKey="entree" title="Entrees">
-                        
+                        {entreesList}
                     </Tab>
-                    <Tab eventKey="drink" title="Drinks">Tab Content for Dr</Tab>
-                    <Tab eventKey="seasonal" title="Seasonal Items">Tab Content for SZN</Tab>
+                    <Tab eventKey="drink" title="Drinks">{drinksList}</Tab>
+                    <Tab eventKey="seasonal" title="Seasonal Items">{seasonalList}</Tab>
                 </Tabs>
             </div>
         </main>
