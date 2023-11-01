@@ -8,10 +8,20 @@ import mountRoutes from './routes/routes.js';
 
 const port = 5000;
 
-// create express app and mount routes
+// create express app
 const app = express();
-app.use(cors())
+
+// cors stuff for frontend
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    next();
+  })
+
+// mount routes (cashier, manager, etc.)
 mountRoutes(app);
+
 // check connection
 var connected = true;
 pool.connect()

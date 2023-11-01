@@ -16,4 +16,9 @@ router.get('/inventory', async (req, res) => {
     res.send(result);
 });
 
+router.get('/items', async(req, res) => {
+    const result = await db.query("SELECT * FROM items");
+    res.send(result);
+})
+
 export default router;
