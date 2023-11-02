@@ -31,8 +31,8 @@ const Cashier = () => {
 
     function updateItems(name, price) {
 
-        setItemNames(olary => [...olary, name.replace("\\","")]);
-        setPrices(olary => [...olary, price.replace("\\","")]);
+        setItemNames(olary => [...olary, name.replace("\"","").replace("\"","")]);
+        setPrices(olary => [...olary, price.replace("\"","").replace("\"","")]);
     }
     
     function Items() {
@@ -107,9 +107,9 @@ const Cashier = () => {
         const date = new Date();
         var n = 0;
         for( let i = 0; i < Prices.length; i++){
-            console.log(Prices[i].replace("\\", ""));
+            console.log(Prices[i].replace("\"", ""));
 
-            n += parseInt(Prices[i].replace("\\", ""));
+            n += parseFloat(Prices[i].replace("\"", ""));
         }
         
 
