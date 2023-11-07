@@ -10,6 +10,7 @@ const Header = () => {
         <nav>
           <h2><Link to="/">Home</Link></h2>
           <h2><Link to="/cashier">Cashier</Link></h2>
+          <h2><Link to="/manager">Manager</Link></h2>
         </nav>
       </header>
       <Outlet />
