@@ -27,11 +27,12 @@ router.get('/order', async(req, res) => {
 
 router.post('/order', async(req,res) => {
     const{item,order_date,total_price} = req.body
-    for(it in item){
+    for(const it of item){
         try{
-            const ingredients = await db.query("SELECT ingredients FROM items WHERE item = \'$1\'",[it]);
+            const ingredients = await db.query("SELECT ingredients FROM items WHERE item = $1",[it]);
             const ingList = ingredients.rows[0].ingredients;
-            for(ig in ingList){
+            for(const ig of ingList){
+                console.log(ig);
                 await db.query("UPDATE inventory SET quantity = quantity -1 WHERE item = $1",[ig]);
             }
         }

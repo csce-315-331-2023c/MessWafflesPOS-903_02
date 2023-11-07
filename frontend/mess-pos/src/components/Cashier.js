@@ -127,7 +127,7 @@ const Cashier = () => {
             total_price: n
         }
         
-        axios.post('https://messwafflespos-backend.onrender.com/cashier/order', postdata)
+        axios.post('http://localhost:5000/cashier/order', postdata)
             .then(response => {
                 console.log(response.data);
             })
