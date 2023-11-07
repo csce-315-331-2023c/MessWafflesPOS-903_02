@@ -31,10 +31,13 @@ const Cashier = () => {
 
     function updateItems(name, price) {
 
-        setItemNames(olary => [...olary, name.replace("\"","").replace("\"","")]);
-        setPrices(olary => [...olary, price.replace("\"","").replace("\"","")]);
+        setItemNames(olary => [...olary, name]);
+        setPrices(olary => [...olary, price]);
     }
-    
+    function resetItems(){
+        setItemNames(olary => []);
+        setPrices(olary => []);
+    }
     function Items() {
     
     return (
@@ -67,14 +70,15 @@ const Cashier = () => {
 
     
     for(let i = 0; i < items.rowCount; i++){
+        const menuItem = {item: JSON.stringify(items.rows[i].item).substring(1,JSON.stringify(items.rows[i].item).length-1), price: JSON.stringify(items.rows[i].price).substring(1,JSON.stringify(items.rows[i].price).length-1)};
         if(JSON.stringify(items.rows[i].category) == "\"entree\"") {
-            entrees.push({item: JSON.stringify(items.rows[i].item), price: JSON.stringify(items.rows[i].price)});
+            entrees.push(menuItem);
         }
         else if(JSON.stringify(items.rows[i].category) == "\"drinks\"") {
-            drinks.push({item: JSON.stringify(items.rows[i].item), price: JSON.stringify(items.rows[i].price)});
+            drinks.push(menuItem);
         }
         else if(JSON.stringify(items.rows[i].category) == "\"seasonal\"") {
-            seasonal.push({item: JSON.stringify(items.rows[i].item), price: JSON.stringify(items.rows[i].price)});
+            seasonal.push(menuItem);
         }
     }
     var entreesList = [];
@@ -123,13 +127,14 @@ const Cashier = () => {
             total_price: n
         }
         
-        axios.post('https://messwafflespos-backend.onrender.com/cashier/order', postdata)
+        axios.post('http://localhost:5000/cashier/order', postdata)
             .then(response => {
                 console.log(response.data);
             })
             .catch(err => {
                 console.log(err);
             });
+        resetItems();
     }   
 
 
