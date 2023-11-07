@@ -14,7 +14,7 @@ import Stack from 'react-bootstrap/Stack';
 const Cashier = () => {
     const [items, setItems] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5000/manager/items')
+        axios.get('https://messwafflespos.onrender.com/api/manager/items')
             .then(response => {
                 setItems(response.data);
             })
