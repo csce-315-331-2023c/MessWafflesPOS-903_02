@@ -14,7 +14,7 @@ import Stack from 'react-bootstrap/Stack';
 const Cashier = () => {
     const [items, setItems] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5000/manager/items')
+        axios.get('https://messwafflespos.onrender.com/api/manager/items')
             .then(response => {
                 setItems(response.data);
             })
@@ -31,10 +31,13 @@ const Cashier = () => {
 
     function updateItems(name, price) {
 
-        setItemNames(olary => [...olary, name.replace("\\","")]);
-        setPrices(olary => [...olary, price.replace("\\","")]);
+        setItemNames(olary => [...olary, name]);
+        setPrices(olary => [...olary, price]);
     }
-    
+    function resetItems(){
+        setItemNames(olary => []);
+        setPrices(olary => []);
+    }
     function Items() {
     
     return (
@@ -67,14 +70,15 @@ const Cashier = () => {
 
     
     for(let i = 0; i < items.rowCount; i++){
+        const menuItem = {item: JSON.stringify(items.rows[i].item).substring(1,JSON.stringify(items.rows[i].item).length-1), price: JSON.stringify(items.rows[i].price).substring(1,JSON.stringify(items.rows[i].price).length-1)};
         if(JSON.stringify(items.rows[i].category) == "\"entree\"") {
-            entrees.push({item: JSON.stringify(items.rows[i].item), price: JSON.stringify(items.rows[i].price)});
+            entrees.push(menuItem);
         }
         else if(JSON.stringify(items.rows[i].category) == "\"drinks\"") {
-            drinks.push({item: JSON.stringify(items.rows[i].item), price: JSON.stringify(items.rows[i].price)});
+            drinks.push(menuItem);
         }
         else if(JSON.stringify(items.rows[i].category) == "\"seasonal\"") {
-            seasonal.push({item: JSON.stringify(items.rows[i].item), price: JSON.stringify(items.rows[i].price)});
+            seasonal.push(menuItem);
         }
     }
     var entreesList = [];
@@ -107,9 +111,9 @@ const Cashier = () => {
         const date = new Date();
         var n = 0;
         for( let i = 0; i < Prices.length; i++){
-            console.log(Prices[i].replace("\\", ""));
+            console.log(Prices[i].replace("\"", ""));
 
-            n += parseInt(Prices[i].replace("\\", ""));
+            n += parseFloat(Prices[i].replace("\"", ""));
         }
         
 
@@ -123,13 +127,14 @@ const Cashier = () => {
             total_price: n
         }
         
-        axios.post('https://messwafflespos-backend.onrender.com/cashier/order', postdata)
+        axios.post('http://localhost:5000/cashier/order', postdata)
             .then(response => {
                 console.log(response.data);
             })
             .catch(err => {
                 console.log(err);
             });
+        resetItems();
     }   
 
 
