@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react'
+import input from 'react'
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import axios from 'axios'
 import "./Cashier.css"
+import  Button from 'react-bootstrap/Button'
 
 const Manager = () => {
   const [ings, setIngs] = useState([]);
@@ -47,13 +49,31 @@ const Manager = () => {
         </>
     )
     }
-
+    function updateInventory(e){
+      e.preventDefault()
+      const form = e.target
+      const formData = new FormData(form);
+      const postdata = Object.fromEntries(formData.entries());
+      axios.post('http://localhost:5000/manager/inventory', postdata)
+          .then(response => {
+              console.log(response.data);
+          })
+          .catch(err => {
+              console.log(err);
+          });
+    }
   return (
     <>
     <Tabs defaultActiveKey="inventory">
       <Tab eventKey="inventory" title="Inventory">
         <div id = "invSection">
         <Inventory />
+        <center><form onSubmit={updateInventory}>
+        <input name = "item" />
+        <input name = "quantity" />
+        <button type="submit">Submit</button>
+        </form>
+        </center>
         </div>
       </Tab>
       <Tab eventKey="menu" title="Menu">Menu</Tab>
