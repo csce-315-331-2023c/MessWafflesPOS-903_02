@@ -12,16 +12,16 @@ const port = 5000;
 // create express app
 const app = express();
 
-import { auth } from "express-openid-connect";
-const config = {
-    authRequired: false,
-    auth0Logout: true,
-    secret: process.env.SECRET,
-    baseURL: process.env.BASE_URL,
-    clientID: process.env.CLIENT_ID,
-    issuerBaseURL: process.env.ISSUER_BASE_URL,
-};
-app.use(auth(config));
+// import { auth } from "express-openid-connect";
+// const config = {
+//     authRequired: false,
+//     auth0Logout: true,
+//     secret: process.env.AUTH0_CLIENT_SECRET,
+//     baseURL: process.env.BASE_URL,
+//     clientID: process.env.CLIENT_ID,
+//     issuerBaseURL: process.env.ISSUER_BASE_URL,
+// };
+// app.use(auth(config));
 
 // cors stuff for frontend
 app.use((req, res, next) => {
@@ -32,6 +32,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
+    console.log(req.oidc.isAuthenticated());
     res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
 });
 
