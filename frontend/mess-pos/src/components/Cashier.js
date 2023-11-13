@@ -10,6 +10,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
+import ListGroupItem from 'react-bootstrap/esm/ListGroupItem'
 
 const Cashier = () => {
     const [items, setItems] = useState([]);
@@ -38,25 +39,59 @@ const Cashier = () => {
         setItemNames(olary => []);
         setPrices(olary => []);
     }
+
+    // function itemAction(item) {
+      
+    //     var array_i = [...Item_names]; // make a separate copy of the array
+    //     var array_p = [...Prices]; // make a separate copy of the array
+    //     var index = array_i.indexOf(item);
+        
+    //     if (index !== -1) {
+    //         array_i.splice(index, 1);
+    //         setItemNames(olary => [...array_i]);
+    //         array_p.splice(index, 1);
+    //         setPrices(olary => [...array_p]);
+    //     }
+    // }
+
+
     function Items() {
+
+        
+    function removeOrderItem(i) {
+        if (window.confirm('delete ' + i + ' from the order?')){
+            var array_i = [...Item_names]; // make a separate copy of the array
+            var array_p = [...Prices]; // make a separate copy of the array
+            var index = array_i.indexOf(i);
+            
+            if (index !== -1) {
+                array_i.splice(index, 1);
+                setItemNames(olary => [...array_i]);
+                array_p.splice(index, 1);
+                setPrices(olary => [...array_p]);
+            }
+        }
+        
+
+    };
     
     return (
         <>
         <div className= "checkout" >
             <div id = "priceCol" className="itemsCol">Item
-                <ul style={{ display: 'block' }}>
+                <ListGroup  style={{ display: 'block' }}>
                     {Item_names.map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <ListGroupItem  action onClick= { () => {removeOrderItem(item);}} key={index}>{item}</ListGroupItem>
                     ))}
-                </ul>
+                </ListGroup>
             </div>
             
             <div id = "priceCol" className="itemsCol">Price
-                <ul style={{display: 'block'}}>
+                <ListGroup style={{display: 'block'}}>
                     {Prices.map((item, index) => (
-                    <li key={index} >{item}</li>
+                    <ListGroupItem key={index} >{item}</ListGroupItem>
                     ))}
-                </ul>
+                </ListGroup>
             </div>
         </div>
     
