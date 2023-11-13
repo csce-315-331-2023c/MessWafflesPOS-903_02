@@ -61,6 +61,7 @@ router.post('/inventory', async(req,res) => {
 });
 
 router.delete('/inventory', async(req,res) => {
+    console.log(req.body)
     const{item} = req.body
     try{
         await db.query('DELETE FROM inventory WHERE item = $1',[item])

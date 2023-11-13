@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import input from 'react'
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import axios from 'axios'
 import "./Cashier.css"
-import  Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button'
 
 const Manager = () => {
   const [ings, setIngs] = useState([]);
@@ -54,7 +53,24 @@ const Manager = () => {
       const form = e.target
       const formData = new FormData(form);
       const postdata = Object.fromEntries(formData.entries());
+      console.log(postdata)
       axios.post('http://localhost:5000/manager/inventory', postdata)
+          .then(response => {
+              console.log(response.data);
+          })
+          .catch(err => {
+              console.log(err);
+          });
+    }
+    function deleteItem(e){
+      e.preventDefault()
+      const form = e.target
+      const formData = new FormData(form);
+      const postdata = Object.fromEntries(formData.entries());
+      console.log(postdata)
+      axios.delete(`http://localhost:5000/manager/inventory/`,{
+        data: postdata
+      })
           .then(response => {
               console.log(response.data);
           })
@@ -69,9 +85,16 @@ const Manager = () => {
         <div id = "invSection">
         <Inventory />
         <center><form onSubmit={updateInventory}>
-        <input name = "item" />
-        <input name = "quantity" />
-        <button type="submit">Submit</button>
+          Update item:
+        <input name = "item" label = "item name" />
+        <input name = "quantity" label = "quantity"/>
+        <Button type="submit">Submit</Button>
+        </form>
+        <br></br>
+        <form onSubmit={deleteItem}>
+          Delete item:
+          <input name = "item" label = "item name" />
+          <Button type="submit">Submit</Button>
         </form>
         </center>
         </div>
