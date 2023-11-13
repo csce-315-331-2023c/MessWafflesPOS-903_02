@@ -5,6 +5,7 @@ import Footer from "./components/Footer"
 import Cashier from "./components/Cashier"
 import Home from "./components/Home"
 import Manager from "./components/Manager"
+import Login from "./components/Login"
 
 const App = () => {
     return(
@@ -15,6 +16,7 @@ const App = () => {
                 <Route index element={<Home />} />
                 <Route path="cashier" element={<Cashier />}/>
                 <Route path="manager" element={<Manager />}></Route>
+                <Route path="login" element={<Login />}></Route>
             </Routes>
             <Footer />
         </BrowserRouter>
