@@ -5,7 +5,7 @@ const router = new Router();
 
 import { auth as jwtAuth } from "express-oauth2-jwt-bearer";
 const jwtCheck = jwtAuth({
-    audience: "http://localhost:5000/cashier",
+    audience: "cashier-API",
     issuerBaseURL: process.env.ISSUER_BASE_URL,
     tokenSigningAlg: "RS256",
 });
@@ -21,7 +21,7 @@ router.post("/testing", async (req, res) => {
 
 router.get("/inventory", async (req, res) => {
     const result = await db.query("SELECT * FROM inventory");
-    res.send(result);
+    res.status(200).send(result);
 });
 
 router.get("/items", async (req, res) => {
