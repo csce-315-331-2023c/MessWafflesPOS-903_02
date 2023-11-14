@@ -80,7 +80,22 @@ const Manager = () => {
             console.log(err);
         });
   }
-  function deleteItem(e){
+  function updateItems(e){
+    e.preventDefault()
+    const form = e.target
+    const formData = new FormData(form);
+    const postdata = Object.fromEntries(formData.entries());
+    console.log(postdata)
+    postdata.ingredients = "{" + postdata.ingredients + "}"
+    axios.post('http://localhost:5000/manager/items', postdata)
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+  }
+  function deleteIng(e){
     e.preventDefault()
     const form = e.target
     const formData = new FormData(form);
@@ -96,7 +111,28 @@ const Manager = () => {
             console.log(err);
         });
   }
+  function deleteItem(e){
+    e.preventDefault()
+    const form = e.target
+    const formData = new FormData(form);
+    const postdata = Object.fromEntries(formData.entries());
+    console.log(postdata)
+    axios.delete(`http://localhost:5000/manager/items/`,{
+      data: postdata
+    })
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+  }
   function Items(){
+    for(let i = 0; i < ingList.length;i++){
+      var ing = ingList[i]
+      ing += ""
+      ingList[i] = ing
+    }
     return (
       <>
       <div className= "checkout" >
@@ -147,7 +183,7 @@ const Manager = () => {
         <Button type="submit">Submit</Button>
         </form>
         <br></br>
-        <form onSubmit={deleteItem}>
+        <form onSubmit={deleteIng}>
           Delete item:
           <input name = "item" label = "item name" />
           <Button type="submit">Submit</Button>
@@ -157,6 +193,22 @@ const Manager = () => {
       </Tab>
       <Tab eventKey="menu" title="Menu">
         <Items />
+        <center><form onSubmit={updateItems}>
+          Update item:
+        <input name = "item" label = "item name" />
+        <input name = "price" label = "price"/>
+        <input name = "ingredients" label = "ingredients"/>
+        <input name = "category" label = "category"/>
+        <input name = "picture" label = "picture"/>
+        <Button type="submit">Submit</Button>
+        </form>
+        <br></br>
+        <form onSubmit={deleteItem}>
+          Delete item:
+          <input name = "item" label = "item name" />
+          <Button type="submit">Submit</Button>
+        </form>
+        </center>
       </Tab>
     </Tabs>
     </>
