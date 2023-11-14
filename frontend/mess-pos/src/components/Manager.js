@@ -24,7 +24,7 @@ const Manager = () => {
   }
   const [items, setItems] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:5000/manager/items')
+    axios.get('https://messwafflespos.onrender.com/api/manager/items')
         .then(response => {
             setItems(response.data);
         })
@@ -72,7 +72,7 @@ const Manager = () => {
     const formData = new FormData(form);
     const postdata = Object.fromEntries(formData.entries());
     console.log(postdata)
-    axios.post('http://localhost:5000/manager/inventory', postdata)
+    axios.post('https://messwafflespos.onrender.com/api/manager/inventory', postdata)
         .then(response => {
             console.log(response.data);
         })
@@ -87,7 +87,7 @@ const Manager = () => {
     const postdata = Object.fromEntries(formData.entries());
     console.log(postdata)
     postdata.ingredients = "{" + postdata.ingredients + "}"
-    axios.post('http://localhost:5000/manager/items', postdata)
+    axios.post('https://messwafflespos.onrender.com/api/manager/items', postdata)
         .then(response => {
             console.log(response.data);
         })
@@ -101,7 +101,7 @@ const Manager = () => {
     const formData = new FormData(form);
     const postdata = Object.fromEntries(formData.entries());
     console.log(postdata)
-    axios.delete(`http://localhost:5000/manager/inventory/`,{
+    axios.delete(`https://messwafflespos.onrender.com/api/manager/inventory/`,{
       data: postdata
     })
         .then(response => {
@@ -117,7 +117,7 @@ const Manager = () => {
     const formData = new FormData(form);
     const postdata = Object.fromEntries(formData.entries());
     console.log(postdata)
-    axios.delete(`http://localhost:5000/manager/items/`,{
+    axios.delete(`https://messwafflespos.onrender.com/api/manager/items/`,{
       data: postdata
     })
         .then(response => {
