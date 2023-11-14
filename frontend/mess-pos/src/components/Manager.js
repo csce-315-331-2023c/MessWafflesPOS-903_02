@@ -129,9 +129,7 @@ const Manager = () => {
   }
   function Items(){
     for(let i = 0; i < ingList.length;i++){
-      var ing = ingList[i]
-      ing += ""
-      ingList[i] = ing
+      ingList[i] = ingList[i].toString()
     }
     return (
       <>
