@@ -98,13 +98,13 @@ const Cashier = () => {
         console.log(name, orders.get(name).quantity, orders.get(name).price);
     }
     entrees.forEach((item, index)=> {
-        entreesList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
+        entreesList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg" style = {{margin: .2 + '%'}}>{item.item}</Button>)
     })
     drinks.forEach((item, index)=> {
-        drinksList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
+        drinksList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg" style = {{margin: .2 + '%'}}>{item.item}</Button>)
     })
     seasonal.forEach((item, index)=> {
-        seasonalList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
+        seasonalList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg" style = {{margin: .2 + '%'}}>{item.item}</Button>)
     })
 
     function place_order(){
@@ -137,8 +137,9 @@ const Cashier = () => {
         resetItems();
     }   
 
-
-
+    function clear_orders(){
+        resetItems();
+    }
 
     return (
         <main id='cashierSection'>        
@@ -149,7 +150,8 @@ const Cashier = () => {
             {/* checkout */}
             <div id= "itemsSection" className="col-4 border">
                 <Items />
-                <Button onClick={() => {place_order();}} variant="primary" size="lg">Place Order</Button>
+                <center><Button onClick={() => {place_order();}} variant="primary" size="lg" style = {{margin: .2 + '%'}}>Place Order</Button></center>
+                <center><Button onClick={() => {clear_orders();}} variant="primary" size="lg" style = {{margin: .2 + '%'}}>Clear Orders</Button></center>
             </div>
             {/* items */}
             <div id="menuSection" className="col-8 border">
