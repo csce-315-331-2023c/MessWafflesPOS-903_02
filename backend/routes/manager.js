@@ -17,6 +17,13 @@ router.get('/items', async (req, res) => {
 router.post('/items', async(req,res) => {
     const{item,price,ingredients,category} = req.body
     try{
+        for(let i = 0; i < ingredients.size();i++){
+            thisIng = ingredients[i]
+            const thisItem = await db.query("SELECT * FROM inventory WHERE item = $1",[thisIng]);
+            if(thisItem.rowCount == 0){
+                await db.query('INSERT INTO inventory (item, quantity) VALUES ($1, 0)',[thisIng]);
+            }
+        }
         await db.query('INSERT INTO items (item, price, ingredients, category) VALUES ($1, $2, $3, $4) ON CONFLICT (item) DO UPDATE SET price = $2, ingredients = $3, category = $4',[item,price,ingredients,category])
         res.status(201).send(`Added item ${item}`)
     }

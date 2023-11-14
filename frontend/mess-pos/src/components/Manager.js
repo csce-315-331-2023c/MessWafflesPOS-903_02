@@ -146,22 +146,22 @@ const Manager = () => {
           
           <div id = "priceCol" className="itemsCol">Price
               <ul style={{display: 'block'}}>
-                  {priceList.map((quantity, index) => (
-                  <li key={index} >{quantity}</li>
+                  {priceList.map((price, index) => (
+                  <li key={index} >{price}</li>
                   ))}
               </ul>
           </div>
           <div id = "ingCol" className="itemsCol">Ingredients
               <ul style={{display: 'block'}}>
-                  {ingList.map((quantity, index) => (
-                  <li key={index} >{quantity}</li>
+                  {ingList.map((ings, index) => (
+                  <li key={index} >{ings}</li>
                   ))}
               </ul>
           </div>
           <div id = "catCol" className="itemsCol">Category
               <ul style={{display: 'block'}}>
-                  {catList.map((quantity, index) => (
-                  <li key={index} >{quantity}</li>
+                  {catList.map((cat, index) => (
+                  <li key={index} >{cat}</li>
                   ))}
               </ul>
           </div>
