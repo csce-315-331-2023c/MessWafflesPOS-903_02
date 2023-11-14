@@ -30,73 +30,67 @@ const Cashier = () => {
     const [Item_names, setItemNames] = useState([]);
     const [Prices, setPrices] = useState([]);
 
+    const [price_tot, setTotal] = useState(0);
+
     function updateItems(name, price) {
 
         setItemNames(olary => [...olary, name]);
         setPrices(olary => [...olary, price]);
+        setTotal(oldPrice => price_tot+ parseFloat(price));
     }
+
     function resetItems(){
         setItemNames(olary => []);
         setPrices(olary => []);
     }
 
-    // function itemAction(item) {
-      
-    //     var array_i = [...Item_names]; // make a separate copy of the array
-    //     var array_p = [...Prices]; // make a separate copy of the array
-    //     var index = array_i.indexOf(item);
-        
-    //     if (index !== -1) {
-    //         array_i.splice(index, 1);
-    //         setItemNames(olary => [...array_i]);
-    //         array_p.splice(index, 1);
-    //         setPrices(olary => [...array_p]);
-    //     }
-    // }
-
-
     function Items() {
 
-        
-    function removeOrderItem(i) {
-        if (window.confirm('delete ' + i + ' from the order?')){
-            var array_i = [...Item_names]; // make a separate copy of the array
-            var array_p = [...Prices]; // make a separate copy of the array
-            var index = array_i.indexOf(i);
-            
-            if (index !== -1) {
-                array_i.splice(index, 1);
-                setItemNames(olary => [...array_i]);
-                array_p.splice(index, 1);
-                setPrices(olary => [...array_p]);
-            }
-        }
-        
 
-    };
-    
-    return (
-        <>
-        <div className= "checkout" >
-            <div id = "priceCol" className="itemsCol">Item
-                <ListGroup  style={{ display: 'block' }}>
-                    {Item_names.map((item, index) => (
-                    <ListGroupItem  action onClick= { () => {removeOrderItem(item);}} key={index}>{item}</ListGroupItem>
-                    ))}
-                </ListGroup>
-            </div>
+
+        
+        function removeOrderItem(i) {
+            if (window.confirm('delete ' + i + ' from the order?')){
+                var array_i = [...Item_names]; 
+                var array_p = [...Prices]; 
+                var index = array_i.indexOf(i);
+                
+                if (index !== -1) {
+                    array_i.splice(index, 1);
+                    setItemNames(olary => [...array_i]);
+                    array_p.splice(index, 1);
+                    setPrices(olary => [...array_p]);
+                }
+            }
             
-            <div id = "priceCol" className="itemsCol">Price
-                <ListGroup style={{display: 'block'}}>
-                    {Prices.map((item, index) => (
-                    <ListGroupItem key={index} >{item}</ListGroupItem>
-                    ))}
-                </ListGroup>
+
+        };
+        
+        return (
+            <>
+            <div style={{overflowY: "auto"}} className= "checkout" >
+                <div id = "priceCol" className="itemsCol">Item
+                    <ListGroup  style={{ display: 'block' }}>
+                        {Item_names.map((item, index) => (
+                        <ListGroupItem  action onClick= { () => {removeOrderItem(item);}} key={index}>{item}</ListGroupItem>
+                        ))}
+                    </ListGroup>
+                </div>
+                
+                <div id = "priceCol" className="itemsCol">Price
+                    <ListGroup style={{display: 'block'}}>
+                        {Prices.map((item, index) => (
+                        <ListGroupItem key={index} >{item}</ListGroupItem>
+                        ))}
+                    </ListGroup>
+                </div>
             </div>
-        </div>
-    
-        </>
-    )
+            <div id="orderInfo"> 
+                Total: ${price_tot.toFixed(2)}
+            </div>
+                
+            </>
+        )
     }
 
     
@@ -182,11 +176,19 @@ const Cashier = () => {
             Add items section has two subsections: 'categories' and 'items'
             For now, we'll only implement main items */}
             {/* checkout */}
-            <div id= "itemsSection" className="col-4 border">
+            
+
+            <div  className="col-4 border" >
                 <Items />
-                <Button onClick={() => {place_order();}} variant="primary" size="lg">Place Order</Button>
+                <div id= 'orderactions'>
+                    <Button onClick={() => {place_order();}} variant="primary" size="lg">Place Order</Button>
+                    <Button  variant="primary" size="lg">cancel Order</Button>
+                </div>
+                <div id="orderInfo"> 
+
+                </div>
             </div>
-            {/* items */}
+
             <div id="menuSection" className="col-8 border">
                 <Tabs defaultActiveKey="entree">
                     <Tab eventKey="entree" title="Entrees">
