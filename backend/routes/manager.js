@@ -89,4 +89,14 @@ router.delete('/inventory', async(req,res) => {
         res.status(500).send("Server error");
     }
 });
+router.get('/restockReport', async (req, res) => {
+    const{quantity} = req.query
+    try {
+        const result = await db.query('SELECT * FROM inventory WHERE quantity < $1',[quantity]);
+        res.send(result);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
+    }
+});
 export default router;
