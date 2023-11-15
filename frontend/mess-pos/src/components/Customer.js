@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import "./Cashier.css"
+import "./Customer.css"
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import Tab from 'react-bootstrap/Tab'
@@ -11,6 +11,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
 import ListGroupItem from 'react-bootstrap/esm/ListGroupItem'
+import Card from 'react-bootstrap/Card';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 
 const Cashier = () => {
     const [items, setItems] = useState([]);
@@ -42,7 +44,6 @@ const Cashier = () => {
     function resetItems(){
         setItemNames(olary => []);
         setPrices(olary => []);
-        setTotal(oldPrice => 0.00);
     }
 
     function Items() {
@@ -96,6 +97,23 @@ const Cashier = () => {
         )
     }
 
+   
+
+    function itemCard(item, price, index) {
+        return (
+            <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Body>
+                <Card.Title>{item}</Card.Title>
+                <Card.Text>
+                description
+                </Card.Text>
+                <Button onClick={() => {addOrder(item, price);}} key={index} variant="primary">Add</Button>
+            </Card.Body>
+            </Card>
+        );
+    }
+
     
 
     const orders = new Map();
@@ -130,14 +148,67 @@ const Cashier = () => {
         console.log(name, orders.get(name).quantity, orders.get(name).price);
     }
     entrees.forEach((item, index)=> {
-        entreesList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg" style = {{margin: .2 + '%'}}>{item.item}</Button>)
+        entreesList.push( itemCard(item.item, item.price, index))
     })
     drinks.forEach((item, index)=> {
-        drinksList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg" style = {{margin: .2 + '%'}}>{item.item}</Button>)
+        drinksList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
     })
     seasonal.forEach((item, index)=> {
-        seasonalList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg" style = {{margin: .2 + '%'}}>{item.item}</Button>)
+        seasonalList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
     })
+    
+    
+    const Tabpage = () => {
+        
+        return (
+          <Row>
+            {entreesList.map((item, index) => (
+              <Col key={index} sm={3}>
+                {/* Adjust  based on how many items you want in a row */}
+                <ListGroup>
+                  <ListGroup.Item>{item}</ListGroup.Item>
+                </ListGroup>
+              </Col>
+            ))}
+          </Row>
+        );
+    }
+
+   
+
+    function Info() {
+        const [show, setShow] = useState(false);
+
+        const handleClose = () => setShow(false);
+        const handleShow = () => setShow(true);
+
+        return (
+            <>
+            <Button className='SeeOrder' variant="primary" onClick={handleShow}>
+                View Order
+            </Button>
+
+            <Offcanvas show={show} onHide={handleClose}>
+                <Offcanvas.Header closeButton>
+                <Offcanvas.Title>Current Order</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    <div>
+                    <Items />
+                    <div id= 'orderactions'>
+                        <Button onClick={() => {place_order();}} variant="primary" size="lg">Place Order</Button>
+                        <Button  variant="primary" size="lg">cancel Order</Button>
+                    </div>
+                    <div id="orderInfo"> 
+
+                    </div>
+            </div>
+                
+                </Offcanvas.Body>
+            </Offcanvas>
+            </>
+        );
+    }
 
     function place_order(){
         const date = new Date();
@@ -169,9 +240,8 @@ const Cashier = () => {
         resetItems();
     }   
 
-    function clear_orders(){
-        resetItems();
-    }
+
+
 
     return (
         <main id='cashierSection'>        
@@ -182,25 +252,30 @@ const Cashier = () => {
             {/* checkout */}
             
 
-            <div  className="col-4 border" >
+            {/* <div  className="col-4 border" >
                 <Items />
-
                 <div id= 'orderactions'>
                     <Button onClick={() => {place_order();}} variant="primary" size="lg">Place Order</Button>
-                    <Button onClick={() => {clear_orders();}} variant="primary" size="lg">cancel Order</Button>
+                    <Button  variant="primary" size="lg">cancel Order</Button>
                 </div>
+                <div id="orderInfo"> 
 
-            </div>
-
-            <div id="menuSection" className="col-8 border">
-                <Tabs defaultActiveKey="entree">
+                </div>
+            </div> */}
+            <Info/>
+            <div id="menuSection" className="row-9 border">
+                <Tabs defaultActiveKey="entree" fill >
                     <Tab eventKey="entree" title="Entrees">
-                        {entreesList}
+                       <div>
+                            <Tabpage/>
+                       </div>
+                
                     </Tab>
                     <Tab eventKey="drink" title="Drinks">{drinksList}</Tab>
                     <Tab eventKey="seasonal" title="Seasonal Items">{seasonalList}</Tab>
                 </Tabs>
             </div>
+            <div className='row-3 border'></div>
         </main>
     )
 }

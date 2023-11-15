@@ -6,6 +6,11 @@
     justify-content: space-between;
 }
 
+#menuSection{
+    width: 100%;
+    overflow-y: auto
+}
+
 .checkout{
 
     display: flex;
@@ -15,7 +20,6 @@
 }
 
 
-  
 .itemsCol ul li {
     display: block; /* Display list items vertically */
     margin: 5px 0; /* Optional spacing between list items */
@@ -38,3 +42,18 @@
     height: 10%;
     font-size: large;
 }
+
+.entrees{
+    
+    
+   
+}
+
+.SeeOrder {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 999999;
+    margin-bottom: 10px;
+}
+
