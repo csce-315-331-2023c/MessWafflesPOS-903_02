@@ -32,7 +32,9 @@ const App = () => {
                 email: user.email,
             };
             axios
-                .get("http://localhost:5000/auth/role", { params: emaildata })
+                .get("https://messwafflespos.onrender.com/api/auth/role", {
+                    params: emaildata,
+                })
                 .then((res) => {
                     console.log(res.data.rows[0].role.toLowerCase());
                     setRole(res.data.rows[0].role.toLowerCase());
@@ -53,12 +55,8 @@ const App = () => {
                 <Header />
                 <Routes>
                     <Route index element={<Home />} />
-                    {role == "cashier" && (
-                        <Route path="cashier" element={<Cashier />} />
-                    )}
-                    {role == "manager" && (
-                        <Route path="manager" element={<Manager />} />
-                    )}
+                    <Route path="cashier" element={<Cashier />} />
+                    <Route path="manager" element={<Manager />} />
                 </Routes>
 
                 <Footer />
