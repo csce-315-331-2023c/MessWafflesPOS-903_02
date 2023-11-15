@@ -6,12 +6,12 @@ import Cashier from "./components/Cashier";
 import Home from "./components/Home";
 import Manager from "./components/Manager";
 
-import {
-    LoginButton,
-    LogoutButton,
-    OAuthText,
-    APIRoutes,
-} from "./components/OAuth";
+// import {
+//     LoginButton,
+//     LogoutButton,
+//     OAuthText,
+//     APIRoutes,
+// } from "./components/OAuth";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
@@ -57,21 +57,8 @@ const App = () => {
                     {role == "manager" && (
                         <Route path="manager" element={<Manager />} />
                     )}
-
-                    {/* <Route path="cashier" element={<Cashier />} />
-                <Route path="manager" element={<Manager />} /> */}
                 </Routes>
-                <h1>OAuth stuff</h1>
-                <ul>
-                    <li>
-                        <LoginButton />
-                    </li>
-                    <li>
-                        <LogoutButton />
-                    </li>
-                </ul>
-                <OAuthText />
-                <APIRoutes />
+
                 <Footer />
             </RoleContext.Provider>
         </>
