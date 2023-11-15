@@ -17,6 +17,23 @@ router.get('/items', async (req, res) => {
 router.post('/items', async(req,res) => {
     const{item,price,ingredients,category} = req.body
     try{
+        // for(let i = 0; i < ingredients.length;i++){
+        //     thisIng = ingredients[i]
+        //     const thisItem = await db.query("SELECT * FROM inventory WHERE item = $1",[thisIng]);
+        //     if(thisItem.rowCount == 0){
+        //         await db.query('INSERT INTO inventory (item, quantity) VALUES ($1, 0)',[thisIng]);
+        //     }
+        // }
+        var i = ingredients.substring(1,ingredients.length-1)
+        const iList = i.split(',')
+        console.log(iList[2])
+        for(let j = 0; j < iList.length;j++){
+            var ing = iList[j]
+            const thisItem = await db.query("SELECT * FROM inventory WHERE item = $1",[ing]);
+            if(thisItem.rowCount == 0){
+                await db.query('INSERT INTO inventory (item, quantity) VALUES ($1, 0)',[ing]);
+            }
+        }
         await db.query('INSERT INTO items (item, price, ingredients, category) VALUES ($1, $2, $3, $4) ON CONFLICT (item) DO UPDATE SET price = $2, ingredients = $3, category = $4',[item,price,ingredients,category])
         res.status(201).send(`Added item ${item}`)
     }
@@ -61,12 +78,23 @@ router.post('/inventory', async(req,res) => {
 });
 
 router.delete('/inventory', async(req,res) => {
+    console.log(req.body)
     const{item} = req.body
     try{
         await db.query('DELETE FROM inventory WHERE item = $1',[item])
         res.status(201).send(`Deleted ingredient ${item}`)
     }
     catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
+    }
+});
+router.get('/restockReport', async (req, res) => {
+    const{quantity} = req.query
+    try {
+        const result = await db.query('SELECT * FROM inventory WHERE quantity < $1',[quantity]);
+        res.send(result);
+    } catch (err) {
         console.error(err);
         res.status(500).send("Server error");
     }
