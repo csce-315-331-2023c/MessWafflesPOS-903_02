@@ -1,0 +1,59 @@
+#cashierSection {
+    min-height: 85vh;
+    background-color: whitesmoke;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+}
+
+#menuSection{
+    width: 100%;
+    overflow-y: auto
+}
+
+.checkout{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 80%;
+}
+
+
+.itemsCol ul li {
+    display: block; /* Display list items vertically */
+    margin: 5px 0; /* Optional spacing between list items */
+}
+
+#orderactions{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   margin-bottom:  30;
+   position: relative;
+   height: 10%;
+}
+
+#itemList{
+    overflow-y: auto
+}
+
+#orderInfo{
+    height: 10%;
+    font-size: large;
+}
+
+.entrees{
+    
+    
+   
+}
+
+.SeeOrder {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 999999;
+    margin-bottom: 10px;
+}
+
