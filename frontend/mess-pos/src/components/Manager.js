@@ -6,7 +6,8 @@ import "./Cashier.css"
 import Button from 'react-bootstrap/Button'
 
 const Manager = () => {
-  const [ings, setIngs] = useState([]);
+  function Inventory() {
+    const [ings, setIngs] = useState([]);
     useEffect(() => {
         axios.get('https://messwafflespos.onrender.com/api/manager/inventory')
             .then(response => {
@@ -16,33 +17,12 @@ const Manager = () => {
                 console.log(err);
             })
     },[]);
-  var ingsList = [];
-  var quantList = [];
-  for(let i = 0; i < ings.rowCount;i++){
-    ingsList.push(JSON.stringify(ings.rows[i].item).substring(1,JSON.stringify(ings.rows[i].item).length-1))
-    quantList.push(ings.rows[i].quantity)
-  }
-  const [items, setItems] = useState([]);
-  useEffect(() => {
-    axios.get('https://messwafflespos.onrender.com/api/manager/items')
-        .then(response => {
-            setItems(response.data);
-        })
-        .catch(err => {
-            console.log(err);
-        })
-  },[]);
-  var itemList = []
-  var priceList = []
-  var ingList = []
-  var catList = []
-  for(let i = 0; i < items.rowCount;i++){
-    itemList.push(JSON.stringify(items.rows[i].item).substring(1,JSON.stringify(items.rows[i].item).length-1))
-    priceList.push(items.rows[i].price)
-    ingList.push(items.rows[i].ingredients)
-    catList.push(JSON.stringify(items.rows[i].category).substring(1,JSON.stringify(items.rows[i].category).length-1))
-  }
-  function Inventory() {
+    var ingsList = [];
+    var quantList = [];
+    for(let i = 0; i < ings.rowCount;i++){
+      ingsList.push(JSON.stringify(ings.rows[i].item).substring(1,JSON.stringify(ings.rows[i].item).length-1))
+      quantList.push(ings.rows[i].quantity)
+    }
     return (
         <>
         <div className= "checkout" >
@@ -128,6 +108,26 @@ const Manager = () => {
         });
   }
   function Items(){
+    const [items, setItems] = useState([]);
+    useEffect(() => {
+      axios.get('https://messwafflespos.onrender.com/api/manager/items')
+          .then(response => {
+              setItems(response.data);
+          })
+          .catch(err => {
+              console.log(err);
+          })
+    },[]);
+    var itemList = []
+    var priceList = []
+    var ingList = []
+    var catList = []
+    for(let i = 0; i < items.rowCount;i++){
+      itemList.push(JSON.stringify(items.rows[i].item).substring(1,JSON.stringify(items.rows[i].item).length-1))
+      priceList.push(items.rows[i].price)
+      ingList.push(items.rows[i].ingredients)
+      catList.push(JSON.stringify(items.rows[i].category).substring(1,JSON.stringify(items.rows[i].category).length-1))
+    }
     for(let i = 0; i < ingList.length;i++){
       ingList[i] = ingList[i].toString()
     }
@@ -198,15 +198,15 @@ const Manager = () => {
         <div id = "invSection">
         <Inventory />
         <center><form onSubmit={updateInventory}>
-          Update item:
-        <input name = "item" label = "item name" />
-        <input name = "quantity" label = "quantity"/>
+          Update/Create item:
+        <input name = "item" label = "item name" placeholder = "item name"/>
+        <input name = "quantity" label = "quantity" placeholder = "quantity"/>
         <Button type="submit">Submit</Button>
         </form>
         <br></br>
         <form onSubmit={deleteIng}>
           Delete item:
-          <input name = "item" label = "item name" />
+          <input name = "item" label = "item name"  placeholder = "item name"/>
           <Button type="submit">Submit</Button>
         </form>
         </center>
@@ -215,26 +215,27 @@ const Manager = () => {
       <Tab eventKey="menu" title="Menu">
         <Items />
         <center><form onSubmit={updateItems}>
-          Update item:
-        <input name = "item" label = "item name" />
-        <input name = "price" label = "price"/>
-        <input name = "ingredients" label = "ingredients"/>
-        <input name = "category" label = "category"/>
-        <input name = "picture" label = "picture"/>
+          Update/Create item:
+        <input name = "item" label = "item name" placeholder = "item name"/>
+        <input name = "price" label = "price" placeholder = "price"/>
+        <input name = "ingredients" label = "ingredients" placeholder = "ingredients"/>
+        <input name = "category" label = "category" placeholder = "category"/>
+        <input name = "picture" label = "picture" placeholder = "optional url for picture"/>
         <Button type="submit">Submit</Button>
         </form>
         <br></br>
         <form onSubmit={deleteItem}>
           Delete item:
-          <input name = "item" label = "item name" />
+          <input name = "item" label = "item name" placeholder = "name"/>
           <Button type="submit">Submit</Button>
         </form>
         </center>
       </Tab>
       <Tab eventKey = "restockReport" title = "Restock Report">
         <center>
+          Enter a number to see all inventory items that need restock for that threshold:
           <form onSubmit={restockReport}>
-            <input name = "quantity" label = "quantity" />
+            <input name = "quantity" label = "quantity" placeholder = "quantity threshold"/>
             <Button type="submit">Submit</Button>
           </form>
           <div id = "restockReturn"></div>
