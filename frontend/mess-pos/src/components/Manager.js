@@ -168,6 +168,29 @@ const Manager = () => {
       </>
   )
   }
+  function restockReport(e){
+    e.preventDefault()
+    const form = e.target
+    const formData = new FormData(form);
+    const postdata = Object.fromEntries(formData.entries());
+    console.log(postdata)
+    var needsRestock = []
+    const q = postdata.quantity
+    axios.get('https://messwafflespos.onrender.com/api/manager/restockReport',{params:{quantity: q}})
+        .then(response => {
+            console.log(response.data)
+            for(let i = 0; i < response.data.rowCount;i++){
+              needsRestock.push(response.data.rows[i].item)
+            }
+            var restockList = needsRestock.toString()
+            document.getElementById('restockReturn').innerHTML = restockList;
+            console.log(restockList)
+        })
+        .catch(err => {
+            console.log(err);
+        });
+        
+  }
   return (
     <>
     <Tabs defaultActiveKey="inventory">
@@ -206,6 +229,15 @@ const Manager = () => {
           <input name = "item" label = "item name" />
           <Button type="submit">Submit</Button>
         </form>
+        </center>
+      </Tab>
+      <Tab eventKey = "restockReport" title = "Restock Report">
+        <center>
+          <form onSubmit={restockReport}>
+            <input name = "quantity" label = "quantity" />
+            <Button type="submit">Submit</Button>
+          </form>
+          <div id = "restockReturn"></div>
         </center>
       </Tab>
     </Tabs>
