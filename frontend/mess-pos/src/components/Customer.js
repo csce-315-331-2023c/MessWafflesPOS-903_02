@@ -14,7 +14,7 @@ import ListGroupItem from 'react-bootstrap/esm/ListGroupItem'
 import Card from 'react-bootstrap/Card';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
-const Cashier = () => {
+const Customer = () => {
     const [items, setItems] = useState([]);
     useEffect(() => {
         axios.get('https://messwafflespos.onrender.com/api/manager/items')
@@ -280,4 +280,4 @@ const Cashier = () => {
     )
 }
 
-export default Cashier;
+export default Customer;

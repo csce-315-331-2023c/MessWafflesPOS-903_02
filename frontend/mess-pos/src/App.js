@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Cashier from "./components/Cashier";
+import Customer from "./components/Customer";
 import Home from "./components/Home";
 import Manager from "./components/Manager";
 import Login from "./components/Login";
@@ -57,6 +58,7 @@ const App = () => {
                     <Route index element={<Home />} />
                     <Route path="cashier" element={<Cashier />} />
                     <Route path="manager" element={<Manager />} />
+                    <Route path="customer" element={<Customer />} />
                 </Routes>
 
                 <Footer />
