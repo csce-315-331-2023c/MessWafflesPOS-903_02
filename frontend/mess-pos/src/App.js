@@ -7,26 +7,63 @@ import Home from "./components/Home"
 import Manager from "./components/Manager"
 import Login from "./components/Login"
 
+// import {
+//     LoginButton,
+//     LogoutButton,
+//     OAuthText,
+//     APIRoutes,
+// } from "./components/OAuth";
+
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
+
+export const RoleContext = React.createContext();
 const App = () => {
-    return(
+    // get user email
+    const { user, isAuthenticated } = useAuth0();
+    const [role, setRole] = useState(null);
+
+    // send request to backend to determine role
+    useEffect(() => {
+        if (isAuthenticated) {
+            console.log("logged in");
+            const emaildata = {
+                email: user.email,
+            };
+            axios
+                .get("http://localhost:5000/auth/role", { params: emaildata })
+                .then((res) => {
+                    console.log(res.data.rows[0].role.toLowerCase());
+                    setRole(res.data.rows[0].role.toLowerCase());
+                })
+                .catch((err) => {
+                    console.log(err);
+                    setRole("");
+                });
+        } else {
+            console.log("not logged in");
+            setRole("");
+        }
+    }, [isAuthenticated]);
+
+    return (
         <>
-        <BrowserRouter>
-            <Header />
-            <Routes>
-                <Route index element={<Home />} />
-                <Route path="cashier" element={<Cashier />}/>
-                <Route path="manager" element={<Manager />}></Route>
-                <Route path="login" element={<Login />}></Route>
-            </Routes>
-            <Footer />
-        </BrowserRouter>
+            <RoleContext.Provider value={role}>
+                <Header />
+                <Routes>
+                    <Route index element={<Home />} />
+                    {role == "cashier" && (
+                        <Route path="cashier" element={<Cashier />} />
+                    )}
+                    {role == "manager" && (
+                        <Route path="manager" element={<Manager />} />
+                    )}
+                </Routes>
+
+                <Footer />
+            </RoleContext.Provider>
         </>
-        // <>
-        // <Header />
-        // <Cashier />
-        // <Footer />
-        // </>
     );
-}
+};
 
 export default App;
