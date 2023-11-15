@@ -130,13 +130,13 @@ const Cashier = () => {
         console.log(name, orders.get(name).quantity, orders.get(name).price);
     }
     entrees.forEach((item, index)=> {
-        entreesList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
+        entreesList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg" style = {{margin: .2 + '%'}}>{item.item}</Button>)
     })
     drinks.forEach((item, index)=> {
-        drinksList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
+        drinksList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg" style = {{margin: .2 + '%'}}>{item.item}</Button>)
     })
     seasonal.forEach((item, index)=> {
-        seasonalList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
+        seasonalList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg" style = {{margin: .2 + '%'}}>{item.item}</Button>)
     })
 
     function place_order(){
@@ -169,8 +169,9 @@ const Cashier = () => {
         resetItems();
     }   
 
-
-
+    function clear_orders(){
+        resetItems();
+    }
 
     return (
         <main id='cashierSection'>        
@@ -183,13 +184,12 @@ const Cashier = () => {
 
             <div  className="col-4 border" >
                 <Items />
+
                 <div id= 'orderactions'>
                     <Button onClick={() => {place_order();}} variant="primary" size="lg">Place Order</Button>
-                    <Button  variant="primary" size="lg">cancel Order</Button>
+                    <Button onClick={() => {clear_orders();}} variant="primary" size="lg">cancel Order</Button>
                 </div>
-                <div id="orderInfo"> 
 
-                </div>
             </div>
 
             <div id="menuSection" className="col-8 border">
