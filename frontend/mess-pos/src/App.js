@@ -6,12 +6,15 @@ import Cashier from "./components/Cashier"
 import Home from "./components/Home"
 import Manager from "./components/Manager"
 import Login from "./components/Login"
+import DarkMode from "./components/DarkMode";
 
 const App = () => {
     return(
         <>
+        
         <BrowserRouter>
             <Header />
+            <DarkMode/>
             <Routes>
                 <Route index element={<Home />} />
                 <Route path="cashier" element={<Cashier />}/>

@@ -1,11 +1,9 @@
 
 import React from 'react';
-import "./Header.css";
-import {Outlet, Link} from "react-router-dom";
+import "../App.css";
+import { Outlet } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import NavbarBrand from 'react-bootstrap/esm/NavbarBrand';
 import {LinkContainer} from 'react-router-bootstrap'
 
 const Header = () => {
