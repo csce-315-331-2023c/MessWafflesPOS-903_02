@@ -3,14 +3,6 @@ import * as db from "../db/connection.js";
 
 const router = new Router();
 
-import { auth as jwtAuth } from "express-oauth2-jwt-bearer";
-const jwtCheck = jwtAuth({
-    audience: "cashier-API",
-    issuerBaseURL: process.env.ISSUER_BASE_URL,
-    tokenSigningAlg: "RS256",
-});
-router.use(jwtCheck);
-
 router.post("/testing", async (req, res) => {
     try {
         res.json(req.body);

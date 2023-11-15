@@ -16,6 +16,7 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
+export const RoleContext = React.createContext();
 const App = () => {
     // get user email
     const { user, isAuthenticated } = useAuth0();
@@ -25,53 +26,54 @@ const App = () => {
     useEffect(() => {
         if (isAuthenticated) {
             console.log("logged in");
+            const emaildata = {
+                email: user.email,
+            };
             axios
-                .get("http://localhost:5000/role", {
-                    params: {
-                        email: user.email,
-                    },
-                })
+                .get("http://localhost:5000/auth/role", { params: emaildata })
                 .then((res) => {
-                    console.log(res);
-                    setRole(res.data);
+                    console.log(res.data.rows[0].role.toLowerCase());
+                    setRole(res.data.rows[0].role.toLowerCase());
                 })
                 .catch((err) => {
                     console.log(err);
-                    setRole("manager");
+                    setRole("");
                 });
         } else {
             console.log("not logged in");
-            setRole("cashier");
+            setRole("");
         }
     }, [isAuthenticated]);
 
     return (
         <>
-            <Header />
-            <Routes>
-                <Route index element={<Home />} />
-                {role == "cashier" && (
-                    <Route path="cashier" element={<Cashier />} />
-                )}
-                {role == "manager" && (
-                    <Route path="manager" element={<Manager />} />
-                )}
+            <RoleContext.Provider value={role}>
+                <Header />
+                <Routes>
+                    <Route index element={<Home />} />
+                    {role == "cashier" && (
+                        <Route path="cashier" element={<Cashier />} />
+                    )}
+                    {role == "manager" && (
+                        <Route path="manager" element={<Manager />} />
+                    )}
 
-                {/* <Route path="cashier" element={<Cashier />} />
+                    {/* <Route path="cashier" element={<Cashier />} />
                 <Route path="manager" element={<Manager />} /> */}
-            </Routes>
-            <h1>OAuth stuff</h1>
-            <ul>
-                <li>
-                    <LoginButton />
-                </li>
-                <li>
-                    <LogoutButton />
-                </li>
-            </ul>
-            <OAuthText />
-            <APIRoutes />
-            <Footer />
+                </Routes>
+                <h1>OAuth stuff</h1>
+                <ul>
+                    <li>
+                        <LoginButton />
+                    </li>
+                    <li>
+                        <LogoutButton />
+                    </li>
+                </ul>
+                <OAuthText />
+                <APIRoutes />
+                <Footer />
+            </RoleContext.Provider>
         </>
     );
 };
