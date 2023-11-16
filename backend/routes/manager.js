@@ -83,16 +83,4 @@ router.get('/orders', async(req, res) => {
         res.status(500).send("Server error");
     }
 })
-
-router.get('/ingredients', async(req, res) => {
-    const{item} = req.query;
-    try {
-        const result = await db.query("SELECT ingredients FROM items WHERE lower(item) = $1 ORDER BY ingredients", [item]);
-        res.send(result);
-    }
-    catch(err) {
-        console.error(err);
-        res.status(500).send("Server error");
-    }
-})
 export default router;
