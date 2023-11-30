@@ -158,11 +158,43 @@ const Customer = () => {
     })
     
     
-    const Tabpage = () => {
+    const EntreePage = () => {
         
         return (
           <Row>
             {entreesList.map((item, index) => (
+              <Col key={index} sm={3}>
+                {/* Adjust  based on how many items you want in a row */}
+                <ListGroup>
+                  <ListGroup.Item>{item}</ListGroup.Item>
+                </ListGroup>
+              </Col>
+            ))}
+          </Row>
+        );
+    }
+
+    const DrinksPage = () => {
+        
+        return (
+          <Row>
+            {drinksList.map((item, index) => (
+              <Col key={index} sm={3}>
+                {/* Adjust  based on how many items you want in a row */}
+                <ListGroup>
+                  <ListGroup.Item>{item}</ListGroup.Item>
+                </ListGroup>
+              </Col>
+            ))}
+          </Row>
+        );
+    }
+
+    const SeasonalPage = () => {
+        
+        return (
+          <Row>
+            {seasonalList.map((item, index) => (
               <Col key={index} sm={3}>
                 {/* Adjust  based on how many items you want in a row */}
                 <ListGroup>
@@ -267,12 +299,20 @@ const Customer = () => {
                 <Tabs defaultActiveKey="entree" fill >
                     <Tab eventKey="entree" title="Entrees">
                        <div>
-                            <Tabpage/>
+                            <EntreePage/>
                        </div>
                 
                     </Tab>
-                    <Tab eventKey="drink" title="Drinks">{drinksList}</Tab>
-                    <Tab eventKey="seasonal" title="Seasonal Items">{seasonalList}</Tab>
+                    <Tab eventKey="drink" title="Drinks">
+                        <div>
+                            <DrinksPage/>
+                       </div>
+                    </Tab>
+                    <Tab eventKey="seasonal" title="Seasonal Items">
+                        <div>
+                            <SeasonalPage/>
+                       </div>
+                    </Tab>
                 </Tabs>
             </div>
             <div className='row-3 border'></div>

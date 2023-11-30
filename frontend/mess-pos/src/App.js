@@ -9,7 +9,7 @@ import Manager from "./components/Manager";
 import Login from "./components/Login";
 
 // import {
-//     LoginButton,
+//   LoginButton,
 //     LogoutButton,
 //     OAuthText,
 //     APIRoutes,
@@ -59,6 +59,7 @@ const App = () => {
                     <Route path="cashier" element={<Cashier />} />
                     <Route path="manager" element={<Manager />} />
                     <Route path="customer" element={<Customer />} />
+                    
                 </Routes>
 
                 <Footer />

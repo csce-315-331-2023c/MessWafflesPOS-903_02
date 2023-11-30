@@ -41,6 +41,10 @@ const Header = () => {
                             </>
                         )}
 
+                        <LinkContainer to="/customer">
+                            <Nav.Link>Customer</Nav.Link>
+                        </LinkContainer>
+
                         <Nav.Link onClick={() => loginWithRedirect()}>
                             Login
                         </Nav.Link>
