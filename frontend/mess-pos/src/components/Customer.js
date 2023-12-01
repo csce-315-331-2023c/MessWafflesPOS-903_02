@@ -174,7 +174,23 @@ const Cashier = () => {
         );
     }
 
-   
+   const RecItems  = () =>{
+    const [temp, setTemp] = useState([]);
+    useEffect(() => {
+        axios.get('http://api.weatherapi.com/v1/current.json?Key=f9d76b0584124e86bfa144719232711&q=77840')
+            .then(response => {
+                setTemp(response.data.current.temp_f);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    },[]);
+    return (
+        <>
+        {temp}
+        </>
+    )
+   }
 
     function Info() {
         const [show, setShow] = useState(false);
@@ -273,6 +289,11 @@ const Cashier = () => {
                     </Tab>
                     <Tab eventKey="drink" title="Drinks">{drinksList}</Tab>
                     <Tab eventKey="seasonal" title="Seasonal Items">{seasonalList}</Tab>
+                    <Tab eventKey="rec" title="Recommended Items">
+                        <div>
+                            <RecItems/>
+                        </div>
+                    </Tab>
                 </Tabs>
             </div>
             <div className='row-3 border'></div>

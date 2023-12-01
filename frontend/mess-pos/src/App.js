@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Cashier from "./components/Cashier";
 import Home from "./components/Home";
 import Manager from "./components/Manager";
+import Customer from "./components/Customer";
 import Login from "./components/Login";
 
 // import {
@@ -57,6 +58,7 @@ const App = () => {
                     <Route index element={<Home />} />
                     <Route path="cashier" element={<Cashier />} />
                     <Route path="manager" element={<Manager />} />
+                    <Route path="customer" element={<Customer />} />
                 </Routes>
 
                 <Footer />
