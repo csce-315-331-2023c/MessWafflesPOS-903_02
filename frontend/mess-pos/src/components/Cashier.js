@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import "./Cashier.css"
+import "../App.css"
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import Tab from 'react-bootstrap/Tab'

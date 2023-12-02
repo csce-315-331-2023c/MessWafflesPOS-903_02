@@ -64,13 +64,49 @@ p {
     line-height: 1.6;
 }
 
-header{
+#cashierSection {
+    min-height: 85vh;
+    background-color: whitesmoke;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkout{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+  
+.itemsCol ul li {
+    display: block; /* Display list items vertically */
+    margin: 5px 0; /* Optional spacing between list items */
+}
+
+footer.light {
+    background-color: var(--white);
+    color: var(--blue);
+    min-height: 5vh;
+}
+
+footer.dark {
+    background-color: var(--blue);
+    color: var(--white  );
+    min-height: 5vh;
+}
+
+
+header {
     background-color: royalblue;
     color:white;
     min-height: 5vh;
 }
+
 Link {
-    color: var(--white);
+    color: white
 }
 
 h2 {

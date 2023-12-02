@@ -6,6 +6,7 @@ import Cashier from "./components/Cashier"
 import Home from "./components/Home"
 import Manager from "./components/Manager"
 import Login from "./components/Login"
+import Nav from 'react-bootstrap/Nav';
 import DarkMode from "./components/DarkMode";
 
 const App = () => {
