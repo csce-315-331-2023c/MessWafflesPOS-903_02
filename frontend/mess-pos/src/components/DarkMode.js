@@ -4,6 +4,7 @@ import "../DarkMode.css";
 const DarkMode = () => {
     let clickClass = "clicked";
     const body = document.body;
+    const test = document.getElementsByClassName("");
     const lightMode = "light";
     const darkMode = "dark";
     let theme;
