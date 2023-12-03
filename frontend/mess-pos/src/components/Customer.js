@@ -28,7 +28,8 @@ const Cashier = () => {
     var entrees = [];
     var drinks = [];
     var seasonal = [];
-
+    var cold  = [];
+    var hot = [];
     const [Item_names, setItemNames] = useState([]);
     const [Prices, setPrices] = useState([]);
 
@@ -99,14 +100,14 @@ const Cashier = () => {
 
    
 
-    function itemCard(item, price, index) {
+    function itemCard(item, price, index,description,picture) {
         return (
             <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img variant="top" src={picture} />
             <Card.Body>
                 <Card.Title>{item}</Card.Title>
                 <Card.Text>
-                description
+                {description}
                 </Card.Text>
                 <Button onClick={() => {addOrder(item, price);}} key={index} variant="primary">Add</Button>
             </Card.Body>
@@ -120,7 +121,7 @@ const Cashier = () => {
 
     
     for(let i = 0; i < items.rowCount; i++){
-        const menuItem = {item: JSON.stringify(items.rows[i].item).substring(1,JSON.stringify(items.rows[i].item).length-1), price: JSON.stringify(items.rows[i].price).substring(1,JSON.stringify(items.rows[i].price).length-1)};
+        const menuItem = {item: JSON.stringify(items.rows[i].item).substring(1,JSON.stringify(items.rows[i].item).length-1), price: JSON.stringify(items.rows[i].price).substring(1,JSON.stringify(items.rows[i].price).length-1),description: JSON.stringify(items.rows[i].description).substring(1,JSON.stringify(items.rows[i].description).length-1),picture: JSON.stringify(items.rows[i].picture).substring(1,JSON.stringify(items.rows[i].picture).length-1)};
         if(JSON.stringify(items.rows[i].category) == "\"entree\"") {
             entrees.push(menuItem);
         }
@@ -130,12 +131,18 @@ const Cashier = () => {
         else if(JSON.stringify(items.rows[i].category) == "\"seasonal\"") {
             seasonal.push(menuItem);
         }
+        if(JSON.stringify(items.rows[i].weather_type) == "\"cold\""){
+            cold.push(menuItem);
+        }
+        if(JSON.stringify(items.rows[i].weather_type) == "\"hot\""){
+            hot.push(menuItem);
+        }
     }
     var entreesList = [];
     var drinksList = [];
     var seasonalList =[];
-
-    
+    var coldWeatherItems = [];
+    var hotWeatherItems = [];
 
     function addOrder(name, price) {
         if (orders.has(name)) {
@@ -148,7 +155,7 @@ const Cashier = () => {
         console.log(name, orders.get(name).quantity, orders.get(name).price);
     }
     entrees.forEach((item, index)=> {
-        entreesList.push( itemCard(item.item, item.price, index))
+        entreesList.push( itemCard(item.item, item.price, index,item.description,item.picture))
     })
     drinks.forEach((item, index)=> {
         drinksList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
@@ -156,7 +163,12 @@ const Cashier = () => {
     seasonal.forEach((item, index)=> {
         seasonalList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
     })
-    
+    cold.forEach((item, index)=> {
+        coldWeatherItems.push( itemCard(item.item, item.price, index,item.description,0))
+    })
+    hot.forEach((item, index)=> {
+        hotWeatherItems.push( itemCard(item.item, item.price, index,item.description,0))
+    })
     
     const Tabpage = () => {
         
@@ -185,11 +197,34 @@ const Cashier = () => {
                 console.log(err);
             })
     },[]);
-    return (
-        <>
-        {temp}
-        </>
-    )
+    if(temp < 65){
+        return (
+            <Row>
+            {coldWeatherItems.map((item, index) => (
+                <Col key={index} sm={3}>
+                {/* Adjust  based on how many items you want in a row */}
+                <ListGroup>
+                    <ListGroup.Item>{item}</ListGroup.Item>
+                </ListGroup>
+                </Col>
+            ))}
+            </Row>
+        );
+    }
+    else{
+        return (
+            <Row>
+            {hotWeatherItems.map((item, index) => (
+                <Col key={index} sm={3}>
+                {/* Adjust  based on how many items you want in a row */}
+                <ListGroup>
+                    <ListGroup.Item>{item}</ListGroup.Item>
+                </ListGroup>
+                </Col>
+            ))}
+            </Row>
+        );
+    }
    }
 
     function Info() {
