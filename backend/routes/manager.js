@@ -101,6 +101,18 @@ router.delete('/inventory', async(req,res) => {
         res.status(500).send("Server error");
     }
 });
+router.get('/orders', async(req, res) => {
+    const{date1, date2} = req.query;
+    console.log(date1, date2);
+    try {
+        const result = await db.query("SELECT item FROM orders WHERE order_date::date >= $1 AND order_date::date <= $2", [date1, date2]);
+        res.send(result);
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
+    }
+})
 router.get('/restockReport', async (req, res) => {
     const{quantity} = req.query
     try {
