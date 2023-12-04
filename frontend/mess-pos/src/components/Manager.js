@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Table from 'react-bootstrap/Table';
@@ -20,6 +20,9 @@ const Manager = () => {
   // Excess Report
   const[loadingExcess, setLoadingExcess] = useState(true);
   const[excessOrders, setExcessOrders] = useState([]);
+  // Trends
+  const[loadingTrends, setLoadingTrends] = useState(true);
+  const[trendsOrders, setTrendsOrders] = useState([]);
   
   // Global Variables
   // Usage Report
@@ -36,6 +39,9 @@ const Manager = () => {
   const excessIngredients = [];
   const excessItems = [];
   const excessQuant = [];
+  // Trends
+  const trendsMap = new Map();
+  const trendsPairs = [];
 
   // useEffect (on site render)
   useEffect(() => {
@@ -89,12 +95,28 @@ const Manager = () => {
     })
   }
 
+  // Trends Report
+  const trendsSubmit = (event) => {
+    event.preventDefault();
+    setLoadingTrends(true);
+    const eventDate1 = event.currentTarget[0].value; // dates
+    const eventDate2 = event.currentTarget[1].value;
+    axios.get("http://localhost:5000/manager/orders", {params: {date1: eventDate1, date2: eventDate2}})
+    .then(response => {
+      setTrendsOrders(response.data);
+      setLoadingTrends(false);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
   // Excess Report
   const excessSubmit = (event) => {
     event.preventDefault();
     setLoadingExcess(true);
     const eventDate1 = event.currentTarget[0].value; // dates
-    const eventDate2 = event.currentTarget[1].value;
+    const eventDate2 = new Date();
     axios.get("http://localhost:5000/manager/orders", {params: {date1: eventDate1, date2: eventDate2}})
     .then(response => {
       setExcessOrders(response.data);
@@ -149,7 +171,6 @@ const Manager = () => {
 
   // Sales Report
   const processOrders = () => {
-    console.log("orders from dates: ", salesOrders);
     // push all the items purchased into an array
     for(let row of salesOrders.rows) {
       for(let item of row.item) {
@@ -208,6 +229,12 @@ const Manager = () => {
         excessMap.set(ingredient, 1); 
       }
     }
+    // check for ingredients not used at all in orders
+    for(let row of inventory.rows) {
+      if(!excessMap.has(row.item)) {
+        excessMap.set(row.item, 0);
+      }
+    }
     for(let [key, value] of excessMap) {
       // i could probably just change the key value, but im going to avoid doing that cause it seems intuitively wrong
       let item = key;
@@ -227,6 +254,49 @@ const Manager = () => {
     }
   }
 
+  // Trends Report
+  const processTrends = () => {
+    // push pairs of items into a map, count occurances
+    const pushToMap = (a, b) => {
+      // idk why i had to stringify for this to work, but whatever
+      if(trendsMap.has(JSON.stringify({item1: a, item2: b}))) {
+        trendsMap.set(JSON.stringify({item1: a, item2: b}), trendsMap.get(JSON.stringify({item1: a, item2: b})) + 1)
+      }
+      else {
+        trendsMap.set(JSON.stringify({item1: a, item2: b}), 1);
+      }
+    }
+    // just do a double for loop and check each item
+    for(let row of trendsOrders.rows) {
+      for(let i = 0; i < row.item.length; i++) {
+        for(let j = i; j < row.item.length; j++) {
+          // It would be weird to say chicken says well with chicken, so check that items are not the same
+          if(row.item[i] != row.item[j]) {
+            // have {a, b} and {b, a} process as {a, b}
+            if(row.item[i] < row.item[j]) {
+              pushToMap(row.item[i], row.item[j]);
+            }
+            else {
+              pushToMap(row.item[j], row.item[i]);
+            }
+          }
+        }
+       } 
+    }
+    for(let [key, value] of trendsMap) {
+      trendsPairs.push({items: JSON.parse(key), quantity: value});
+    }
+    trendsPairs.sort((a, b) => {
+      if(a.quantity < b.quantity) {
+        return 1;
+      }
+      else if(a.quantity > b.quantity) {
+        return -1;
+      }
+      return 0;
+    })
+  }
+
   // Driver Code (basically, all this code is going to be used for is to check for loading)
   if(!loadingUsage) {
     processIngredients();
@@ -238,6 +308,10 @@ const Manager = () => {
 
   if(!loadingExcess) {
     processExcess();
+  }
+
+  if(!loadingTrends) {
+    processTrends();
   }
 
   return (
@@ -322,10 +396,6 @@ const Manager = () => {
             <Form.Label>Start Date</Form.Label>
             <Form.Control type="date" />
           </Form.Group>
-          <Form.Group controlId='date2'>
-            <Form.Label>End Date</Form.Label>
-            <Form.Control type='date' />
-          </Form.Group>
           <Button type="submit">Get Excess</Button>
         </Form>
         <Table striped bordered hover>
@@ -357,7 +427,37 @@ const Manager = () => {
       </Tab>
       <Tab eventKey="trends" title="Trends">
         {/* Ordering Trends (What sells together) */}
-        Ordering Trends
+        <Form onSubmit={(trendsSubmit)}>
+          <Form.Group controlId="date1">
+            <Form.Label>Start Date</Form.Label>
+            <Form.Control type="date" />
+          </Form.Group>
+          <Form.Group controlId='date2'>
+            <Form.Label>End Date</Form.Label>
+            <Form.Control type='date' />
+          </Form.Group>
+          <Button type="submit">Get Excess</Button>
+        </Form>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Item 1</th>
+              <th>Item 2</th>
+              <th>Times Sold Together</th>
+            </tr>
+          </thead>
+          <tbody>
+            {trendsPairs.map((val, key) => {
+              return (
+                <tr key={key}>
+                  <td>{val.items.item1}</td>
+                  <td>{val.items.item2}</td>
+                  <td>{val.quantity}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </Table>
       </Tab>
     </Tabs>
     </main>
