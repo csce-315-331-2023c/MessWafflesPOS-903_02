@@ -272,7 +272,7 @@ const Manager = () => {
       for(let i = 0; i < row.item.length; i++) {
         for(let j = i; j < row.item.length; j++) {
           // It would be weird to say chicken says well with chicken, so check that items are not the same
-          if(row.item[i] != row.item[j]) {
+          if(row.item[i] !== row.item[j]) {
             // have {a, b} and {b, a} process as {a, b}
             if(row.item[i] < row.item[j]) {
               pushToMap(row.item[i], row.item[j]);
