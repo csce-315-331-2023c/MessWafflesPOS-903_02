@@ -220,7 +220,8 @@ const Manager = () => {
         <input name = "price" label = "price" placeholder = "price"/>
         <input name = "ingredients" label = "ingredients" placeholder = "ingredients"/>
         <input name = "category" label = "category" placeholder = "category"/>
-        <input name = "picture" label = "picture" placeholder = "optional url for picture"/>
+        <input name = "picture" label = "picture" placeholder = "url for picture"/>
+        <input name = "description" label = "description" placeholder = "item description"/>
         <Button type="submit">Submit</Button>
         </form>
         <br></br>
