@@ -1,10 +1,11 @@
-import React, {useEffect, useState, useMemo} from 'react';
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
 import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
-import axios from 'axios';
 import Form from 'react-bootstrap/Form'
+import React, {useEffect, useState} from 'react'
+import Tab from 'react-bootstrap/Tab'
+import Tabs from 'react-bootstrap/Tabs'
+import axios from 'axios'
+import "./Cashier.css"
+import Button from 'react-bootstrap/Button'
 
 const Manager = () => {
   // useState
@@ -45,14 +46,14 @@ const Manager = () => {
 
   // useEffect (on site render)
   useEffect(() => {
-    axios.get("http://localhost:5000/manager/items")
+    axios.get('https://messwafflespos.onrender.com/api/manager/items')
       .then(res => {
         setItems(res.data);
       })
       .catch(err => {
         console.log(err);
       })
-    axios.get('http://localhost:5000/manager/inventory')
+    axios.get('https://messwafflespos.onrender.com/api/manager/inventory')
       .then(response => {
         setInventory(response.data);
       })
@@ -69,7 +70,7 @@ const Manager = () => {
     const eventDate1 = event.currentTarget[0].value; // dates
     const eventDate2 = event.currentTarget[1].value;
     // get request orders between dates
-    axios.get("http://localhost:5000/manager/orders", {params: {date1: eventDate1, date2: eventDate2}})
+    axios.get('https://messwafflespos.onrender.com/api/manager/orders', {params: {date1: eventDate1, date2: eventDate2}})
     .then(response => {
       setUsageOrders(response.data);
       setLoadingUsage(false)
@@ -85,7 +86,7 @@ const Manager = () => {
     setLoadingOrdersSales(true);
     const eventDate1 = event.currentTarget[0].value; // dates
     const eventDate2 = event.currentTarget[1].value;
-    axios.get("http://localhost:5000/manager/orders", {params: {date1: eventDate1, date2: eventDate2}})
+    axios.get('https://messwafflespos.onrender.com/api/manager/orders', {params: {date1: eventDate1, date2: eventDate2}})
     .then(response => {
       setSalesOrders(response.data);
       setLoadingOrdersSales(false);
@@ -101,7 +102,7 @@ const Manager = () => {
     setLoadingTrends(true);
     const eventDate1 = event.currentTarget[0].value; // dates
     const eventDate2 = event.currentTarget[1].value;
-    axios.get("http://localhost:5000/manager/orders", {params: {date1: eventDate1, date2: eventDate2}})
+    axios.get('https://messwafflespos.onrender.com/api/manager/orders', {params: {date1: eventDate1, date2: eventDate2}})
     .then(response => {
       setTrendsOrders(response.data);
       setLoadingTrends(false);
@@ -117,7 +118,7 @@ const Manager = () => {
     setLoadingExcess(true);
     const eventDate1 = event.currentTarget[0].value; // dates
     const eventDate2 = new Date();
-    axios.get("http://localhost:5000/manager/orders", {params: {date1: eventDate1, date2: eventDate2}})
+    axios.get('https://messwafflespos.onrender.com/api/manager/orders', {params: {date1: eventDate1, date2: eventDate2}})
     .then(response => {
       setExcessOrders(response.data);
       setLoadingExcess(false);
@@ -296,6 +297,193 @@ const Manager = () => {
       return 0;
     })
   }
+  
+  // Will Code
+    function Inventory() {
+    const [ings, setIngs] = useState([]);
+    useEffect(() => {
+        axios.get('https://messwafflespos.onrender.com/api/manager/inventory')
+            .then(response => {
+                setIngs(response.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    },[]);
+    var ingsList = [];
+    var quantList = [];
+    for(let i = 0; i < ings.rowCount;i++){
+      ingsList.push(JSON.stringify(ings.rows[i].item).substring(1,JSON.stringify(ings.rows[i].item).length-1))
+      quantList.push(ings.rows[i].quantity)
+    }
+    return (
+        <>
+        <div className= "checkout" >
+            <div id = "itemCol" className="itemsCol">Item
+                <ul style={{ display: 'block' }}>
+                    {ingsList.map((item, index) => (
+                    <li key={index}>{item}</li>
+                    ))}
+                </ul>
+            </div>
+            
+            <div id = "quantCol" className="itemsCol">Quantity
+                <ul style={{display: 'block'}}>
+                    {quantList.map((quantity, index) => (
+                    <li key={index} >{quantity}</li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    
+        </>
+    )
+  }
+  function updateInventory(e){
+    e.preventDefault()
+    const form = e.target
+    const formData = new FormData(form);
+    const postdata = Object.fromEntries(formData.entries());
+    console.log(postdata)
+    axios.post('https://messwafflespos.onrender.com/api/manager/inventory', postdata)
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+  }
+  function updateItems(e){
+    e.preventDefault()
+    const form = e.target
+    const formData = new FormData(form);
+    const postdata = Object.fromEntries(formData.entries());
+    console.log(postdata)
+    postdata.ingredients = "{" + postdata.ingredients + "}"
+    axios.post('https://messwafflespos.onrender.com/api/manager/items', postdata)
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+  }
+  function deleteIng(e){
+    e.preventDefault()
+    const form = e.target
+    const formData = new FormData(form);
+    const postdata = Object.fromEntries(formData.entries());
+    console.log(postdata)
+    axios.delete(`https://messwafflespos.onrender.com/api/manager/inventory/`,{
+      data: postdata
+    })
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+  }
+  function deleteItem(e){
+    e.preventDefault()
+    const form = e.target
+    const formData = new FormData(form);
+    const postdata = Object.fromEntries(formData.entries());
+    console.log(postdata)
+    axios.delete(`https://messwafflespos.onrender.com/api/manager/items/`,{
+      data: postdata
+    })
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+  }
+  function Items(){
+    const [itemsMenu, setItemsMenu] = useState([]);
+    useEffect(() => {
+      axios.get('https://messwafflespos.onrender.com/api/manager/items')
+          .then(response => {
+              setItemsMenu(response.data);
+          })
+          .catch(err => {
+              console.log(err);
+          })
+    },[]);
+    var itemList = []
+    var priceList = []
+    var ingList = []
+    var catList = []
+    for(let i = 0; i < itemsMenu.rowCount;i++){
+      itemList.push(JSON.stringify(itemsMenu.rows[i].item).substring(1,JSON.stringify(itemsMenu.rows[i].item).length-1))
+      priceList.push(itemsMenu.rows[i].price)
+      ingList.push(itemsMenu.rows[i].ingredients)
+      catList.push(JSON.stringify(itemsMenu.rows[i].category).substring(1,JSON.stringify(itemsMenu.rows[i].category).length-1))
+    }
+    for(let i = 0; i < ingList.length;i++){
+      ingList[i] = ingList[i].toString()
+    }
+    return (
+      <>
+      <div className= "checkout" >
+          <div id = "itemCol" className="itemsCol">Item
+              <ul style={{ display: 'block' }}>
+                  {itemList.map((item, index) => (
+                  <li key={index}>{item}</li>
+                  ))}
+              </ul>
+          </div>
+          
+          <div id = "priceCol" className="itemsCol">Price
+              <ul style={{display: 'block'}}>
+                  {priceList.map((price, index) => (
+                  <li key={index} >{price}</li>
+                  ))}
+              </ul>
+          </div>
+          <div id = "ingCol" className="itemsCol">Ingredients
+              <ul style={{display: 'block'}}>
+                  {ingList.map((ings, index) => (
+                  <li key={index} >{ings}</li>
+                  ))}
+              </ul>
+          </div>
+          <div id = "catCol" className="itemsCol">Category
+              <ul style={{display: 'block'}}>
+                  {catList.map((cat, index) => (
+                  <li key={index} >{cat}</li>
+                  ))}
+              </ul>
+          </div>
+      </div>
+  
+      </>
+  )
+  }
+  function restockReport(e){
+    e.preventDefault()
+    const form = e.target
+    const formData = new FormData(form);
+    const postdata = Object.fromEntries(formData.entries());
+    console.log(postdata)
+    var needsRestock = []
+    const q = postdata.quantity
+    axios.get('https://messwafflespos.onrender.com/api/manager/restockReport',{params:{quantity: q}})
+        .then(response => {
+            console.log(response.data)
+            for(let i = 0; i < response.data.rowCount;i++){
+              needsRestock.push(response.data.rows[i].item)
+            }
+            var restockList = needsRestock.toString()
+            document.getElementById('restockReturn').innerHTML = restockList;
+            console.log(restockList)
+        })
+        .catch(err => {
+            console.log(err);
+        });
+        
+  }
 
   // Driver Code (basically, all this code is going to be used for is to check for loading)
   if(!loadingUsage) {
@@ -318,12 +506,42 @@ const Manager = () => {
     <main>
     <Tabs defaultActiveKey="inventory">
       <Tab eventKey="inventory" title="Inventory">
-        {/* Content for inventory tab */}
-        Inventory
+        <div id = "invSection">
+        <Inventory />
+        <center><form onSubmit={updateInventory}>
+          Update/Create item:
+        <input name = "item" label = "item name" placeholder = "item name"/>
+        <input name = "quantity" label = "quantity" placeholder = "quantity"/>
+        <Button type="submit">Submit</Button>
+        </form>
+        <br></br>
+        <form onSubmit={deleteIng}>
+          Delete item:
+          <input name = "item" label = "item name"  placeholder = "item name"/>
+          <Button type="submit">Submit</Button>
+        </form>
+        </center>
+        </div>
       </Tab>
       <Tab eventKey="menu" title="Menu">
-        {/* Content for Menu tab */}
-        Menu
+        <Items />
+        <center><form onSubmit={updateItems}>
+          Update/Create item:
+        <input name = "item" label = "item name" placeholder = "item name"/>
+        <input name = "price" label = "price" placeholder = "price"/>
+        <input name = "ingredients" label = "ingredients" placeholder = "ingredients"/>
+        <input name = "category" label = "category" placeholder = "category"/>
+        <input name = "picture" label = "picture" placeholder = "url for picture"/>
+        <input name = "description" label = "description" placeholder = "item description"/>
+        <Button type="submit">Submit</Button>
+        </form>
+        <br></br>
+        <form onSubmit={deleteItem}>
+          Delete item:
+          <input name = "item" label = "item name" placeholder = "name"/>
+          <Button type="submit">Submit</Button>
+        </form>
+        </center>
       </Tab>
       <Tab eventKey="usage" title="Usage">
         {/* Product Usage */}
@@ -421,9 +639,15 @@ const Manager = () => {
           </tbody>
         </Table>
       </Tab>
-      <Tab eventKey="restock" title="Restock">
-        {/* Restock Report*/}
-        Restock Report
+      <Tab eventKey = "restockReport" title = "Restock Report">
+        <center>
+          Enter a number to see all inventory items that need restock for that threshold:
+          <form onSubmit={restockReport}>
+            <input name = "quantity" label = "quantity" placeholder = "quantity threshold"/>
+            <Button type="submit">Submit</Button>
+          </form>
+          <div id = "restockReturn"></div>
+        </center>
       </Tab>
       <Tab eventKey="trends" title="Trends">
         {/* Ordering Trends (What sells together) */}

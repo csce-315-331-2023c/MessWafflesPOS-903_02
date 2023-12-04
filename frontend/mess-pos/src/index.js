@@ -1,9 +1,18 @@
 import React from "react";
 import App from "./App";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.css";
 
-const domNode = document.getElementById('root');
-const root = createRoot(domNode);
-root.render(<App />);
+import { Auth0ProviderWithNavigate } from "./auth/auth0-provider-with-navigate";
+
+ReactDOM.render(
+    <React.StrictMode>
+        <BrowserRouter>
+            <Auth0ProviderWithNavigate>
+                <App />
+            </Auth0ProviderWithNavigate>
+        </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById("root")
+);

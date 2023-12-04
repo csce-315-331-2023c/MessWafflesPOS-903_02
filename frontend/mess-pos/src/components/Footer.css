@@ -1,5 +1,10 @@
 footer {
-    background-color: royalblue;
+    background-color: #ffe500;
     color: white;
-    min-height: 5vh;
+    display: flex;
+}
+
+#google_translate_element {
+    /* margin-right: 10; */
+    padding: 5px;
 }
