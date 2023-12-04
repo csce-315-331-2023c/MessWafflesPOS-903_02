@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 
 export const TranslateElement = () => {
-    return (
-        <div id="google_translate_element" style={{ display: "none" }}></div>
-    );
+    return <div id="google_translate_element"></div>;
 };
 
 export const TranslateScript = () => {
