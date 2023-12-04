@@ -43,6 +43,18 @@ router.post('/items', async(req,res) => {
     }
 });
 
+router.post('/setItemWeatherType', async(req,res) => {
+    const{item,weather_type} = req.body
+    try{
+        await db.query('UPDATE items SET weather_type = $2 WHERE item = $1',[item,weather_type])
+        res.status(201).send(`Added item ${item}`)
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
+    }
+});
+
 router.delete('/items', async(req,res) => {
     const{item} = req.body
     try{

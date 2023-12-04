@@ -28,7 +28,8 @@ const Customer = () => {
     var entrees = [];
     var drinks = [];
     var seasonal = [];
-
+    var cold  = [];
+    var hot = [];
     const [Item_names, setItemNames] = useState([]);
     const [Prices, setPrices] = useState([]);
 
@@ -99,14 +100,14 @@ const Customer = () => {
 
    
 
-    function itemCard(item, price, index) {
+    function itemCard(item, price, index,description,picture) {
         return (
             <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img variant="top" src={picture} />
             <Card.Body>
                 <Card.Title>{item}</Card.Title>
                 <Card.Text>
-                description
+                {description}
                 </Card.Text>
                 <Button onClick={() => {addOrder(item, price);}} key={index} variant="primary">Add</Button>
             </Card.Body>
@@ -120,7 +121,7 @@ const Customer = () => {
 
     
     for(let i = 0; i < items.rowCount; i++){
-        const menuItem = {item: JSON.stringify(items.rows[i].item).substring(1,JSON.stringify(items.rows[i].item).length-1), price: JSON.stringify(items.rows[i].price).substring(1,JSON.stringify(items.rows[i].price).length-1)};
+        const menuItem = {item: JSON.stringify(items.rows[i].item).substring(1,JSON.stringify(items.rows[i].item).length-1), price: JSON.stringify(items.rows[i].price).substring(1,JSON.stringify(items.rows[i].price).length-1),description: JSON.stringify(items.rows[i].description).substring(1,JSON.stringify(items.rows[i].description).length-1),picture: JSON.stringify(items.rows[i].picture).substring(1,JSON.stringify(items.rows[i].picture).length-1)};
         if(JSON.stringify(items.rows[i].category) == "\"entree\"") {
             entrees.push(menuItem);
         }
@@ -130,12 +131,18 @@ const Customer = () => {
         else if(JSON.stringify(items.rows[i].category) == "\"seasonal\"") {
             seasonal.push(menuItem);
         }
+        if(JSON.stringify(items.rows[i].weather_type) == "\"cold\""){
+            cold.push(menuItem);
+        }
+        if(JSON.stringify(items.rows[i].weather_type) == "\"hot\""){
+            hot.push(menuItem);
+        }
     }
     var entreesList = [];
     var drinksList = [];
     var seasonalList =[];
-
-    
+    var coldWeatherItems = [];
+    var hotWeatherItems = [];
 
     function addOrder(name, price) {
         if (orders.has(name)) {
@@ -148,7 +155,7 @@ const Customer = () => {
         console.log(name, orders.get(name).quantity, orders.get(name).price);
     }
     entrees.forEach((item, index)=> {
-        entreesList.push( itemCard(item.item, item.price, index))
+        entreesList.push( itemCard(item.item, item.price, index,item.description,item.picture))
     })
     drinks.forEach((item, index)=> {
         drinksList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
@@ -156,7 +163,12 @@ const Customer = () => {
     seasonal.forEach((item, index)=> {
         seasonalList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
     })
-    
+    cold.forEach((item, index)=> {
+        coldWeatherItems.push( itemCard(item.item, item.price, index,item.description,0))
+    })
+    hot.forEach((item, index)=> {
+        hotWeatherItems.push( itemCard(item.item, item.price, index,item.description,0))
+    })
     
     const EntreePage = () => {
         
@@ -206,7 +218,46 @@ const Customer = () => {
         );
     }
 
-   
+   const RecItems  = () =>{
+    const [temp, setTemp] = useState([]);
+    useEffect(() => {
+        axios.get('http://api.weatherapi.com/v1/current.json?Key=f9d76b0584124e86bfa144719232711&q=77840')
+            .then(response => {
+                setTemp(response.data.current.temp_f);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    },[]);
+    if(temp <= 60){
+        return (
+            <Row>
+            {coldWeatherItems.map((item, index) => (
+                <Col key={index} sm={3}>
+                {/* Adjust  based on how many items you want in a row */}
+                <ListGroup>
+                    <ListGroup.Item>{item}</ListGroup.Item>
+                </ListGroup>
+                </Col>
+            ))}
+            </Row>
+        );
+    }
+    else if (temp >= 70){
+        return (
+            <Row>
+            {hotWeatherItems.map((item, index) => (
+                <Col key={index} sm={3}>
+                {/* Adjust  based on how many items you want in a row */}
+                <ListGroup>
+                    <ListGroup.Item>{item}</ListGroup.Item>
+                </ListGroup>
+                </Col>
+            ))}
+            </Row>
+        );
+    }
+   }
 
     function Info() {
         const [show, setShow] = useState(false);
@@ -312,6 +363,11 @@ const Customer = () => {
                         <div>
                             <SeasonalPage/>
                        </div>
+                    </Tab>
+                    <Tab eventKey="rec" title="Recommended Items">
+                        <div>
+                            <RecItems/>
+                        </div>
                     </Tab>
                 </Tabs>
             </div>
