@@ -45,13 +45,11 @@ const Customer = () => {
     function resetItems(){
         setItemNames(olary => []);
         setPrices(olary => []);
+        setTotal(oldPrice => 0.00);
     }
 
     function Items() {
 
-
-
-        
         function removeOrderItem(i) {
             if (window.confirm('delete ' + i + ' from the order?')){
                 var array_i = [...Item_names]; 
@@ -116,10 +114,9 @@ const Customer = () => {
     }
 
     
-
     const orders = new Map();
 
-    
+
     for(let i = 0; i < items.rowCount; i++){
         const menuItem = {item: JSON.stringify(items.rows[i].item).substring(1,JSON.stringify(items.rows[i].item).length-1), price: JSON.stringify(items.rows[i].price).substring(1,JSON.stringify(items.rows[i].price).length-1),description: JSON.stringify(items.rows[i].description).substring(1,JSON.stringify(items.rows[i].description).length-1),picture: JSON.stringify(items.rows[i].picture).substring(1,JSON.stringify(items.rows[i].picture).length-1)};
         if(JSON.stringify(items.rows[i].category) == "\"entree\"") {
@@ -158,10 +155,10 @@ const Customer = () => {
         entreesList.push( itemCard(item.item, item.price, index,item.description,item.picture))
     })
     drinks.forEach((item, index)=> {
-        drinksList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
+        drinksList.push( itemCard(item.item, item.price, index,item.description,item.picture))
     })
     seasonal.forEach((item, index)=> {
-        seasonalList.push( <Button onClick={() => {addOrder(item.item, item.price);}} key={index} variant="primary" size="lg">{item.item}</Button>)
+        seasonalList.push( itemCard(item.item, item.price, index,item.description,item.picture))
     })
     cold.forEach((item, index)=> {
         coldWeatherItems.push( itemCard(item.item, item.price, index,item.description,0))
@@ -267,26 +264,21 @@ const Customer = () => {
 
         return (
             <>
-            <Button className='SeeOrder' variant="primary" onClick={handleShow}>
+            <Button className='SeeOrder' variant="primary" size="lg" onClick={handleShow}>
                 View Order
             </Button>
 
-            <Offcanvas show={show} onHide={handleClose}>
+            <Offcanvas show={show} onHide={handleClose} backdrop = "static">
                 <Offcanvas.Header closeButton>
-                <Offcanvas.Title>Current Order</Offcanvas.Title>
+                    <Offcanvas.Title>Current Order</Offcanvas.Title>
                 </Offcanvas.Header>
-                <Offcanvas.Body>
-                    <div>
-                    <Items />
-                    <div id= 'orderactions'>
-                        <Button onClick={() => {place_order();}} variant="primary" size="lg">Place Order</Button>
-                        <Button  variant="primary" size="lg">cancel Order</Button>
-                    </div>
-                    <div id="orderInfo"> 
-
-                    </div>
-            </div>
-                
+                <Offcanvas.Body >
+                        <p>Click an item to remove it</p> 
+                        <Items />
+                        <div id= 'orderactions'>
+                            <Button onClick={() => {place_order();}} variant="primary" size="lg">Place Order</Button>
+                            <Button  onClick={() => {resetItems();}}variant="primary" size="lg">Cancel Order</Button>
+                        </div>
                 </Offcanvas.Body>
             </Offcanvas>
             </>
@@ -313,7 +305,7 @@ const Customer = () => {
             total_price: n
         }
         
-        axios.post('http://localhost:5000/cashier/order', postdata)
+        axios.post('https://messwafflespos.onrender.com/api/cashier/order', postdata)
             .then(response => {
                 console.log(response.data);
             })
@@ -322,8 +314,6 @@ const Customer = () => {
             });
         resetItems();
     }   
-
-
 
 
     return (
