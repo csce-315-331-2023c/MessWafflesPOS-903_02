@@ -15,7 +15,7 @@ router.get('/items', async (req, res) => {
 });
 
 router.post('/items', async(req,res) => {
-    const{item,price,ingredients,category} = req.body
+    const{item,price,ingredients,category,picture,description} = req.body
     try{
         // for(let i = 0; i < ingredients.length;i++){
         //     thisIng = ingredients[i]
@@ -26,15 +26,15 @@ router.post('/items', async(req,res) => {
         // }
         var i = ingredients.substring(1,ingredients.length-1)
         const iList = i.split(',')
-        console.log(iList[2])
+        //console.log(iList[2])
         for(let j = 0; j < iList.length;j++){
-            var ing = iList[j]
+            var ing = iList[j].trim()
             const thisItem = await db.query("SELECT * FROM inventory WHERE item = $1",[ing]);
             if(thisItem.rowCount == 0){
                 await db.query('INSERT INTO inventory (item, quantity) VALUES ($1, 0)',[ing]);
             }
         }
-        await db.query('INSERT INTO items (item, price, ingredients, category) VALUES ($1, $2, $3, $4) ON CONFLICT (item) DO UPDATE SET price = $2, ingredients = $3, category = $4',[item,price,ingredients,category])
+        await db.query('INSERT INTO items (item, price, ingredients, category, picture, description) VALUES ($1, $2, $3, $4, $5, $6) ON CONFLICT (item) DO UPDATE SET price = $2, ingredients = $3, category = $4, picture = $5, description = $6',[item,price,ingredients,category,picture,description])
         res.status(201).send(`Added item ${item}`)
     }
     catch (err) {
@@ -101,6 +101,18 @@ router.delete('/inventory', async(req,res) => {
         res.status(500).send("Server error");
     }
 });
+router.get('/orders', async(req, res) => {
+    const{date1, date2} = req.query;
+    console.log(date1, date2);
+    try {
+        const result = await db.query("SELECT item FROM orders WHERE order_date::date >= $1 AND order_date::date <= $2", [date1, date2]);
+        res.send(result);
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
+    }
+})
 router.get('/restockReport', async (req, res) => {
     const{quantity} = req.query
     try {
