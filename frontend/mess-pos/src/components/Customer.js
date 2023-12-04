@@ -197,7 +197,7 @@ const Cashier = () => {
                 console.log(err);
             })
     },[]);
-    if(temp < 65){
+    if(temp <= 60){
         return (
             <Row>
             {coldWeatherItems.map((item, index) => (
@@ -211,7 +211,7 @@ const Cashier = () => {
             </Row>
         );
     }
-    else{
+    else if (temp >= 70){
         return (
             <Row>
             {hotWeatherItems.map((item, index) => (
