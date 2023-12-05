@@ -354,7 +354,7 @@ const Customer = () => {
                             <SeasonalPage/>
                        </div>
                     </Tab>
-                    <Tab eventKey="rec" title="Recommended Items">
+                    <Tab eventKey="rec" title="Recommended Items(based on weather)">
                         <div>
                             <RecItems/>
                         </div>
