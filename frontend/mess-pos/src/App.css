@@ -1,28 +1,40 @@
-header {
-    background-color: royalblue;
-    color:white;
-    min-height: 5vh;
-}
-  
-.cashierSection {
-    min-height: 85vh;
-    background-color: whitesmoke;
-    color: black;
-    display: flex;
-    justify-content: space-between;
+:root {
+    --blue: lightblue;
+    --darkblue: darkblue;
+    --black: black;
+    --white: white;
+
+    --fs-small: 10px;
+    --fs-large: 30px;
 }
 
-.checkout{
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+.light {
+    --bg: var(--white);
+    --text: var(--black);
 }
 
-.itemsCol ul li {
-    display: block; /* Display list items vertically */
-    margin: 5px 0; /* Optional spacing between list items */
+.dark {
+    --bg: var(--black);
+    --text: var(--white);
 }
+
+.small {
+    --font: var(--fs-small);
+}
+
+.large {
+    --font: var(--fs-large);
+}
+
+div {
+    background-color: var(--bg);
+    color: var(--text);
+    font-size: var(--font);
+    transition-timing-function: ease-in-out;
+    transition-duration: 1s;
+}
+
+
 
 /*
 footer.light {

@@ -142,7 +142,7 @@ const Cashier = () => {
     }
 
     return (
-        <main id='cashierSection'>        
+        <main>      
             {/* Cashier has two sections: A checkout section, and a Add items sections, roughly 4:6 or 3:7
             Checkout sections should take list of items in 'cart' and display with item name, quantity, and total price
             Add items section has two subsections: 'categories' and 'items'

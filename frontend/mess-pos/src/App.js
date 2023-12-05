@@ -15,7 +15,6 @@ const App = () => {
         
         <BrowserRouter>
             <Header />
-            <DarkMode/>
             <Routes>
                 <Route index element={<Home />} />
                 <Route path="cashier" element={<Cashier />}/>
