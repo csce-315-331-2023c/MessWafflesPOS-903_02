@@ -6,6 +6,11 @@
     justify-content: space-between;
 }
 
+#menuSection{
+    width: 100%;
+    overflow-y: auto
+}
+
 .checkout{
 
     display: flex;
@@ -15,20 +20,19 @@
 }
 
 
-  
 .itemsCol ul li {
     display: block; /* Display list items vertically */
     margin: 5px 0; /* Optional spacing between list items */
 }
 
 #orderactions{
-   display: flex;
-   flex-direction: row;
-   justify-content: space-around;
-   margin-bottom:  30;
-   position: relative;
-   height: 10%;
-}
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom:  30;
+    position: relative;
+    height: 10%;
+ }
 
 #itemList{
     overflow-y: auto
@@ -38,3 +42,14 @@
     height: 10%;
     font-size: large;
 }
+
+
+
+.SeeOrder {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 999999;
+    margin-bottom: 50px;
+}
+

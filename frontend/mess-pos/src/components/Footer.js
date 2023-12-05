@@ -1,11 +1,14 @@
-import React from 'react'
 import "../App.css"
+import React from "react";
+import "./Footer.css";
+import { TranslateElement } from "./Translation";
 
 const Footer = () => {
-
-  return (
-    <footer className="footer"><h2>Developed by Team 903-02</h2></footer>
-  )
-}
+    return (
+        <footer>
+            <TranslateElement />
+        </footer>
+    );
+};
 
 export default Footer;

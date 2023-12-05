@@ -1,11 +1,11 @@
 header {
-    background-color: royalblue;
-    color:white;
+    background-color: #ffe500;
+    color: white;
     min-height: 5vh;
 }
 
 Link {
-    color: white
+    color: white;
 }
 
 h2 {
