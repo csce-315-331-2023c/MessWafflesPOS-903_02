@@ -1,10 +1,23 @@
-import React from "react";
+import React, {useEffect, useState} from 'react'
 import Image from 'react-bootstrap/Image';
 import Container from "react-bootstrap/esm/Container";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+function Script  () {
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = "https://www.weatherapi.com/weather/widget.ashx?loc=2654732&wid=3&tu=2&div=weatherapi-weather-widget-3";
+        script.async = true;
+        var widget = document.getElementById('weatherapi-weather-widget-3')
+        widget.appendChild(script);
+        return () => {
+          widget.removeChild(script);
+        }
+      }, []);
+};
 const Home = () => {
+    
     return (
         <Container>
             <h1 className="mt-5">About Mess Waffles</h1>
@@ -29,7 +42,9 @@ const Home = () => {
                         <div className="row mt-4">
                             <Image src="https://insitebrazosvalley.com/downloads/32303/download/unnamed-4.jpg?cb=57605109cf3f4d4dface7aef63f3e140&w=1200" fluid />
                         </div>
-                            
+                        <div id="weatherapi-weather-widget-3">
+                            <Script/>
+                        </div>    
                     </Col>
                 </Row>
                 
