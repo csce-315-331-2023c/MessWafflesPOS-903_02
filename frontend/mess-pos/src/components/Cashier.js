@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import "../App.css"
+import "./Cashier.css"
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import Tab from 'react-bootstrap/Tab'
@@ -173,8 +173,8 @@ const Cashier = () => {
         resetItems();
     }
 
-    return (
-        <main>      
+    return (//do not delete the cashier section id  from main
+        <main id='cashierSection'>      
             {/* Cashier has two sections: A checkout section, and a Add items sections, roughly 4:6 or 3:7
             Checkout sections should take list of items in 'cart' and display with item name, quantity, and total price
             Add items section has two subsections: 'categories' and 'items'
