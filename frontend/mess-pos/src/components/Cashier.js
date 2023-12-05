@@ -185,14 +185,14 @@ const Cashier = () => {
             <div  className="col-4 border" >
                 <Items />
 
-                <div id= 'orderactions'>
+                <div id= 'OrderActions'>
                     <Button onClick={() => {place_order();}} variant="primary" size="lg">Place Order</Button>
-                    <Button onClick={() => {clear_orders();}} variant="primary" size="lg">cancel Order</Button>
+                    <Button onClick={() => {clear_orders();}} variant="primary" size="lg">Cancel Order</Button>
                 </div>
 
             </div>
 
-            <div id="menuSection" className="col-8 border">
+            <div  className="col-8 border">
                 <Tabs defaultActiveKey="entree">
                     <Tab eventKey="entree" title="Entrees">
                         {entreesList}
