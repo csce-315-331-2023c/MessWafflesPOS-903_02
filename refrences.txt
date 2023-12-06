@@ -1,0 +1,17 @@
+https://react.dev/
+https://nodejs.org/docs/latest/api/
+https://www.w3schools.com/
+https://www.tutorialspoint.com/how-to-create-a-navigation-bar-with-left-aligned-and-right-aligned-links-with-css
+https://stackoverflow.com/questions/61084075/how-do-i-make-other-classes-change-their-color-when-dark-mode-is-on
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Subgrid
+https://www.w3schools.com/css/css3_buttons.asp
+https://fsymbols.com/signs/sun/
+https://legacy.reactjs.org/docs/faq-styling.html
+https://www.freecodecamp.org/news/style-react-apps-with-css/
+https://www.w3schools.com/css/css3_buttons.asp
+https://stackoverflow.com/questions/42311292/react-bootstrap-navbar-how-to-right-align-a-navbar-item
+https://www.w3schools.com/css/css_text.asp
+https://www.youtube.com/watch?v=77oLB53txEk
+https://stackoverflow.com/questions/9778888/uncaught-typeerror-cannot-set-property-onclick-of-null
+https://github.com/fireship-io/226-css-theme-toggler/blob/master/public/index.html
+https://www.youtube.com/watch?v=rXuHGLzSmSE
