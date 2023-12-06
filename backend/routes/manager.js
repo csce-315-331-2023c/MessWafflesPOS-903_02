@@ -113,6 +113,18 @@ router.get('/orders', async(req, res) => {
         res.status(500).send("Server error");
     }
 })
+router.delete('/order', async(req,res) => {
+    console.log(req.body)
+    const{order_number} = req.body
+    try{
+        await db.query('DELETE FROM orders WHERE order_number = $1',[order_number])
+        res.status(201).send(`Deleted order ${order_number}`)
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
+    }
+});
 router.get('/restockReport', async (req, res) => {
     const{quantity} = req.query
     try {

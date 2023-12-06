@@ -577,6 +577,23 @@ const Manager = () => {
           });
   }
 
+  function deleteOrder(e){
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const postdata = Object.fromEntries(formData.entries());
+      console.log(postdata);
+      axios
+          .delete("https://messwafflespos.onrender.com/api/manager/order", {
+              data: { order_number: postdata.order_number },
+          })
+          .then((response) => {
+              console.log(response.data);
+          })
+          .catch((err) => {
+              console.log(err);
+          });
+  }
   // Driver Code (basically, all this code is going to be used for is to check for loading)
   if(!loadingUsage) {
     processIngredients();
@@ -886,6 +903,17 @@ const Manager = () => {
             })}
           </tbody>
         </Table>
+        <center>
+        Delete Order:
+          <form onSubmit={deleteOrder}>
+              <input
+                  name="order_number"
+                  label="order_number"
+                  placeholder="order number"
+              />
+              <Button type="submit">Submit</Button>
+          </form>
+        </center>
       </Tab>
     </Tabs>
     </main>
