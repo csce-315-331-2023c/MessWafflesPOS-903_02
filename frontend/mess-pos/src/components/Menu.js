@@ -26,29 +26,10 @@ const Menu = () => {
             })
     },[]);
     var menuItems = [];
-    const [Item_names, setItemNames] = useState([]);
-    const [Prices, setPrices] = useState([]);
-
-    const [price_tot, setTotal] = useState(0);
-
-    function updateItems(name, price) {
-
-        setItemNames(olary => [...olary, name]);
-        setPrices(olary => [...olary, price]);
-        setTotal(oldPrice => price_tot+ parseFloat(price));
-    }
-
-    function resetItems(){
-        setItemNames(olary => []);
-        setPrices(olary => []);
-        setTotal(oldPrice => 0.00);
-    }
-
    
-
     function itemCard(item, price, index,description,picture) {
         return (
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '25 rem' }}>
             <Card.Img variant="top" src={picture} />
             <Card.Body>
                 <Card.Title>{item}</Card.Title>
@@ -59,9 +40,6 @@ const Menu = () => {
             </Card>
         );
     }
-
-    
-
 
     for(let i = 0; i < items.rowCount; i++){
         const menuItem = {item: JSON.stringify(items.rows[i].item).substring(1,JSON.stringify(items.rows[i].item).length-1), price: JSON.stringify(items.rows[i].price).substring(1,JSON.stringify(items.rows[i].price).length-1),description: JSON.stringify(items.rows[i].description).substring(1,JSON.stringify(items.rows[i].description).length-1),picture: JSON.stringify(items.rows[i].picture).substring(1,JSON.stringify(items.rows[i].picture).length-1)};
@@ -96,23 +74,6 @@ const Menu = () => {
    
     return (
         <main id='cashierSection'>        
-            {/* Cashier has two sections: A checkout section, and a Add items sections, roughly 4:6 or 3:7
-            Checkout sections should take list of items in 'cart' and display with item name, quantity, and total price
-            Add items section has two subsections: 'categories' and 'items'
-            For now, we'll only implement main items */}
-            {/* checkout */}
-            
-
-            {/* <div  className="col-4 border" >
-                <Items />
-                <div id= 'orderactions'>
-                    <Button onClick={() => {place_order();}} variant="primary" size="lg">Place Order</Button>
-                    <Button  variant="primary" size="lg">cancel Order</Button>
-                </div>
-                <div id="orderInfo"> 
-
-                </div>
-            </div> */}
             <div id="menuSection" className="row-9 border">
                 <MenuPage/>
             </div>
