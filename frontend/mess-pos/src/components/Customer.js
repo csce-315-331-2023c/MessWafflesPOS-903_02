@@ -97,6 +97,94 @@ const Customer = () => {
         )
     }
 
+    function MenuButton({ item, price }) {
+        const [isLoading, setLoading] = useState(false);
+
+        useEffect(() => {
+            function simulateNetworkRequest() {
+                return new Promise((resolve) => setTimeout(resolve, 700));
+            }
+
+            if (isLoading) {
+                simulateNetworkRequest().then(() => {
+                    addOrder(item, price)
+                    setLoading(false);
+                });
+            }
+        }, [isLoading]);
+
+        const handleClick = () => setLoading(true);
+
+        return (
+            <Button
+                variant="primary"
+                disabled={isLoading}
+                onClick={!isLoading ? handleClick : null}
+            >
+                {isLoading ? 'Added to order' : 'Add'}
+            </Button>
+        );
+    }
+    function PlaceButton() {
+        const [isLoading, setLoading] = useState(false);
+
+        useEffect(() => {
+            function simulateNetworkRequest() {
+                return new Promise((resolve) => setTimeout(resolve, 800));
+            }
+
+            if (isLoading) {
+                simulateNetworkRequest().then(() => {
+                    place_order();
+                    setLoading(false);
+                });
+            }
+        }, [isLoading]);
+
+        const handleClick = () => setLoading(true);
+
+        return (
+            <Button
+                variant="primary"
+                size='lg'
+                disabled={isLoading}
+                onClick={!isLoading ? handleClick : null}
+            >
+                {isLoading ? 'Order Submitted' : 'Place Order'}
+            </Button>
+        );
+    }
+
+    function CancelButton() {
+        const [isLoading, setLoading] = useState(false);
+
+        useEffect(() => {
+            function simulateNetworkRequest() {
+                return new Promise((resolve) => setTimeout(resolve, 700));
+            }
+
+            if (isLoading) {
+                simulateNetworkRequest().then(() => {
+                    resetItems();
+                    setLoading(false);
+                });
+            }
+        }, [isLoading]);
+
+        const handleClick = () => setLoading(true);
+
+        return (
+            <Button
+                variant="primary"
+                size='lg'
+                disabled={isLoading}
+                onClick={!isLoading ? handleClick : null}
+            >
+                {isLoading ? 'Cancelling' : 'Cancel Order'}
+            </Button>
+        );
+    }
+
 
 
     function itemCard(item, price, index, description, picture) {
@@ -104,11 +192,11 @@ const Customer = () => {
             <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={picture} />
                 <Card.Body className='card-body'>
-                    <Card.Title>{item}{' $'+price}</Card.Title>
+                    <Card.Title>{item}{' $' + price}</Card.Title>
                     <Card.Text className='card-text'>
                         {description}
                     </Card.Text>
-                    <Button onClick={() => { addOrder(item, price); }} key={index} variant="primary">Add</Button>
+                    <MenuButton key={index} item={item} price={price} />
                 </Card.Body>
             </Card>
         );
@@ -299,8 +387,8 @@ const Customer = () => {
                         <p>Click an item to remove it</p>
                         <Items />
                         <div id='orderactions'>
-                            <Button onClick={() => { place_order(); }} variant="primary" size="lg">Place Order</Button>
-                            <Button onClick={() => { resetItems(); }} variant="primary" size="lg">Cancel Order</Button>
+                            <PlaceButton />
+                            <CancelButton />
                         </div>
                     </Offcanvas.Body>
                 </Offcanvas>
