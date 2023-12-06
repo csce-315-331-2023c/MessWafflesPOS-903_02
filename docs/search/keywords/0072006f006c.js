@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("rol",["Function"],[["role",,[[,,,,0,"File:routes/auth.js:role"]]]]);

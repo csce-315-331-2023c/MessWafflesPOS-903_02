@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("pos",["Function"],[["POST",,[[,"POST /auth/employees",,"post/auth/employees",0,"File:routes/auth.js:POST/auth/employees"]]]]);

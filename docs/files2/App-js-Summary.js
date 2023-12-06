@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File2:App.js","App.js");NDSummary.OnSummaryLoaded("File2:App.js",[["JavaScript","JavaScript"]],[["Functions","Function"],["Groups","Group"]],[[2,0,1,"Functions","Functions"],[6,0,0,"App","App"]]);

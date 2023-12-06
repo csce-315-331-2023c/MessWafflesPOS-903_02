@@ -20,8 +20,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 export const RoleContext = React.createContext();
+// Function: App
+// Returns the main app component
 const App = () => {
-    // get user email
     const { user, isAuthenticated } = useAuth0();
     const [role, setRole] = useState(null);
 

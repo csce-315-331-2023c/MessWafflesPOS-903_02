@@ -1,0 +1,1 @@
+﻿NDSummary.OnToolTipsLoaded("File2:App.js",{6:"<div class=\"NDToolTip TFunction LJavaScript\"><div id=\"NDPrototype6\" class=\"NDPrototype\"><div class=\"PSection PPlainSection\"><span class=\"SHKeyword\">const</span> App = () =&gt;</div></div><div class=\"TTSummary\">Returns the main app component</div></div>"});

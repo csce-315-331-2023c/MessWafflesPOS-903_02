@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("del",["Function"],[["DELETE",,[[,"DELETE /auth/employees",,"delete/auth/employees",0,"File:routes/auth.js:DELETE/auth/employees"]]]]);
