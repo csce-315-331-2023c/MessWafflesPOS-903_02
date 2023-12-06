@@ -6,8 +6,10 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import NavbarBrand from "react-bootstrap/esm/NavbarBrand";
 import { LinkContainer } from "react-router-bootstrap";
-import DarkMode from "./DarkMode";
-import FontSizing from "./FontSizing";
+import DarkMode from './DarkMode';
+import FontSizing from './FontSizing';
+import "../App.css";
+
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { RoleContext } from "../App";

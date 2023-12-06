@@ -19,7 +19,7 @@ const Home = () => {
           }, []);
     };
     return (
-        <Container>
+        <Container className="home-page">
             <h1 className="mt-5">About Mess Waffles</h1>
             <div>
                 <Row>
@@ -47,11 +47,8 @@ const Home = () => {
                         </div>    
                     </Col>
                 </Row>
-                
-            </div>
-            
-
-        </Container>
+            </Container>
+        </div>
     );
 };
 
