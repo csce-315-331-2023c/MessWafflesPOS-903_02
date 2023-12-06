@@ -33,21 +33,29 @@ const Header = () => {
                             <Nav.Link><div>Home</div></Nav.Link>
                         </LinkContainer>
 
-                        {isAuthenticated && role === "cashier" && (
+                        {/* {isAuthenticated && role === "cashier" && (
                             <>
                                 <LinkContainer to="/cashier">
                                     <Nav.Link><div>Cashier</div></Nav.Link>
                                 </LinkContainer>
                             </>
-                        )}
+                        )} */}
 
-                        {isAuthenticated && role === "manager" && (
+                        {/* {isAuthenticated && role === "manager" && (
                             <>
                                 <LinkContainer to="/manager">
                                     <Nav.Link><div>Manager</div></Nav.Link>
                                 </LinkContainer>
                             </>
-                        )}
+                        )} */}
+
+                        <LinkContainer to="/cashier">
+                            <Nav.Link><div>Cashier</div></Nav.Link>
+                        </LinkContainer>
+
+                        <LinkContainer to="/manager">
+                            <Nav.Link><div>Manager</div></Nav.Link>
+                        </LinkContainer>
 
                         <LinkContainer to="/customer">
                             <Nav.Link><div>Customer</div></Nav.Link>
@@ -69,8 +77,8 @@ const Header = () => {
                             <div>Logout</div>
                         </Nav.Link>
                     </Nav>
-                    <DarkMode/>
-                    <FontSizing/>
+                    <DarkMode />
+                    <FontSizing />
                 </Navbar>
             </header>
             <Outlet />
