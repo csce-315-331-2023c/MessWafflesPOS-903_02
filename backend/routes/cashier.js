@@ -67,7 +67,7 @@ router.post("/updateOrder", async (req, res) => {
     const { order_number,status } = req.body;
     try {
         await db.query(
-            "UPDATE orders WHERE order_number = $1 SET status = $2",[order_number,status]
+            "UPDATE orders SET status = $2 WHERE order_number = $1",[order_number,status]
         );
         res.status(201).send(`Updated order ${order_number}`);
     } catch (err) {
