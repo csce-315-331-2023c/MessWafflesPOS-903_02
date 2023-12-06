@@ -6,7 +6,7 @@
     justify-content: space-between;
 }
 
-.checkout{
+.checkout {
 
     display: flex;
     flex-direction: row;
@@ -15,28 +15,38 @@
 }
 
 
-  
+
 .itemsCol ul li {
-    display: block; /* Display list items vertically */
-    margin: 5px 0; /* Optional spacing between list items */
+    display: block;
+    /* Display list items vertically */
+    margin: 5px 0;
+    /* Optional spacing between list items */
 }
 
-#OrderActions{
-   display: flex;
-   flex-direction: row;
-   justify-content: space-around;
-   margin-bottom:  auto;
-   position: relative;
-   height: 10%;
-   /* padding-top: 5px; */
-   padding-bottom: 7px;
+#OrderActions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: auto;
+    position: relative;
+    height: 10%;
+    /* padding-top: 5px; */
+    padding-bottom: 7px;
 }
 
-#itemList{
+#itemList {
     overflow-y: auto
 }
 
-#orderInfo{
+#orderInfo {
     height: 10%;
     font-size: large;
+}
+
+#Orders {
+    height: 100%;
+}
+
+#edit {
+    width: 10%;
 }
