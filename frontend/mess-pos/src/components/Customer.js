@@ -30,6 +30,7 @@ const Customer = () => {
     var seasonal = [];
     var cold = [];
     var hot = [];
+    var addons = [];
     const [Item_names, setItemNames] = useState([]);
     const [Prices, setPrices] = useState([]);
 
@@ -103,7 +104,7 @@ const Customer = () => {
             <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={picture} />
                 <Card.Body className='card-body'>
-                    <Card.Title>{item}</Card.Title>
+                    <Card.Title>{item}{' $'+price}</Card.Title>
                     <Card.Text className='card-text'>
                         {description}
                     </Card.Text>
@@ -134,13 +135,16 @@ const Customer = () => {
         if (JSON.stringify(items.rows[i].weather_type) == "\"hot\"") {
             hot.push(menuItem);
         }
+        if (JSON.stringify(items.rows[i].category) == "\"add-on\"") {
+            addons.push(menuItem);
+        }
     }
     var entreesList = [];
     var drinksList = [];
     var seasonalList = [];
     var coldWeatherItems = [];
     var hotWeatherItems = [];
-
+    var addonList = [];
     function addOrder(name, price) {
         if (orders.has(name)) {
             orders.set(name, { price: price, quantity: orders.get(name).quantity + 1 })
@@ -165,6 +169,9 @@ const Customer = () => {
     })
     hot.forEach((item, index) => {
         hotWeatherItems.push(itemCard(item.item, item.price, index, item.description, item.picture))
+    })
+    addons.forEach((item, index) => {
+        addonList.push(itemCard(item.item, item.price, index, item.description, item.picture))
     })
 
     const EntreePage = () => {
@@ -204,6 +211,22 @@ const Customer = () => {
         return (
             <Row className='card-body'>
                 {seasonalList.map((item, index) => (
+                    <Col key={index} sm={3}>
+                        {/* Adjust  based on how many items you want in a row */}
+                        <ListGroup>
+                            <ListGroup.Item>{item}</ListGroup.Item>
+                        </ListGroup>
+                    </Col>
+                ))}
+            </Row>
+        );
+    }
+
+    const AddonPage = () => {
+
+        return (
+            <Row className='card-body'>
+                {addonList.map((item, index) => (
                     <Col key={index} sm={3}>
                         {/* Adjust  based on how many items you want in a row */}
                         <ListGroup>
@@ -352,6 +375,11 @@ const Customer = () => {
                     <Tab eventKey="seasonal" title="Seasonal Items">
                         <div>
                             <SeasonalPage />
+                        </div>
+                    </Tab>
+                    <Tab eventKey="addons" title="Add-Ons">
+                        <div>
+                            <AddonPage />
                         </div>
                     </Tab>
                     <Tab eventKey="rec" title="Recommended Items (based on weather)">
