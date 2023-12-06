@@ -7,6 +7,9 @@
 
     --fs-small: 10px;
     --fs-large: 30px;
+
+    --about-font-small: 30px;
+    --about-font-large: 30px;
 }
 
 .light {
@@ -22,10 +25,12 @@
 
 .small {
     --font: var(--fs-small);
+    --about-font: var(--about-font-small);
 }
 
 .large {
     --font: var(--fs-large);
+    --about-font: var(--about-font-large);
 }
 
 /* 
@@ -38,10 +43,27 @@ div {
 } */
 
 
+.header-items {
+    font-size: var(--about-font);
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+}
+
 .home-page {
     background-color: var(--bg);
     color: var(--text);
-    font-size: var(--font);
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+}
+
+.about-header {
+    padding-top: 50px;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+}
+
+.about-description {
+    font-size: var(--about-font);
     transition-timing-function: ease-in-out;
     transition-duration: 0.5s;
 }
@@ -62,22 +84,17 @@ div {
     transition-duration: 0.5s;
 }
 
+.card-title  {
+    color: var(--text);
+    font-size: var(--font);
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+}
+
 .customer-background {
     background-color: var(--bg);
     color: var(--text);
     font-size: var(--font);
     transition-timing-function: ease-in-out;
     transition-duration: 0.5s;
-}
-
-.row-9 border {
-    background-color: var(--bg);
-    color: var(--text);
-    font-size: var(--font);
-    transition-timing-function: ease-in-out;
-    transition-duration: 0.5s;
-}
-
-.about-border {
-    padding-top: 50px;
 }

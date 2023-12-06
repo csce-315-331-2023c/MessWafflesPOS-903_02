@@ -13,6 +13,7 @@ import Stack from 'react-bootstrap/Stack';
 import ListGroupItem from 'react-bootstrap/esm/ListGroupItem'
 import Card from 'react-bootstrap/Card';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import "../App.css";
 
 const Menu = () => {
     const [items, setItems] = useState([]);
@@ -32,7 +33,7 @@ const Menu = () => {
             <Card style={{ width: '25 rem' }}>
             <Card.Img variant="top" src={picture} />
             <Card.Body>
-                <Card.Title>{item}</Card.Title>
+                <Card.Title className='card-title'>{item}</Card.Title>
                 <Card.Text>
                 {description}
                 </Card.Text>
@@ -60,7 +61,7 @@ const Menu = () => {
               <Col key={index} sm={3}>
                 {/* Adjust  based on how many items you want in a row */}
                 <ListGroup>
-                  <ListGroup.Item>{item}</ListGroup.Item>
+                  <ListGroup.Item className='header-items'>{item}</ListGroup.Item>
                 </ListGroup>
               </Col>
             ))}
@@ -73,12 +74,13 @@ const Menu = () => {
    
    
     return (
-        <main id='cashierSection'>        
-            <div id="menuSection" className="row-9 border">
-                <MenuPage/>
-            </div>
-            <div className='row-3 border'></div>
-        </main>
+        <div className='card-body'>
+            <main id='cashierSection'>
+                <div id="menuSection" className="row-9 border">
+                    <MenuPage/>
+                </div>
+            </main>
+        </div>
     )
 }
 

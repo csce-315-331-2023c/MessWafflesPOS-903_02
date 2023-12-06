@@ -29,7 +29,7 @@ const DarkMode = () => {
 
     return (
         <div>
-            <button className="dm-button" onClick={handleClick}> {theme ? "Light" : "Dark"} </button>
+            <button className="dm-button" onClick={handleClick}> {theme ? "Dark 🌙" : "Light ☀"} </button>
         </div>
     );
 }
