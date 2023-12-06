@@ -69,7 +69,16 @@ const Header = () => {
                             </>
                         )}
 
-
+                        {isAuthenticated && (role === "admin" || role === "dev") && (
+                            <>
+                                <LinkContainer to="/admin">
+                                    <Nav.Link>
+                                        <div>Admin</div>
+                                    </Nav.Link> 
+                                </LinkContainer>    
+                            </>
+                        )}
+                        
                         {!isAuthenticated && (
                             <>
                                 <Nav.Link onClick={() => loginWithRedirect()}>
