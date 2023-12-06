@@ -10,34 +10,39 @@ import DarkMode from './DarkMode';
 import FontSizing from './FontSizing';
 import "../App.css";
 
+
 import { useAuth0 } from "@auth0/auth0-react";
 import { RoleContext } from "../App";
 import { TranslateScript } from "./Translation";
 
 const Header = () => {
-    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+    const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
     const role = React.useContext(RoleContext);
 
     TranslateScript();
 
     return (
         <>
-            <header className="title-header">
-                <Navbar>
+            <header>
+                <Navbar className="navbar">
                     <LinkContainer to="/">
-                        <Navbar.Brand className="notranslate">
+                        <Navbar.Brand className="notranslate brand">
                             Mess Waffles
                         </Navbar.Brand>
                     </LinkContainer>
                     <Nav>
                         <LinkContainer to="/">
-                            <Nav.Link>Home</Nav.Link>
+                            <Nav.Link>
+                                <div>Home</div>
+                            </Nav.Link>
                         </LinkContainer>
 
                         {isAuthenticated && role === "cashier" && (
                             <>
                                 <LinkContainer to="/cashier">
-                                    <Nav.Link>Cashier</Nav.Link>
+                                    <Nav.Link>
+                                        <div>Cashier</div>
+                                    </Nav.Link>
                                 </LinkContainer>
                             </>
                         )}
@@ -45,34 +50,57 @@ const Header = () => {
                         {isAuthenticated && role === "manager" && (
                             <>
                                 <LinkContainer to="/manager">
-                                    <Nav.Link>Manager</Nav.Link>
+                                    <Nav.Link>
+                                        <div>Manager</div>
+                                    </Nav.Link>
                                 </LinkContainer>
                             </>
                         )}
 
                         <LinkContainer to="/customer">
-                            <Nav.Link>Customer</Nav.Link>
+                            <Nav.Link>
+                                <div>Customer</div>
+                            </Nav.Link>
                         </LinkContainer>
 
-                        <Nav.Link onClick={() => loginWithRedirect()}>
-                            Login
-                        </Nav.Link>
+                        <LinkContainer to="/menu">
+                            <Nav.Link>
+                                <div>Menu Board</div>
+                            </Nav.Link>
+                        </LinkContainer>
 
-                        <Nav.Link className="test-class"
-                            onClick={() =>
-                                logout({
-                                    logoutParams: {
-                                        returnTo: window.location.origin,
-                                    },
-                                })
-                            }
-                        >
-                            Logout
-                        </Nav.Link>
+                        {!isAuthenticated && (
+                            <>
+                                <Nav.Link onClick={() => loginWithRedirect()}>
+                                    <div>Login</div>
+                                </Nav.Link>
+                            </>
+                        )}
+
+                        {isAuthenticated && (
+                            <Nav.Link
+                                onClick={() =>
+                                    logout({
+                                        logoutParams: {
+                                            returnTo: window.location.origin,
+                                        },
+                                    })
+                                }
+                            >
+                                <div>Logout</div>
+                            </Nav.Link>
+                        )}
                     </Nav>
-                    <DarkMode/>
-                    <FontSizing/>
+                    <DarkMode />
+                    <FontSizing />
                 </Navbar>
+
+                <p className="mt-4 ms-auto user-welcome">
+                    Welcome,
+                    <span className="notranslate">
+                        {isAuthenticated ? " " + user.name : " Guest"}{" "}
+                    </span>
+                </p>
             </header>
             <Outlet />
         </>

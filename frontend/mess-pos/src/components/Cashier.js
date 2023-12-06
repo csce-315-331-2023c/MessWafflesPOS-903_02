@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import "../App.css"
+import "./Cashier.css"
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import Tab from 'react-bootstrap/Tab'
@@ -44,6 +44,16 @@ const Cashier = () => {
         setPrices(olary => []);
         setTotal(oldPrice => 0.00);
     }
+    const[pendingOrders,setOrders] = useState([]);
+    useEffect(() => {
+        axios.get('https://messwafflespos.onrender.com/api/cashier/order')
+            .then(response => {
+                setOrders(response.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    },[]);
 
     function Items() {
 
@@ -160,6 +170,7 @@ const Cashier = () => {
         }
         
         axios.post('https://messwafflespos.onrender.com/api/cashier/order', postdata)
+        //axios.post('http://localhost:5000/cashier/order', postdata)
             .then(response => {
                 console.log(response.data);
             })
@@ -168,13 +179,25 @@ const Cashier = () => {
             });
         resetItems();
     }   
-
+    function updateOrder(order_number,status){
+        const postdata = {
+            order_number: order_number,
+            status:status
+        }
+        axios.post('http://localhost:5000/cashier/updateOrder', postdata)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
     function clear_orders(){
         resetItems();
     }
 
-    return (
-        <main>      
+    return (//do not delete the cashier section id  from main
+        <main id='cashierSection'>      
             {/* Cashier has two sections: A checkout section, and a Add items sections, roughly 4:6 or 3:7
             Checkout sections should take list of items in 'cart' and display with item name, quantity, and total price
             Add items section has two subsections: 'categories' and 'items'
@@ -185,14 +208,14 @@ const Cashier = () => {
             <div  className="col-4 border" >
                 <Items />
 
-                <div id= 'orderactions'>
+                <div id= 'OrderActions'>
                     <Button onClick={() => {place_order();}} variant="primary" size="lg">Place Order</Button>
-                    <Button onClick={() => {clear_orders();}} variant="primary" size="lg">cancel Order</Button>
+                    <Button onClick={() => {clear_orders();}} variant="primary" size="lg">Cancel Order</Button>
                 </div>
 
             </div>
 
-            <div id="menuSection" className="col-8 border">
+            <div  className="col-8 border">
                 <Tabs defaultActiveKey="entree">
                     <Tab eventKey="entree" title="Entrees">
                         {entreesList}

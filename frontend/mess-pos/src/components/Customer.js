@@ -161,10 +161,10 @@ const Customer = () => {
         seasonalList.push( itemCard(item.item, item.price, index,item.description,item.picture))
     })
     cold.forEach((item, index)=> {
-        coldWeatherItems.push( itemCard(item.item, item.price, index,item.description,0))
+        coldWeatherItems.push( itemCard(item.item, item.price, index,item.description,item.picture))
     })
     hot.forEach((item, index)=> {
-        hotWeatherItems.push( itemCard(item.item, item.price, index,item.description,0))
+        hotWeatherItems.push( itemCard(item.item, item.price, index,item.description,item.picture))
     })
     
     const EntreePage = () => {
@@ -354,8 +354,8 @@ const Customer = () => {
                             <SeasonalPage/>
                        </div>
                     </Tab>
-                    <Tab eventKey="rec" title="Recommended Items">
-                        <div className='card-body'>
+                    <Tab eventKey="rec" title="Recommended Items (based on weather)">
+                        <div>
                             <RecItems/>
                         </div>
                     </Tab>
