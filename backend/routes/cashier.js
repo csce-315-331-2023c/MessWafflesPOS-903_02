@@ -63,5 +63,16 @@ router.post("/order", async (req, res) => {
         res.status(500).send("Server error");
     }
 });
-
+router.post("/updateOrder", async (req, res) => {
+    const { order_number,status } = req.body;
+    try {
+        await db.query(
+            "UPDATE orders SET status = $2 WHERE order_number = $1",[order_number,status]
+        );
+        res.status(201).send(`Updated order ${order_number}`);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
+    }
+});
 export default router;

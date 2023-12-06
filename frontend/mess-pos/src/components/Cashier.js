@@ -173,11 +173,13 @@ const Cashier = () => {
         resetItems();
     }
 
-    function UpdateOrder(order_number, status) {
+    function UpdateOrder(number, stat) {
+        console.log('enterring updateorder')
         const postdata = {
-            order_number: order_number,
-            status: status
+            order_number: number,
+            status: stat
         }
+        console.log('postdata is ',postdata)
         axios.post('http://localhost:5000/cashier/updateOrder', postdata)
             .then(response => {
                 console.log(response.data);
@@ -187,7 +189,7 @@ const Cashier = () => {
             });
     }
 
-    const Form = () => {
+    const MyForm = () => {
         const [formData, setFormData] = useState('');
 
         const handleInputChange = (event) => {
@@ -297,7 +299,7 @@ const Cashier = () => {
                 </div>
 
                 <div className='row'>
-                    <Form />
+                    <MyForm />
                 </div>
 
             </div>
