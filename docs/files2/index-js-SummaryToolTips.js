@@ -1,0 +1,1 @@
+﻿NDSummary.OnToolTipsLoaded("File2:index.js",{35:"<div class=\"NDToolTip TFile LJavaScript\"><div class=\"TTSummary\">Main entry point for React frontend</div></div>"});
