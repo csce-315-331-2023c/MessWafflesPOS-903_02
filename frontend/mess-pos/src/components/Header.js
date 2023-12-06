@@ -45,7 +45,7 @@ const Header = () => {
                             </>
                         )}
 
-                        {!isAuthenticated && role === "" && (
+                        {!isAuthenticated && role === "manager" && (
                             <>
                                 <LinkContainer to="/manager">
                                     <Nav.Link>
@@ -58,6 +58,12 @@ const Header = () => {
                         <LinkContainer to="/customer">
                             <Nav.Link>
                                 <div>Customer</div>
+                            </Nav.Link>
+                        </LinkContainer>
+
+                        <LinkContainer to="/menu">
+                            <Nav.Link>
+                                <div>Menu Board</div>
                             </Nav.Link>
                         </LinkContainer>
 
