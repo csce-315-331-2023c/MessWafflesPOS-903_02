@@ -47,8 +47,8 @@ const Home = () => {
                         </div>    
                     </Col>
                 </Row>
-            </div>
-        </Container>
+            </Container>
+        </div>
     );
 };
 
