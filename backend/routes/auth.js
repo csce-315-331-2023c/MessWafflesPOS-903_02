@@ -1,3 +1,6 @@
+// File: auth.js
+// Handles authentication related api endpoints
+
 import Router from "express-promise-router";
 import * as db from "../db/connection.js";
 

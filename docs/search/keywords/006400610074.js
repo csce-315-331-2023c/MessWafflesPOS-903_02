@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("dat",["Function"],[["dateOrders",,[[,"GET /manager/dateOrders",,"get/manager/dateorders",0,"File:routes/manager.js:GET/manager/dateOrders"]]]]);

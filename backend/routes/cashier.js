@@ -1,8 +1,13 @@
+// File: cashier.js
+// Handles cashier related api endpoints
+
 import Router from "express-promise-router";
 import * as db from "../db/connection.js";
 
 const router = new Router();
 
+// Function: POST /cashier/testing
+// Returns the request body
 router.post("/testing", async (req, res) => {
     try {
         res.json(req.body);
@@ -11,15 +16,22 @@ router.post("/testing", async (req, res) => {
     }
 });
 
+// Function: GET /cashier/inventory
+// Returns all data from the inventory table
 router.get("/inventory", async (req, res) => {
     const result = await db.query("SELECT * FROM inventory");
     res.status(200).send(result);
 });
 
+// Function: GET /cashier/items
+// Returns all data from the items table
 router.get("/items", async (req, res) => {
     const result = await db.query("SELECT * FROM items");
     res.send(result);
 });
+
+// Function: GET /cashier/order
+// Returns all pending orders from the orders table
 router.get("/order", async (req, res) => {
     const result = await db.query(
         "SELECT * FROM orders WHERE status = 'pending' ORDER BY order_number DESC LIMIT 30"
@@ -27,6 +39,8 @@ router.get("/order", async (req, res) => {
     res.send(result);
 });
 
+// Function: POST /cashier/order
+// Adds a new order to the database given its item, order date, and total price
 router.post("/order", async (req, res) => {
     const { item, order_date, total_price } = req.body;
     for (const it of item) {
@@ -63,6 +77,9 @@ router.post("/order", async (req, res) => {
         res.status(500).send("Server error");
     }
 });
+
+// Function: POST /cashier/updateOrder
+// Updates the status of an order given its order number and status
 router.post("/updateOrder", async (req, res) => {
     const { order_number,status } = req.body;
     try {

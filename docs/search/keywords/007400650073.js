@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("tes",["Function"],[["testing",,[[,"POST /cashier/testing",,"post/cashier/testing",0,"File:routes/cashier.js:POST/cashier/testing"]]]]);

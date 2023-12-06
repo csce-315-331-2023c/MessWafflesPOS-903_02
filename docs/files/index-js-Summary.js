@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File:index.js","index.js");NDSummary.OnSummaryLoaded("File:index.js",[["JavaScript","JavaScript"]],[["Files","File"]],[[10,0,0,"index.js","index.js"]]);
