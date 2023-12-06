@@ -45,7 +45,7 @@ const Header = () => {
                             </>
                         )}
 
-                        {!isAuthenticated && role === "" && (
+                        {isAuthenticated && role === "manager" && (
                             <>
                                 <LinkContainer to="/manager">
                                     <Nav.Link>

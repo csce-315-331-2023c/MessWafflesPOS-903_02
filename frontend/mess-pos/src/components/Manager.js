@@ -74,7 +74,7 @@ const Manager = () => {
 
   useEffect(() => {
     axios
-        .get("http://localhost:5000/auth/employees")
+        .get("https://messwafflespos.onrender.com/api/auth/employees")
         .then((response) => {
             setEmployeeData(response.data);
             setLoadingEmployees(false);
@@ -544,7 +544,7 @@ const Manager = () => {
     const postdata = Object.fromEntries(formData.entries());
     console.log(postdata);
     axios
-        .post("http://localhost:5000/auth/employees", {
+        .post("https://messwafflespos.onrender.com/api/auth/employees", {
             id: postdata.ID,
             name: postdata.Name,
             email: postdata.Email,
@@ -565,7 +565,7 @@ const Manager = () => {
       const postdata = Object.fromEntries(formData.entries());
       console.log(postdata);
       axios
-          .delete("http://localhost:5000/auth/employees", {
+          .delete("https://messwafflespos.onrender.com/api/auth/employees", {
               data: { id: postdata.ID },
           })
           .then((response) => {
