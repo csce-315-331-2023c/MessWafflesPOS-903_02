@@ -47,6 +47,16 @@ const Cashier = () => {
         setPrices(olary => []);
         setTotal(oldPrice => 0.00);
     }
+    const[pendingOrders,setOrders] = useState([]);
+    useEffect(() => {
+        axios.get('https://messwafflespos.onrender.com/api/cashier/order')
+            .then(response => {
+                setOrders(response.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    },[]);
 
     function Items() {
 
@@ -160,6 +170,7 @@ const Cashier = () => {
         }
 
         axios.post('https://messwafflespos.onrender.com/api/cashier/order', postdata)
+        //axios.post('http://localhost:5000/cashier/order', postdata)
             .then(response => {
                 console.log(response.data);
             })
@@ -180,7 +191,7 @@ const Cashier = () => {
             status: stat
         }
         console.log('postdata is ',postdata)
-        axios.post('http://localhost:5000/cashier/updateOrder', postdata)
+        axios.post('https://messwafflespos.onrender.com/api/cashier/updateOrder', postdata)
             .then(response => {
                 console.log(response.data);
             })

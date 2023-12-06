@@ -2,12 +2,18 @@ header {
     background-color: #ffe500;
     color: white;
     min-height: 5vh;
+    display: flex;
 }
 
-Link {
-    color: white;
+.user-welcome {
+    color: black;
+    margin-right: 30px;
 }
 
-h2 {
-    color: white;
+.navbar {
+    margin-left: 30px;
+}
+
+.brand {
+    padding-right: 20px;
 }

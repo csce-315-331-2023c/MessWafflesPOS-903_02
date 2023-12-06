@@ -60,3 +60,38 @@ Standup 3 - Meeting Notes (11/10/2023 at 7:30 CST, Online):
 - Login integrated with main application branch
 - Manager restock report in progress
 - Planned release deadline for sprint 2
+
+Sprint 2 Retrospective - Meeting Notes (11/17/2023 at 7:30pm CST, Online):
+- The task breakdown and goal for sprint 2 was much clearer
+- Oauth API setup went relatively smoothly
+- Focus on merging to production/testing code earlier in the sprint (time management)
+- Need to incorporate styling for PoS application in next sprint
+
+# Sprint 2 Minutes:
+Sprint 3 Planning - Meeting Notes (11/26/2023 at 8:30pm CST, Online):
+- Goals for sprint 3 (tasks to complete with general assignees)...
+- 2 APIs implementation (translations and weather) -> Hemanth and Will
+- Accessibility: text resize and dark mode (fix) -> Hemanth and Jude
+- Flesh out manager and cashier pages -> Arvind and Will
+- Finish customer page -> Kris
+- Styling overall -> Jude
+
+Sprint 3 Standup 1 - Meeting Notes (11/28/2023 at 7:30pm CST, Online):
+- API for both translations and weather researched and testing
+- Reworking bugs for cashier and customer pages from sprint 2
+- Accessibility features in in progress
+
+Sprint 3 Standup 2 - Meeting Notes (12/01/2023 at 7:30pm CST, Online):
+- Finished manager pager reports
+- Setup for translation API continuing and starting to implement weather API
+- Page fleshing out and text resizing continuing
+
+Sprint 3 Standup 3 - Meeting Notes (12/03/2023 at 8:00pm CST, Online):
+- Sale reports finishing up
+- Translation and weather API implemented (working through bugs)
+- Setting up details and history page and continuing accessibility features
+
+Sprint 3 Retrospective - Meeting Notes (12/05/2023 at 7:30pm CST, Online):
+- Division of labor was well setup and each member had a well-defined role
+- Some of the minor bullet points for project deliverables were missed (focus on small details next time)
+- Need to have more consistent commits for development process
