@@ -29,7 +29,7 @@ const FontSizing = () => {
 
     return(
         <div>
-            <button className="font-size-button" onClick={handleClick}> {fontSize?"Small":"Large"} </button>
+            <button className="font-size-button" onClick={handleClick}> {fontSize?"ᴀA":"ᴀA"} </button>
         </div>
     );
 }

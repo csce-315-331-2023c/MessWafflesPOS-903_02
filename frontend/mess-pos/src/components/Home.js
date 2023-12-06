@@ -19,9 +19,9 @@ const Home = () => {
           }, []);
     };
     return (
-        <Container className="home-page">
-            <h1 className="mt-5">About Mess Waffles</h1>
-            <div>
+        <div className="home-page">
+            <Container>
+                <h1 className="about-header">About Mess Waffles</h1>
                 <Row>
                     <Col>
                         <div className="row mb-4">
@@ -34,7 +34,7 @@ const Home = () => {
                         
                     </Col>
                     <Col>
-                        <p className="lead">Mess waffles is a creative comfort food destination in College Station, texas. It was started by a former Texas A&M student as a food truck in 2014, and after much growth moved into a restaurant location in College Station’s Century Square. </p>
+                        <p className="about-description">Mess waffles is a creative comfort food destination in College Station, texas. It was started by a former Texas A&M student as a food truck in 2014, and after much growth moved into a restaurant location in College Station’s Century Square. </p>
                         <Row> 
                             <Image src="https://images.squarespace-cdn.com/content/v1/5ad69812da02bc49e7489bbe/1590347742303-O632SK8DX7EQMFLP0INS/MessWaffles05-4.jpg" fluid alt ="Mess chicken and waffles"/>
                             
@@ -47,8 +47,8 @@ const Home = () => {
                         </div>    
                     </Col>
                 </Row>
-            </div>
-        </Container>
+            </Container>
+        </div>
     );
 };
 
