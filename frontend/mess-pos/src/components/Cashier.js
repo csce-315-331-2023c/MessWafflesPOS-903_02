@@ -160,6 +160,7 @@ const Cashier = () => {
         }
         
         axios.post('https://messwafflespos.onrender.com/api/cashier/order', postdata)
+        //axios.post('http://localhost:5000/cashier/order', postdata)
             .then(response => {
                 console.log(response.data);
             })
@@ -168,7 +169,19 @@ const Cashier = () => {
             });
         resetItems();
     }   
-
+    function updateOrder(){
+        const postdata = {
+            order_number: 34534534534534,
+            status:'Completed'
+        }
+        axios.post('http://localhost:5000/cashier/updateOrder', postdata)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
     function clear_orders(){
         resetItems();
     }
