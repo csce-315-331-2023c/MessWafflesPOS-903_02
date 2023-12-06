@@ -32,7 +32,7 @@ const Menu = () => {
             <Card style={{ width: '25 rem' }}>
             <Card.Img variant="top" src={picture} />
             <Card.Body>
-                <Card.Title>{item}</Card.Title>
+                <Card.Title>{item + ' $' + price}</Card.Title>
                 <Card.Text>
                 {description}
                 </Card.Text>
@@ -43,6 +43,7 @@ const Menu = () => {
 
     for(let i = 0; i < items.rowCount; i++){
         const menuItem = {item: JSON.stringify(items.rows[i].item).substring(1,JSON.stringify(items.rows[i].item).length-1), price: JSON.stringify(items.rows[i].price).substring(1,JSON.stringify(items.rows[i].price).length-1),description: JSON.stringify(items.rows[i].description).substring(1,JSON.stringify(items.rows[i].description).length-1),picture: JSON.stringify(items.rows[i].picture).substring(1,JSON.stringify(items.rows[i].picture).length-1)};
+        if(items.rows[i].category !== 'add-on')
         menuItems.push(menuItem)
     }
     var menuList = []

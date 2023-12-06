@@ -29,6 +29,7 @@ const Cashier = () => {
     var entrees = [];
     var drinks = [];
     var seasonal = [];
+    var addons = [];
 
     const [Item_names, setItemNames] = useState([]);
     const [Prices, setPrices] = useState([]);
@@ -122,10 +123,14 @@ const Cashier = () => {
         else if (JSON.stringify(items.rows[i].category) == "\"seasonal\"") {
             seasonal.push(menuItem);
         }
+        else if(JSON.stringify(items.rows[i].category) == "\"add-on\""){
+            addons.push(menuItem);
+        }
     }
     var entreesList = [];
     var drinksList = [];
     var seasonalList = [];
+    var addonList = [];
 
 
 
@@ -147,6 +152,9 @@ const Cashier = () => {
     })
     seasonal.forEach((item, index) => {
         seasonalList.push(<Button onClick={() => { addOrder(item.item, item.price); }} key={index} variant="primary" size="lg" style={{ margin: .2 + '%' }}>{item.item}</Button>)
+    })
+    addons.forEach((item, index) => {
+        addonList.push(<Button onClick={() => { addOrder(item.item, item.price); }} key={index} variant="primary" size="lg" style={{ margin: .2 + '%' }}>{item.item}</Button>)
     })
 
     function place_order() {
@@ -347,6 +355,7 @@ const Cashier = () => {
                         {entreesList}
                     </Tab>
                     <Tab eventKey="drink" title="Drinks">{drinksList}</Tab>
+                    <Tab eventKey="addons" title="Add-Ons">{addonList}</Tab>
                     <Tab eventKey="seasonal" title="Seasonal Items">{seasonalList}</Tab>
                     <Tab eventKey="orders" title="Orders">
                         <EditOrders />
