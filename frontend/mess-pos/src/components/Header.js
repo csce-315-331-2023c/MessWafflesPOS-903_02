@@ -23,11 +23,11 @@ const Header = () => {
 
     return (
         <>
-            <header>
+            <header className="header-items">
                 <Navbar className="navbar">
                     <LinkContainer to="/">
                         <Navbar.Brand className="notranslate brand">
-                            Mess Waffles
+                            <div className="header-items">Mess Waffles</div>
                         </Navbar.Brand>
                     </LinkContainer>
                     <Nav>
