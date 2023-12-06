@@ -8,6 +8,7 @@ import NavbarBrand from "react-bootstrap/esm/NavbarBrand";
 import { LinkContainer } from "react-router-bootstrap";
 import DarkMode from './DarkMode';
 import FontSizing from './FontSizing';
+import "../App.css";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { RoleContext } from "../App";
@@ -30,13 +31,13 @@ const Header = () => {
                     </LinkContainer>
                     <Nav>
                         <LinkContainer to="/">
-                            <Nav.Link><div>Home</div></Nav.Link>
+                            <Nav.Link>Home</Nav.Link>
                         </LinkContainer>
 
                         {isAuthenticated && role === "cashier" && (
                             <>
                                 <LinkContainer to="/cashier">
-                                    <Nav.Link><div>Cashier</div></Nav.Link>
+                                    <Nav.Link>Cashier</Nav.Link>
                                 </LinkContainer>
                             </>
                         )}
@@ -44,20 +45,20 @@ const Header = () => {
                         {isAuthenticated && role === "manager" && (
                             <>
                                 <LinkContainer to="/manager">
-                                    <Nav.Link><div>Manager</div></Nav.Link>
+                                    <Nav.Link>Manager</Nav.Link>
                                 </LinkContainer>
                             </>
                         )}
 
                         <LinkContainer to="/customer">
-                            <Nav.Link><div>Customer</div></Nav.Link>
+                            <Nav.Link>Customer</Nav.Link>
                         </LinkContainer>
 
                         <Nav.Link onClick={() => loginWithRedirect()}>
-                            <div>Login</div>
+                            Login
                         </Nav.Link>
 
-                        <Nav.Link
+                        <Nav.Link className="test-class"
                             onClick={() =>
                                 logout({
                                     logoutParams: {
@@ -66,7 +67,7 @@ const Header = () => {
                                 })
                             }
                         >
-                            <div>Logout</div>
+                            Logout
                         </Nav.Link>
                     </Nav>
                     <DarkMode/>
