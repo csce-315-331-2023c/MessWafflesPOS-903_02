@@ -329,9 +329,10 @@ const Customer = () => {
     const RecItems = () => {
         const [temp, setTemp] = useState([]);
         useEffect(() => {
-            axios.get('http://api.weatherapi.com/v1/current.json?Key=f9d76b0584124e86bfa144719232711&q=77840')
+            axios.get('https://api.weatherapi.com/v1/current.json?Key=f9d76b0584124e86bfa144719232711&q=77840')
                 .then(response => {
                     setTemp(response.data.current.temp_f);
+                    console.log(temp)
                 })
                 .catch(err => {
                     console.log(err);
