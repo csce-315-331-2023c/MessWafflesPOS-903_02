@@ -61,6 +61,12 @@ const Header = () => {
                             </Nav.Link>
                         </LinkContainer>
 
+                        <LinkContainer to="/menu">
+                            <Nav.Link>
+                                <div>Menu Board</div>
+                            </Nav.Link>
+                        </LinkContainer>
+
                         {!isAuthenticated && (
                             <>
                                 <Nav.Link onClick={() => loginWithRedirect()}>
