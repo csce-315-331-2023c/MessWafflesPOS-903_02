@@ -4,20 +4,20 @@ import Container from "react-bootstrap/esm/Container";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function Script  () {
-    useEffect(() => {
-        const script = document.createElement('script');
-        script.src = "https://www.weatherapi.com/weather/widget.ashx?loc=2654732&wid=3&tu=2&div=weatherapi-weather-widget-3";
-        script.async = true;
-        var widget = document.getElementById('weatherapi-weather-widget-3')
-        widget.appendChild(script);
-        return () => {
-          widget.removeChild(script);
-        }
-      }, []);
-};
+
 const Home = () => {
-    
+    function Script  () {
+        useEffect(() => {
+            const script = document.createElement('script');
+            script.src = "https://www.weatherapi.com/weather/widget.ashx?loc=2654732&wid=3&tu=2&div=weatherapi-weather-widget-3";
+            script.async = true;
+            var widget = document.getElementById('weatherapi-weather-widget-3')
+            widget.appendChild(script);
+            return () => {
+              
+            }
+          }, []);
+    };
     return (
         <Container>
             <h1 className="mt-5">About Mess Waffles</h1>
