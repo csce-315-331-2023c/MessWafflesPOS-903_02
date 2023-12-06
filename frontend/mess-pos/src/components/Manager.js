@@ -24,9 +24,6 @@ const Manager = () => {
     // Trends
     const [loadingTrends, setLoadingTrends] = useState(true);
     const [trendsOrders, setTrendsOrders] = useState([]);
-    // Orders from Date
-    const [loadingOrders, setLoadingOrders] = useState(true);
-    const [dateOrders, setDateOrders] = useState([]);
     // Employees
     const [employeeData, setEmployeeData] = useState([]);
     const [loadingEmployees, setLoadingEmployees] = useState(true);
@@ -50,9 +47,8 @@ const Manager = () => {
     // Trends
     const trendsMap = new Map();
     const trendsPairs = [];
-    // Date Orders
-    const dateOrdersArr = [];
 
+    // useEffect (on site render)
     useEffect(() => {
         axios
             .get("https://messwafflespos.onrender.com/api/manager/items")
@@ -160,24 +156,6 @@ const Manager = () => {
             })
             .catch((error) => {
                 console.log(error);
-            });
-    };
-
-    // Orders Submit
-    const ordersSubmit = (event) => {
-        event.preventDefault();
-        setLoadingOrders(true);
-        const eventDate = event.currentTarget[0].value;
-        axios
-            .get("https://messwafflespos.onrender.com/api/manager/dateOrders", {
-                params: { date: eventDate },
-            })
-            .then((res) => {
-                setDateOrders(res.data);
-                setLoadingOrders(false);
-            })
-            .catch((err) => {
-                console.log(err);
             });
     };
 
@@ -329,7 +307,7 @@ const Manager = () => {
             for (let i = 0; i < row.item.length; i++) {
                 for (let j = i; j < row.item.length; j++) {
                     // It would be weird to say chicken says well with chicken, so check that items are not the same
-                    if (row.item[i] !== row.item[j]) {
+                    if (row.item[i] != row.item[j]) {
                         // have {a, b} and {b, a} process as {a, b}
                         if (row.item[i] < row.item[j]) {
                             pushToMap(row.item[i], row.item[j]);
@@ -351,26 +329,6 @@ const Manager = () => {
             }
             return 0;
         });
-    };
-
-    // DateOrders
-    const processDateOrders = () => {
-        console.log(dateOrders);
-        for (let row of dateOrders.rows) {
-            let orderStatus = row.status;
-            if (orderStatus === null) {
-                orderStatus = "completed";
-            }
-            let orderDate = new Date(row.order_date);
-            dateOrdersArr.push({
-                num: row.order_number,
-                date: orderDate.toString(),
-                price: row.total_price,
-                items: row.item.toString(),
-                status: orderStatus,
-            });
-        }
-        console.log(dateOrdersArr);
     };
 
     // Will Code
@@ -645,10 +603,6 @@ const Manager = () => {
         processIngredients();
     }
 
-    if (!loadingOrders) {
-        processDateOrders();
-    }
-
     if (!loadingOrdersSales) {
         processOrders();
     }
@@ -889,40 +843,7 @@ const Manager = () => {
                         </tbody>
                     </Table>
                 </Tab>
-                <Tab eventKey="orders" title="Orders">
-                    <Form onSubmit={ordersSubmit}>
-                        <Form.Group controlId="date1">
-                            <Form.Label>Select Date</Form.Label>
-                            <Form.Control type="date" />
-                        </Form.Group>
-                        <Button type="submit">Get Orders</Button>
-                    </Form>
-                    <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Order Number</th>
-                                <th>Items</th>
-                                <th>Total Price</th>
-                                <th>Order Status</th>
-                                <th>Order Date</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {dateOrdersArr.map((val, key) => {
-                                return (
-                                    <tr key={key}>
-                                        <td>{val.num}</td>
-                                        <td>{val.items}</td>
-                                        <td>{val.price}</td>
-                                        <td>{val.status}</td>
-                                        <td>{val.date}</td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </Table>
-                </Tab>
+
                 <Tab eventKey="employees" title="Employees">
                     {loadingEmployees ? (
                         <p>Loading Employees...</p>
