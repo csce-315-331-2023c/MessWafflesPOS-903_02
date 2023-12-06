@@ -6,7 +6,6 @@ import Cashier from "./components/Cashier";
 import Customer from "./components/Customer";
 import Home from "./components/Home";
 import Manager from "./components/Manager";
-import Login from "./components/Login";
 
 // import {
 //   LoginButton,
