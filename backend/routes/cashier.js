@@ -22,7 +22,7 @@ router.get("/items", async (req, res) => {
 });
 router.get("/order", async (req, res) => {
     const result = await db.query(
-        "SELECT * FROM orders ORDER BY order_number DESC LIMIT 30"
+        "SELECT * FROM orders WHERE status = 'pending' ORDER BY order_number DESC LIMIT 30"
     );
     res.send(result);
 });
@@ -54,10 +54,22 @@ router.post("/order", async (req, res) => {
         );
         const orderNum = orderNumber.rows[0].order_number + 1;
         await db.query(
-            "INSERT INTO orders (order_number, item, order_date, total_price) VALUES ($1, $2, $3, $4)",
+            "INSERT INTO orders (order_number, item, order_date, total_price,status) VALUES ($1, $2, $3, $4,'pending')",
             [orderNum, item, order_date, total_price]
         );
         res.status(201).send(`Added order ${orderNum}`);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
+    }
+});
+router.post("/updateOrder", async (req, res) => {
+    const { order_number,status } = req.body;
+    try {
+        await db.query(
+            "UPDATE orders WHERE order_number = $1 SET status = $2",[order_number,status]
+        );
+        res.status(201).send(`Updated order ${order_number}`);
     } catch (err) {
         console.error(err);
         res.status(500).send("Server error");

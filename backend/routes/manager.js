@@ -123,4 +123,15 @@ router.get('/restockReport', async (req, res) => {
         res.status(500).send("Server error");
     }
 });
+
+router.get('/dateOrders', async(req, res) => {
+    const{date} = req.query;
+    try {
+        const result = await db.query("SELECT * FROM orders WHERE order_date::date = $1", [date]);
+        res.send(result);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server error")
+    }
+});
 export default router;
