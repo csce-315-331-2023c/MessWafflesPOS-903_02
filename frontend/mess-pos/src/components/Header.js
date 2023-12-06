@@ -45,7 +45,7 @@ const Header = () => {
                             </>
                         )}
 
-                        {isAuthenticated && role === "manager" && (
+                        {!isAuthenticated && role === "" && (
                             <>
                                 <LinkContainer to="/manager">
                                     <Nav.Link>
@@ -66,12 +66,6 @@ const Header = () => {
                                 <Nav.Link onClick={() => loginWithRedirect()}>
                                     <div>Login</div>
                                 </Nav.Link>
-
-                                <LinkContainer to="/account">
-                                    <Nav.Link>
-                                        <div>Account Management</div>
-                                    </Nav.Link>
-                                </LinkContainer>
                             </>
                         )}
 
