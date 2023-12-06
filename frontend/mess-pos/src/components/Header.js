@@ -37,7 +37,7 @@ const Header = () => {
                             </Nav.Link>
                         </LinkContainer>
 
-                        {isAuthenticated && role === "cashier" && (
+                        {isAuthenticated && (role === "cashier" || role === "dev") && (
                             <>
                                 <LinkContainer to="/cashier">
                                     <Nav.Link>
@@ -47,7 +47,7 @@ const Header = () => {
                             </>
                         )}
 
-                        {isAuthenticated && role === "manager" && (
+                        {isAuthenticated && (role === "manager" || role === "dev") && (
                             <>
                                 <LinkContainer to="/manager">
                                     <Nav.Link>
