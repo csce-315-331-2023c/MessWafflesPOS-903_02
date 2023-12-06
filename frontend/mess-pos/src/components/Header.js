@@ -22,7 +22,7 @@ const Header = () => {
 
     return (
         <>
-            <header>
+            <header className="title-header">
                 <Navbar>
                     <LinkContainer to="/">
                         <Navbar.Brand className="notranslate">

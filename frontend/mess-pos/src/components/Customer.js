@@ -71,9 +71,9 @@ const Customer = () => {
         
         return (
             <>
-            <div style={{overflowY: "auto"}} className= "checkout" >
+            <div style={{overflowY: "auto"}} className= "card-text" >
                 <div id = "priceCol" className="itemsCol">Item
-                    <ListGroup  style={{ display: 'block' }}>
+                    <ListGroup style={{ display: 'block' }}>
                         {Item_names.map((item, index) => (
                         <ListGroupItem  action onClick= { () => {removeOrderItem(item);}} key={index}>{item}</ListGroupItem>
                         ))}
@@ -88,7 +88,7 @@ const Customer = () => {
                     </ListGroup>
                 </div>
             </div>
-            <div id="orderInfo"> 
+            <div id="orderInfo" className='card-text'> 
                 Total: ${price_tot.toFixed(2)}
             </div>
                 
@@ -102,9 +102,9 @@ const Customer = () => {
         return (
             <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={picture} />
-            <Card.Body>
+            <Card.Body className='card-body'>
                 <Card.Title>{item}</Card.Title>
-                <Card.Text>
+                <Card.Text className='card-text'>
                 {description}
                 </Card.Text>
                 <Button onClick={() => {addOrder(item, price);}} key={index} variant="primary">Add</Button>
@@ -170,7 +170,7 @@ const Customer = () => {
     const EntreePage = () => {
         
         return (
-          <Row>
+          <Row className='card-body'>
             {entreesList.map((item, index) => (
               <Col key={index} sm={3}>
                 {/* Adjust  based on how many items you want in a row */}
@@ -186,7 +186,7 @@ const Customer = () => {
     const DrinksPage = () => {
         
         return (
-          <Row>
+          <Row className='card-body'>
             {drinksList.map((item, index) => (
               <Col key={index} sm={3}>
                 {/* Adjust  based on how many items you want in a row */}
@@ -202,7 +202,7 @@ const Customer = () => {
     const SeasonalPage = () => {
         
         return (
-          <Row>
+          <Row className='card-body'>
             {seasonalList.map((item, index) => (
               <Col key={index} sm={3}>
                 {/* Adjust  based on how many items you want in a row */}
@@ -228,7 +228,7 @@ const Customer = () => {
     },[]);
     if(temp <= 60){
         return (
-            <Row>
+            <Row className='card-body'>
             {coldWeatherItems.map((item, index) => (
                 <Col key={index} sm={3}>
                 {/* Adjust  based on how many items you want in a row */}
@@ -242,7 +242,7 @@ const Customer = () => {
     }
     else if (temp >= 70){
         return (
-            <Row>
+            <Row className='card-body'>
             {hotWeatherItems.map((item, index) => (
                 <Col key={index} sm={3}>
                 {/* Adjust  based on how many items you want in a row */}
@@ -272,7 +272,7 @@ const Customer = () => {
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>Current Order</Offcanvas.Title>
                 </Offcanvas.Header>
-                <Offcanvas.Body >
+                <Offcanvas.Body className='card-body'>
                         <p>Click an item to remove it</p> 
                         <Items />
                         <div id= 'orderactions'>
@@ -317,7 +317,7 @@ const Customer = () => {
 
 
     return (
-        <main id='cashierSection'>        
+        <main id='cashierSection' className='card-body'>        
             {/* Cashier has two sections: A checkout section, and a Add items sections, roughly 4:6 or 3:7
             Checkout sections should take list of items in 'cart' and display with item name, quantity, and total price
             Add items section has two subsections: 'categories' and 'items'
@@ -336,10 +336,10 @@ const Customer = () => {
                 </div>
             </div> */}
             <Info/>
-            <div id="menuSection" className="row-9 border">
-                <Tabs defaultActiveKey="entree" fill >
-                    <Tab eventKey="entree" title="Entrees">
-                       <div>
+            <div id="menuSection" className='card-body'>
+                <Tabs defaultActiveKey="entree" fill>
+                    <Tab eventKey="entree" title="Entrees" >
+                       <div className='card-body'>
                             <EntreePage/>
                        </div>
                 
@@ -355,7 +355,7 @@ const Customer = () => {
                        </div>
                     </Tab>
                     <Tab eventKey="rec" title="Recommended Items">
-                        <div>
+                        <div className='card-body'>
                             <RecItems/>
                         </div>
                     </Tab>

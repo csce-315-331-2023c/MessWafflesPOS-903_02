@@ -28,10 +28,56 @@
     --font: var(--fs-large);
 }
 
+/* 
 div {
     background-color: var(--bg);
     color: var(--text);
     font-size: var(--font);
     transition-timing-function: ease-in-out;
     transition-duration: 0.5s;
+} */
+
+
+.home-page {
+    background-color: var(--bg);
+    color: var(--text);
+    font-size: var(--font);
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+}
+
+.card-body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-size: var(--font);
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+}
+
+.card-text {
+    /* background-color: var(--bg); */
+    color: var(--text);
+    font-size: var(--font);
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+}
+
+.customer-background {
+    background-color: var(--bg);
+    color: var(--text);
+    font-size: var(--font);
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+}
+
+.row-9 border {
+    background-color: var(--bg);
+    color: var(--text);
+    font-size: var(--font);
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+}
+
+.about-border {
+    padding-top: 50px;
 }
