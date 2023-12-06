@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("upd",["Function"],[["updateOrder",,[[,"POST /cashier/updateOrder",,"post/cashier/updateorder",0,"File:routes/cashier.js:POST/cashier/updateOrder"]]]]);

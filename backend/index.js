@@ -1,3 +1,15 @@
+/* File: index.js
+   Entry point for backend server
+
+   1. Starts an express app on port 5000
+
+   2. Connects to postgres database
+
+   3. Mounts routes to express app
+   
+   4. Begins listening for requests
+*/
+
 // package requires
 import express from "express";
 import cors from "cors";

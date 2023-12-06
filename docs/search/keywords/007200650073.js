@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("res",["Function"],[["restockReport",,[[,"GET /manager/restockReport",,"get/manager/restockreport",0,"File:routes/manager.js:GET/manager/restockReport"]]]]);

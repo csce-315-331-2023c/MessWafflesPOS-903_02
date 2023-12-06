@@ -1,3 +1,6 @@
+// File: App.js
+// Renders all components and routes
+
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
@@ -8,24 +11,19 @@ import Home from "./components/Home";
 import Manager from "./components/Manager";
 import Menu from "./components/Menu";
 
-// import {
-//   LoginButton,
-//     LogoutButton,
-//     OAuthText,
-//     APIRoutes,
-// } from "./components/OAuth";
-
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
 export const RoleContext = React.createContext();
+// Function: App
+// Returns the main app component
 const App = () => {
-    // get user email
     const { user, isAuthenticated } = useAuth0();
     const [role, setRole] = useState(null);
 
-    // send request to backend to determine role
+    // Function: useEffect [isAuthenticated]
+    // Queries backend and updates role variable when isAuthenticated changes
     useEffect(() => {
         if (isAuthenticated) {
             console.log("logged in");

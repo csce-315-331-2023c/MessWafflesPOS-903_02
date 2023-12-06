@@ -1,8 +1,13 @@
+// File: auth.js
+// Handles authentication related api endpoints
+
 import Router from "express-promise-router";
 import * as db from "../db/connection.js";
 
 const router = new Router();
 
+// Function: GET /auth/role
+// Returns the user's role from the database based on their email
 router.get("/role", async (req, res) => {
     const { email } = req.query;
     try {
@@ -18,6 +23,8 @@ router.get("/role", async (req, res) => {
     }
 });
 
+// Function: GET /auth/employees
+// Returns all data from the employees table
 router.get("/employees", async (req, res) => {
     try {
         const result = await db.query("SELECT * FROM employees ORDER BY id");
@@ -28,6 +35,8 @@ router.get("/employees", async (req, res) => {
     }
 });
 
+// Function: POST /auth/employees
+// Adds a new employee to the database given their id, name, email, and role
 router.post("/employees", async (req, res) => {
     const { id, name, email, role } = req.body;
     try {
@@ -42,6 +51,8 @@ router.post("/employees", async (req, res) => {
     }
 });
 
+// Function: DELETE /auth/employees
+// Deletes an employee from the database given their id
 router.delete("/employees", async (req, res) => {
     const { id } = req.body;
     try {

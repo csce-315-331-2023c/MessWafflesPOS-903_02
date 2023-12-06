@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("rol",["Function"],[["role",,[[,"GET /auth/role",,"get/auth/role",0,"File:routes/auth.js:GET/auth/role"]]]]);

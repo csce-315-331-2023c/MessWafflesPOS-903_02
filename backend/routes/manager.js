@@ -1,9 +1,13 @@
+// File: manager.js
+// Handles manager related api endpoints
+
 import Router from 'express-promise-router';
 import * as db from '../db/connection.js';
 
 const router = new Router();
 
-// example route
+// Function: GET /manager/items
+// Returns all data from the items table
 router.get('/items', async (req, res) => {
     try {
         const result = await db.query("SELECT * FROM items ORDER BY item");
@@ -14,6 +18,8 @@ router.get('/items', async (req, res) => {
     }
 });
 
+// Function: POST /manager/items
+// Adds or updates a new item to the database given its name, price, ingredients, category, picture, and description
 router.post('/items', async(req,res) => {
     const{item,price,ingredients,category,picture,description} = req.body
     try{
@@ -43,6 +49,8 @@ router.post('/items', async(req,res) => {
     }
 });
 
+// Function: POST /manager/setItemWeatherType
+// Sets the weather type of an item given its name and weather type
 router.post('/setItemWeatherType', async(req,res) => {
     const{item,weather_type} = req.body
     try{
@@ -55,6 +63,8 @@ router.post('/setItemWeatherType', async(req,res) => {
     }
 });
 
+// Function: DELETE /manager/items
+// Deletes an item from the database given its name
 router.delete('/items', async(req,res) => {
     const{item} = req.body
     try{
@@ -67,6 +77,8 @@ router.delete('/items', async(req,res) => {
     }
 });
 
+// Function: GET /manager/inventory
+// Returns all data from the inventory table
 router.get('/inventory', async (req, res) => {
     try {
         const result = await db.query("SELECT * FROM inventory ORDER BY item");
@@ -77,6 +89,8 @@ router.get('/inventory', async (req, res) => {
     }
 });
 
+// Function: POST /manager/inventory
+// Adds or updates a new ingredient to the database given its name and quantity
 router.post('/inventory', async(req,res) => {
     const{item,quantity} = req.body
     try{
@@ -89,6 +103,8 @@ router.post('/inventory', async(req,res) => {
     }
 });
 
+// Function: DELETE /manager/inventory
+// Deletes an ingredient from the database given its name
 router.delete('/inventory', async(req,res) => {
     console.log(req.body)
     const{item} = req.body
@@ -101,6 +117,9 @@ router.delete('/inventory', async(req,res) => {
         res.status(500).send("Server error");
     }
 });
+
+// Function: GET /manager/orders
+// Returns orders from the orders table given a date range
 router.get('/orders', async(req, res) => {
     const{date1, date2} = req.query;
     console.log(date1, date2);
@@ -113,6 +132,9 @@ router.get('/orders', async(req, res) => {
         res.status(500).send("Server error");
     }
 })
+
+// Function: DELETE /manager/orders
+// Deletes an order from the database given its order number
 router.delete('/order', async(req,res) => {
     console.log(req.body)
     const{order_number} = req.body
@@ -125,6 +147,9 @@ router.delete('/order', async(req,res) => {
         res.status(500).send("Server error");
     }
 });
+
+// Function: GET /manager/restockReport
+// Returns all data from the inventory table where the quantity is less than a given quantity
 router.get('/restockReport', async (req, res) => {
     const{quantity} = req.query
     try {
@@ -136,6 +161,8 @@ router.get('/restockReport', async (req, res) => {
     }
 });
 
+// Function: GET /manager/dateOrders
+// Returns orders from the orders table on a given date
 router.get('/dateOrders', async(req, res) => {
     const{date} = req.query;
     try {

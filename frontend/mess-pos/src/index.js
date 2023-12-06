@@ -1,3 +1,6 @@
+// File: index.js
+// Main entry point for React frontend
+
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";

@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("set",["Function"],[["setItemWeatherType",,[[,"POST /manager/setItemWeatherType",,"post/manager/setitemweathertype",0,"File:routes/manager.js:POST/manager/setItemWeatherType"]]]]);
