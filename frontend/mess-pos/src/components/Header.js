@@ -37,7 +37,19 @@ const Header = () => {
                             </Nav.Link>
                         </LinkContainer>
 
-                        {isAuthenticated && role === "cashier" && (
+                        <LinkContainer to="/menu">
+                            <Nav.Link>
+                                <div>Menu Board</div>
+                            </Nav.Link>
+                        </LinkContainer>
+
+                        <LinkContainer to="/customer">
+                            <Nav.Link>
+                                <div>Customer</div>
+                            </Nav.Link>
+                        </LinkContainer>
+
+                        {isAuthenticated && (role === "cashier" || role === "dev") && (
                             <>
                                 <LinkContainer to="/cashier">
                                     <Nav.Link>
@@ -47,7 +59,7 @@ const Header = () => {
                             </>
                         )}
 
-                        {isAuthenticated && role === "manager" && (
+                        {isAuthenticated && (role === "manager" || role === "dev") && (
                             <>
                                 <LinkContainer to="/manager">
                                     <Nav.Link>
@@ -57,17 +69,6 @@ const Header = () => {
                             </>
                         )}
 
-                        <LinkContainer to="/customer">
-                            <Nav.Link>
-                                <div>Customer</div>
-                            </Nav.Link>
-                        </LinkContainer>
-
-                        <LinkContainer to="/menu">
-                            <Nav.Link>
-                                <div>Menu Board</div>
-                            </Nav.Link>
-                        </LinkContainer>
 
                         {!isAuthenticated && (
                             <>
