@@ -97,10 +97,15 @@ const Header = () => {
                 </Navbar>
 
                 <p className="mt-4 ms-auto user-welcome">
-                    Welcome,
-                    <span className="notranslate">
-                        {isAuthenticated ? " " + user.name : " Guest"}{" "}
-                    </span>
+                    Logged in as
+                    { isAuthenticated ? (
+                        <span className="notranslate">
+                            {" " + user.name}
+                        </span>
+                    ) : (
+                        " Guest"
+                        
+                    )}
                 </p>
             </header>
             <Outlet />
