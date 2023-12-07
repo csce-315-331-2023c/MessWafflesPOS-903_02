@@ -49,6 +49,12 @@ const Header = () => {
                             </Nav.Link>
                         </LinkContainer>
 
+                        <LinkContainer to="/cashier">
+                            <Nav.Link>
+                                <div>Cashier</div>
+                            </Nav.Link>
+                        </LinkContainer>
+
                         {isAuthenticated && (role === "cashier" || role === "dev") && (
                             <>
                                 <LinkContainer to="/cashier">

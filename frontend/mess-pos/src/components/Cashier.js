@@ -48,7 +48,7 @@ const Cashier = () => {
         setPrices(olary => []);
         setTotal(oldPrice => 0.00);
     }
-    const[pendingOrders,setOrders] = useState([]);
+    const [pendingOrders, setOrders] = useState([]);
     useEffect(() => {
         axios.get('https://messwafflespos.onrender.com/api/cashier/order')
             .then(response => {
@@ -57,7 +57,8 @@ const Cashier = () => {
             .catch(err => {
                 console.log(err);
             })
-    },[]);
+    }, []);
+
 
     function Items() {
 
@@ -123,7 +124,7 @@ const Cashier = () => {
         else if (JSON.stringify(items.rows[i].category) == "\"seasonal\"") {
             seasonal.push(menuItem);
         }
-        else if(JSON.stringify(items.rows[i].category) == "\"add-on\""){
+        else if (JSON.stringify(items.rows[i].category) == "\"add-on\"") {
             addons.push(menuItem);
         }
     }
@@ -178,7 +179,7 @@ const Cashier = () => {
         }
 
         axios.post('https://messwafflespos.onrender.com/api/cashier/order', postdata)
-        //axios.post('http://localhost:5000/cashier/order', postdata)
+            //axios.post('http://localhost:5000/cashier/order', postdata)
             .then(response => {
                 console.log(response.data);
             })
@@ -198,7 +199,7 @@ const Cashier = () => {
             order_number: number,
             status: stat
         }
-        console.log('postdata is ',postdata)
+        console.log('postdata is ', postdata)
         axios.post('https://messwafflespos.onrender.com/api/cashier/updateOrder', postdata)
             .then(response => {
                 console.log(response.data);
@@ -243,6 +244,58 @@ const Cashier = () => {
     };
 
 
+    function ChangeOrder(number) {
+        console.log('enterring updateorder')
+        console.log(number);
+
+
+        axios.get('http://localhost:5000/cashier/order_no', { params: { order_number: number } })
+            .then(response => {
+                console.log(response.data);
+                //price_tot = response.data.
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+
+    const ItemForm = () => {
+        const [formData, setFormData] = useState('');
+
+        const handleInputChange = (event) => {
+            setFormData(event.target.value);
+        };
+
+        const handleSubmit = (event) => {
+            event.preventDefault();
+            // You can perform actions with the formData here, like sending it to an API
+            console.log('Form submitted with order number:', formData);
+            // Reset formData state if needed
+            UpdateOrder(formData, 'complete');
+        };
+
+        return (
+            <Form onSubmit={handleSubmit}>
+                <InputGroup className="mb-3">
+                    <Button variant="outline-secondary" type="submit" id="button-addon1">
+                        Edit Order Items
+                    </Button>
+                    <Form.Control
+                        type='number'
+                        placeholder="Enter order number"
+                        aria-label="input order number"
+                        aria-describedby="basic-addon1"
+                        value={formData}
+                        onChange={handleInputChange}
+                    />
+                </InputGroup>
+            </Form>
+        );
+    };
+
+
+
 
     function EditOrders() {
 
@@ -280,9 +333,6 @@ const Cashier = () => {
             _Orders.push(order);
         }
 
-
-
-
         return (
 
             <div style={{ overflowY: "auto" }} id='Orders' className='container' >
@@ -319,6 +369,10 @@ const Cashier = () => {
 
                 <div className='row'>
                     <MyForm />
+                </div>
+                <div className='row'>
+                    <ItemForm />
+                    {ChangeOrder(3)}
                 </div>
 
             </div>
