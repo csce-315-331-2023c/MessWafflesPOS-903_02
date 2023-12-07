@@ -120,6 +120,7 @@ const Admin = () => {
                                     >
                                         <option value="Manager">Manager</option>
                                         <option value="Cashier">Cashier</option>
+                                        <option value="Admin">Admin</option>
                                     </select>
                                     <input
                                         name="Email"
