@@ -1,9 +1,16 @@
+// File: translate.js
+// Provides functions for translating the website
+
 import React, { useEffect } from "react";
 
+// Function: TranslateElement
+// Returns a div element with the Google Translate widget
 export const TranslateElement = () => {
     return <div id="google_translate_element"></div>;
 };
 
+// Function: TranslateScript
+// Returns a useEffect function with the Google Translate script to translate the website
 export const TranslateScript = () => {
     useEffect(() => {
         const script = document.createElement("script");

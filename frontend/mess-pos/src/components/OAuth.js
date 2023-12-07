@@ -1,3 +1,6 @@
+// File: OAuth.js
+// Provides functions for OAuth2.0 authentication for the website
+
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
