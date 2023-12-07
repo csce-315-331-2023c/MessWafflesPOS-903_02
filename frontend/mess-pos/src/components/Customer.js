@@ -1,3 +1,6 @@
+// File: Customer.js
+// Customer interface of the POS system
+
 import React, { useEffect, useState } from 'react'
 import "./Customer.css"
 import Button from 'react-bootstrap/Button'

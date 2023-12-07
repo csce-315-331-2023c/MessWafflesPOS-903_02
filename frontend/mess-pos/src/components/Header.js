@@ -1,3 +1,6 @@
+// File: Header.js
+// Header bar for the website
+
 import React, { useEffect } from "react";
 import "./Header.css";
 import { Outlet, Link } from "react-router-dom";
