@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("pro",["Function"],[["processIngredients",,[[,,,,0,"File2:components/Manager.js:processIngredients"]]]]);

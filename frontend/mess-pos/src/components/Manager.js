@@ -180,8 +180,6 @@ const Manager = () => {
             });
     };
 
-    // Functions
-    // Usage Report
     // Function: processIngredients
     // Processes data received from an API call upon form submission. Formats data into array to be displayed. Used for Usage Report
     const processIngredients = () => {
@@ -435,7 +433,7 @@ const Manager = () => {
         );
     }
     // Function: updateInventory
-    // Updates an inventory item
+    // Updates/Creates an inventory Item based on form
     function updateInventory(e) {
         e.preventDefault();
         const form = e.target;
@@ -455,7 +453,7 @@ const Manager = () => {
             });
     }
     // Function: updateItems
-    // Updates an item
+    // Updates/Creates an item based on form
     function updateItems(e) {
         e.preventDefault();
         const form = e.target;
@@ -476,7 +474,7 @@ const Manager = () => {
             });
     }
     // Function: deleteIng
-    // Deletes an Ingredient
+    // Deletes an ingredient based on form
     function deleteIng(e) {
         e.preventDefault();
         const form = e.target;
@@ -497,8 +495,9 @@ const Manager = () => {
                 console.log(err);
             });
     }
+
     // Function: deleteItem
-    // Deletes an item
+    // Deletes an item based on form
     function deleteItem(e) {
         e.preventDefault();
         const form = e.target;
@@ -516,6 +515,7 @@ const Manager = () => {
                 console.log(err);
             });
     }
+
     // Function: Items
     // Returns HTML for a list of Items from API call
     function Items() {
@@ -593,6 +593,7 @@ const Manager = () => {
             </>
         );
     }
+    
     // Function: restockReport
     // Displays a list of items below a certain quantity q (given by user input)
     function restockReport(e) {
@@ -624,7 +625,7 @@ const Manager = () => {
     }
 
     // Function: deleteOrder
-    // deletes an order
+    // Deletes an order based on form
     function deleteOrder(e) {
         e.preventDefault();
         const form = e.target;
