@@ -1,3 +1,6 @@
+// File: Cashier.js
+// Cashier interface of the POS system
+
 import React, { useEffect, useState } from 'react'
 import "./Cashier.css"
 import Button from 'react-bootstrap/Button'
@@ -13,7 +16,6 @@ import Stack from 'react-bootstrap/Stack';
 import ListGroupItem from 'react-bootstrap/esm/ListGroupItem'
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-
 
 const Cashier = () => {
     const [items, setItems] = useState([]);

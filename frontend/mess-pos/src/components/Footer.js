@@ -1,3 +1,6 @@
+// File: Footer.js
+// Footer bar for the website
+
 import "../App.css"
 import React from "react";
 import "./Footer.css";
