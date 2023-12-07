@@ -1,32 +1,33 @@
 // File: Customer.js
 // Customer interface of the POS system
 
-import React, { useEffect, useState } from 'react'
-import "./Customer.css"
-import Button from 'react-bootstrap/Button'
-import axios from 'axios'
-import Tab from 'react-bootstrap/Tab'
-import Tabs from 'react-bootstrap/Tabs'
-import Table from 'react-bootstrap/Table';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Stack from 'react-bootstrap/Stack';
-import ListGroupItem from 'react-bootstrap/esm/ListGroupItem'
-import Card from 'react-bootstrap/Card';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import React, { useEffect, useState } from "react";
+import "./Customer.css";
+import Button from "react-bootstrap/Button";
+import axios from "axios";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
+import Table from "react-bootstrap/Table";
+import ListGroup from "react-bootstrap/ListGroup";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Stack from "react-bootstrap/Stack";
+import ListGroupItem from "react-bootstrap/esm/ListGroupItem";
+import Card from "react-bootstrap/Card";
+import Offcanvas from "react-bootstrap/Offcanvas";
 
 const Customer = () => {
     const [items, setItems] = useState([]);
     useEffect(() => {
-        axios.get('https://messwafflespos.onrender.com/api/manager/items')
-            .then(response => {
+        axios
+            .get("https://messwafflespos.onrender.com/api/manager/items")
+            .then((response) => {
                 setItems(response.data);
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err);
-            })
+            });
     }, []);
     var entrees = [];
     var drinks = [];
@@ -42,27 +43,26 @@ const Customer = () => {
     // Function: updateItems
     // Updates the list of items in the order given the name and price of the item
     function updateItems(name, price) {
-        setItemNames(olary => [...olary, name]);
-        setPrices(olary => [...olary, price]);
-        setTotal(oldPrice => price_tot + parseFloat(price));
+        setItemNames((olary) => [...olary, name]);
+        setPrices((olary) => [...olary, price]);
+        setTotal((oldPrice) => price_tot + parseFloat(price));
     }
 
     // Function: resetItems
     // Resets the list of items in the order
     function resetItems() {
-        setItemNames(olary => []);
-        setPrices(olary => []);
-        setTotal(oldPrice => 0.00);
+        setItemNames((olary) => []);
+        setPrices((olary) => []);
+        setTotal((oldPrice) => 0.0);
     }
 
     // Function: Items
     // Returns the list of items in the order
     function Items() {
-
         // Function: removeOrderItem
         // Removes an item from the order given its name
         function removeOrderItem(i) {
-            if (window.confirm('delete ' + i + ' from the order?')) {
+            if (window.confirm("delete " + i + " from the order?")) {
                 var array_i = [...Item_names];
                 var array_p = [...Prices];
                 var index = array_i.indexOf(i);
@@ -70,40 +70,50 @@ const Customer = () => {
 
                 if (index !== -1) {
                     array_i.splice(index, 1);
-                    setItemNames(olary => [...array_i]);
+                    setItemNames((olary) => [...array_i]);
                     array_p.splice(index, 1);
-                    setPrices(olary => [...array_p]);
-                    setTotal(oldPrice => price_tot - parseFloat(price));
+                    setPrices((olary) => [...array_p]);
+                    setTotal((oldPrice) => price_tot - parseFloat(price));
                 }
             }
-
-
-        };
+        }
 
         return (
             <>
-                <div style={{ overflowY: "auto" }} className="checkout" >
-                    <div id="priceCol" className="itemsCol">Item
-                        <ListGroup style={{ display: 'block' }}>
+                <div style={{ overflowY: "auto" }} className="checkout">
+                    <div id="priceCol" className="itemsCol">
+                        Item
+                        <ListGroup style={{ display: "block" }}>
                             {Item_names.map((item, index) => (
-                                <ListGroupItem action onClick={() => { removeOrderItem(item); }} key={index}>{item}</ListGroupItem>
+                                <ListGroupItem
+                                    action
+                                    onClick={() => {
+                                        removeOrderItem(item);
+                                    }}
+                                    key={index}
+                                >
+                                    {item}
+                                </ListGroupItem>
                             ))}
                         </ListGroup>
                     </div>
 
-                    <div id="priceCol" className="itemsCol">Price
-                        <ListGroup style={{ display: 'block' }}>
+                    <div id="priceCol" className="itemsCol">
+                        Price
+                        <ListGroup style={{ display: "block" }}>
                             {Prices.map((item, index) => (
-                                <ListGroupItem key={index} >{item}</ListGroupItem>
+                                <ListGroupItem key={index}>
+                                    {item}
+                                </ListGroupItem>
                             ))}
                         </ListGroup>
                     </div>
                 </div>
-                <div id="orderInfo" className='card-text'>
+                <div id="orderInfo" className="card-text">
                     Total: ${price_tot.toFixed(2)}
                 </div>
             </>
-        )
+        );
     }
 
     // Function: MenuButton
@@ -118,7 +128,7 @@ const Customer = () => {
 
             if (isLoading) {
                 simulateNetworkRequest().then(() => {
-                    addOrder(item, price)
+                    addOrder(item, price);
                     setLoading(false);
                 });
             }
@@ -132,7 +142,7 @@ const Customer = () => {
                 disabled={isLoading}
                 onClick={!isLoading ? handleClick : null}
             >
-                {isLoading ? 'Added to order' : 'Add'}
+                {isLoading ? "Added to order" : "Add"}
             </Button>
         );
     }
@@ -160,11 +170,11 @@ const Customer = () => {
         return (
             <Button
                 variant="primary"
-                size='lg'
+                size="lg"
                 disabled={isLoading}
                 onClick={!isLoading ? handleClick : null}
             >
-                {isLoading ? 'Order Submitted' : 'Place Order'}
+                {isLoading ? "Order Submitted" : "Place Order"}
             </Button>
         );
     }
@@ -192,11 +202,11 @@ const Customer = () => {
         return (
             <Button
                 variant="primary"
-                size='lg'
+                size="lg"
                 disabled={isLoading}
                 onClick={!isLoading ? handleClick : null}
             >
-                {isLoading ? 'Cancelling' : 'Cancel Order'}
+                {isLoading ? "Cancelling" : "Cancel Order"}
             </Button>
         );
     }
@@ -205,41 +215,55 @@ const Customer = () => {
     // Returns a card for an item given its name, price, description, and picture
     function itemCard(item, price, index, description, picture) {
         return (
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: "18rem" }}>
                 <Card.Img variant="top" src={picture} />
-                <Card.Body className='card-body'>
-                    <Card.Title>{item}{' $' + price}</Card.Title>
-                    <Card.Text className='card-text'>
-                        {description}
-                    </Card.Text>
+                <Card.Body className="card-body">
+                    <Card.Title>
+                        {item}
+                        {" $" + price}
+                    </Card.Title>
+                    <Card.Text className="card-text">{description}</Card.Text>
                     <MenuButton key={index} item={item} price={price} />
                 </Card.Body>
             </Card>
         );
     }
 
-
     const orders = new Map();
 
-
     for (let i = 0; i < items.rowCount; i++) {
-        const menuItem = { item: JSON.stringify(items.rows[i].item).substring(1, JSON.stringify(items.rows[i].item).length - 1), price: JSON.stringify(items.rows[i].price).substring(1, JSON.stringify(items.rows[i].price).length - 1), description: JSON.stringify(items.rows[i].description).substring(1, JSON.stringify(items.rows[i].description).length - 1), picture: JSON.stringify(items.rows[i].picture).substring(1, JSON.stringify(items.rows[i].picture).length - 1) };
-        if (JSON.stringify(items.rows[i].category) == "\"entree\"") {
+        const menuItem = {
+            item: JSON.stringify(items.rows[i].item).substring(
+                1,
+                JSON.stringify(items.rows[i].item).length - 1
+            ),
+            price: JSON.stringify(items.rows[i].price).substring(
+                1,
+                JSON.stringify(items.rows[i].price).length - 1
+            ),
+            description: JSON.stringify(items.rows[i].description).substring(
+                1,
+                JSON.stringify(items.rows[i].description).length - 1
+            ),
+            picture: JSON.stringify(items.rows[i].picture).substring(
+                1,
+                JSON.stringify(items.rows[i].picture).length - 1
+            ),
+        };
+        if (JSON.stringify(items.rows[i].category) == '"entree"') {
             entrees.push(menuItem);
-        }
-        else if (JSON.stringify(items.rows[i].category) == "\"drinks\"") {
+        } else if (JSON.stringify(items.rows[i].category) == '"drinks"') {
             drinks.push(menuItem);
-        }
-        else if (JSON.stringify(items.rows[i].category) == "\"seasonal\"") {
+        } else if (JSON.stringify(items.rows[i].category) == '"seasonal"') {
             seasonal.push(menuItem);
         }
-        if (JSON.stringify(items.rows[i].weather_type) == "\"cold\"") {
+        if (JSON.stringify(items.rows[i].weather_type) == '"cold"') {
             cold.push(menuItem);
         }
-        if (JSON.stringify(items.rows[i].weather_type) == "\"hot\"") {
+        if (JSON.stringify(items.rows[i].weather_type) == '"hot"') {
             hot.push(menuItem);
         }
-        if (JSON.stringify(items.rows[i].category) == "\"add-on\"") {
+        if (JSON.stringify(items.rows[i].category) == '"add-on"') {
             addons.push(menuItem);
         }
     }
@@ -254,9 +278,11 @@ const Customer = () => {
     // Adds an item to the order given its name and price
     function addOrder(name, price) {
         if (orders.has(name)) {
-            orders.set(name, { price: price, quantity: orders.get(name).quantity + 1 })
-        }
-        else {
+            orders.set(name, {
+                price: price,
+                quantity: orders.get(name).quantity + 1,
+            });
+        } else {
             orders.set(name, { price: price, quantity: 1 });
         }
         updateItems(name, price);
@@ -264,29 +290,77 @@ const Customer = () => {
     }
 
     entrees.forEach((item, index) => {
-        entreesList.push(itemCard(item.item, item.price, index, item.description, item.picture))
-    })
+        entreesList.push(
+            itemCard(
+                item.item,
+                item.price,
+                index,
+                item.description,
+                item.picture
+            )
+        );
+    });
     drinks.forEach((item, index) => {
-        drinksList.push(itemCard(item.item, item.price, index, item.description, item.picture))
-    })
+        drinksList.push(
+            itemCard(
+                item.item,
+                item.price,
+                index,
+                item.description,
+                item.picture
+            )
+        );
+    });
     seasonal.forEach((item, index) => {
-        seasonalList.push(itemCard(item.item, item.price, index, item.description, item.picture))
-    })
+        seasonalList.push(
+            itemCard(
+                item.item,
+                item.price,
+                index,
+                item.description,
+                item.picture
+            )
+        );
+    });
     cold.forEach((item, index) => {
-        coldWeatherItems.push(itemCard(item.item, item.price, index, item.description, item.picture))
-    })
+        coldWeatherItems.push(
+            itemCard(
+                item.item,
+                item.price,
+                index,
+                item.description,
+                item.picture
+            )
+        );
+    });
     hot.forEach((item, index) => {
-        hotWeatherItems.push(itemCard(item.item, item.price, index, item.description, item.picture))
-    })
+        hotWeatherItems.push(
+            itemCard(
+                item.item,
+                item.price,
+                index,
+                item.description,
+                item.picture
+            )
+        );
+    });
     addons.forEach((item, index) => {
-        addonList.push(itemCard(item.item, item.price, index, item.description, item.picture))
-    })
+        addonList.push(
+            itemCard(
+                item.item,
+                item.price,
+                index,
+                item.description,
+                item.picture
+            )
+        );
+    });
 
     // Function: EntreePage
     // Returns a render of all Entrees
     const EntreePage = () => {
         return (
-            <Row className='card-body'>
+            <Row className="card-body">
                 {entreesList.map((item, index) => (
                     <Col key={index} sm={3}>
                         {/* Adjust  based on how many items you want in a row */}
@@ -297,14 +371,13 @@ const Customer = () => {
                 ))}
             </Row>
         );
-    }
+    };
 
     // Function: DrinksPage
     // Returns a render of all Drinks
     const DrinksPage = () => {
-
         return (
-            <Row className='card-body'>
+            <Row className="card-body">
                 {drinksList.map((item, index) => (
                     <Col key={index} sm={3}>
                         {/* Adjust  based on how many items you want in a row */}
@@ -315,14 +388,13 @@ const Customer = () => {
                 ))}
             </Row>
         );
-    }
+    };
 
     // Function: SeasonalPage
     // Returns a render of all Seasonal Items
     const SeasonalPage = () => {
-
         return (
-            <Row className='card-body'>
+            <Row className="card-body">
                 {seasonalList.map((item, index) => (
                     <Col key={index} sm={3}>
                         {/* Adjust  based on how many items you want in a row */}
@@ -333,14 +405,13 @@ const Customer = () => {
                 ))}
             </Row>
         );
-    }
+    };
 
     // Function: AddonPage
     // Returns a render of all Add-Ons
     const AddonPage = () => {
-
         return (
-            <Row className='card-body'>
+            <Row className="card-body">
                 {addonList.map((item, index) => (
                     <Col key={index} sm={3}>
                         {/* Adjust  based on how many items you want in a row */}
@@ -351,25 +422,28 @@ const Customer = () => {
                 ))}
             </Row>
         );
-    }
+    };
 
     // Function: RecItems
     // Returns a render of all Recommended Items based on weather
     const RecItems = () => {
         var temp;
         useEffect(() => {
-            axios.get('https://api.weatherapi.com/v1/current.json?Key=f9d76b0584124e86bfa144719232711&q=77840')
-                .then(response => {
+            axios
+                .get(
+                    "https://api.weatherapi.com/v1/current.json?Key=f9d76b0584124e86bfa144719232711&q=77840"
+                )
+                .then((response) => {
                     temp = response.data.current.temp_f;
-                    console.log(temp)
+                    console.log(temp);
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.log(err);
-                })
+                });
         }, []);
         if (temp <= 60) {
             return (
-                <Row className='card-body'>
+                <Row className="card-body">
                     {coldWeatherItems.map((item, index) => (
                         <Col key={index} sm={3}>
                             {/* Adjust  based on how many items you want in a row */}
@@ -380,10 +454,9 @@ const Customer = () => {
                     ))}
                 </Row>
             );
-        }
-        else if (temp >= 70) {
+        } else if (temp >= 70) {
             return (
-                <Row className='card-body'>
+                <Row className="card-body">
                     {hotWeatherItems.map((item, index) => (
                         <Col key={index} sm={3}>
                             {/* Adjust  based on how many items you want in a row */}
@@ -395,8 +468,8 @@ const Customer = () => {
                 </Row>
             );
         }
-    }
-    
+    };
+
     // Function: Info
     // Returns an offcanvas that displays the current order
     function Info() {
@@ -407,7 +480,12 @@ const Customer = () => {
 
         return (
             <>
-                <Button className='SeeOrder' variant="primary" size="lg" onClick={handleShow}>
+                <Button
+                    className="SeeOrder"
+                    variant="primary"
+                    size="lg"
+                    onClick={handleShow}
+                >
                     View Order
                 </Button>
 
@@ -415,10 +493,10 @@ const Customer = () => {
                     <Offcanvas.Header closeButton>
                         <Offcanvas.Title>Current Order</Offcanvas.Title>
                     </Offcanvas.Header>
-                    <Offcanvas.Body className='card-body'>
+                    <Offcanvas.Body className="card-body">
                         <p>Click an item to remove it</p>
                         <Items />
-                        <div id='orderactions'>
+                        <div id="orderactions">
                             <PlaceButton />
                             <CancelButton />
                         </div>
@@ -434,11 +512,10 @@ const Customer = () => {
         const date = new Date();
         var n = 0;
         for (let i = 0; i < Prices.length; i++) {
-            console.log(Prices[i].replace("\"", ""));
+            console.log(Prices[i].replace('"', ""));
 
-            n += parseFloat(Prices[i].replace("\"", ""));
+            n += parseFloat(Prices[i].replace('"', ""));
         }
-
 
         console.log(n);
         console.log(Item_names);
@@ -447,28 +524,30 @@ const Customer = () => {
         const postdata = {
             item: Item_names,
             order_date: date,
-            total_price: n
-        }
+            total_price: n,
+        };
 
-        axios.post('https://messwafflespos.onrender.com/api/cashier/order', postdata)
-            .then(response => {
+        axios
+            .post(
+                "https://messwafflespos.onrender.com/api/cashier/order",
+                postdata
+            )
+            .then((response) => {
                 console.log(response.data);
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err);
             });
         resetItems();
     }
 
-
     return (
-        <main id='cashierSection' className='card-body'>
+        <main id="cashierSection" className="card-body">
             {/* Cashier has two sections: A checkout section, and a Add items sections, roughly 4:6 or 3:7
             Checkout sections should take list of items in 'cart' and display with item name, quantity, and total price
             Add items section has two subsections: 'categories' and 'items'
             For now, we'll only implement main items */}
             {/* checkout */}
-
 
             {/* <div  className="col-4 border" >
                 <Items />
@@ -481,13 +560,12 @@ const Customer = () => {
                 </div>
             </div> */}
             <Info />
-            <div id="menuSection" className='card-body'>
+            <div id="menuSection" className="card-body">
                 <Tabs defaultActiveKey="entree" fill>
-                    <Tab eventKey="entree" title="Entrees" >
-                        <div className='card-body'>
+                    <Tab eventKey="entree" title="Entrees">
+                        <div className="card-body">
                             <EntreePage />
                         </div>
-
                     </Tab>
                     <Tab eventKey="drink" title="Drinks">
                         <div>
@@ -504,16 +582,19 @@ const Customer = () => {
                             <AddonPage />
                         </div>
                     </Tab>
-                    <Tab eventKey="rec" title="Recommended Items (based on weather)">
+                    <Tab
+                        eventKey="rec"
+                        title="Recommended Items (based on weather)"
+                    >
                         <div>
                             <RecItems />
                         </div>
                     </Tab>
                 </Tabs>
             </div>
-            <div className='row-3 border'></div>
+            <div className="row-3 border"></div>
         </main>
-    )
-}
+    );
+};
 
 export default Customer;

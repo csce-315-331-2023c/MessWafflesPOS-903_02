@@ -23,7 +23,7 @@ export const TranslateScript = () => {
             new window.google.translate.TranslateElement(
                 {
                     pageLanguage: "en",
-                    layout: window.google.translate.TranslateElement
+                    layout: window.google.translate.TranslateElement,
                 },
                 "google_translate_element"
             );

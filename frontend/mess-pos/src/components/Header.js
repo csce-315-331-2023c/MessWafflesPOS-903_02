@@ -9,10 +9,9 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import NavbarBrand from "react-bootstrap/esm/NavbarBrand";
 import { LinkContainer } from "react-router-bootstrap";
-import DarkMode from './DarkMode';
-import FontSizing from './FontSizing';
+import DarkMode from "./DarkMode";
+import FontSizing from "./FontSizing";
 import "../App.css";
-
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { RoleContext } from "../App";
@@ -54,36 +53,39 @@ const Header = () => {
                             </Nav.Link>
                         </LinkContainer>
 
-                        {isAuthenticated && (role === "cashier" || role === "dev") && (
-                            <>
-                                <LinkContainer to="/cashier">
-                                    <Nav.Link>
-                                        <div>Cashier</div>
-                                    </Nav.Link>
-                                </LinkContainer>
-                            </>
-                        )}
+                        {isAuthenticated &&
+                            (role === "cashier" || role === "dev") && (
+                                <>
+                                    <LinkContainer to="/cashier">
+                                        <Nav.Link>
+                                            <div>Cashier</div>
+                                        </Nav.Link>
+                                    </LinkContainer>
+                                </>
+                            )}
 
-                        {isAuthenticated && (role === "manager" || role === "dev") && (
-                            <>
-                                <LinkContainer to="/manager">
-                                    <Nav.Link>
-                                        <div>Manager</div>
-                                    </Nav.Link>
-                                </LinkContainer>
-                            </>
-                        )}
+                        {isAuthenticated &&
+                            (role === "manager" || role === "dev") && (
+                                <>
+                                    <LinkContainer to="/manager">
+                                        <Nav.Link>
+                                            <div>Manager</div>
+                                        </Nav.Link>
+                                    </LinkContainer>
+                                </>
+                            )}
 
-                        {isAuthenticated && (role === "admin" || role === "dev") && (
-                            <>
-                                <LinkContainer to="/admin">
-                                    <Nav.Link>
-                                        <div>Admin</div>
-                                    </Nav.Link> 
-                                </LinkContainer>    
-                            </>
-                        )}
-                        
+                        {isAuthenticated &&
+                            (role === "admin" || role === "dev") && (
+                                <>
+                                    <LinkContainer to="/admin">
+                                        <Nav.Link>
+                                            <div>Admin</div>
+                                        </Nav.Link>
+                                    </LinkContainer>
+                                </>
+                            )}
+
                         {!isAuthenticated && (
                             <>
                                 <Nav.Link onClick={() => loginWithRedirect()}>
@@ -112,13 +114,10 @@ const Header = () => {
 
                 <p className="mt-4 ms-auto user-welcome">
                     Logged in as
-                    { isAuthenticated ? (
-                        <span className="notranslate">
-                            {" " + user.name}
-                        </span>
+                    {isAuthenticated ? (
+                        <span className="notranslate">{" " + user.name}</span>
                     ) : (
                         " Guest"
-                        
                     )}
                 </p>
             </header>
