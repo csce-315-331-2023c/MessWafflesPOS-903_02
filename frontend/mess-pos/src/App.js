@@ -10,6 +10,7 @@ import Customer from "./components/Customer";
 import Home from "./components/Home";
 import Manager from "./components/Manager";
 import Menu from "./components/Menu";
+import Admin from "./components/Admin";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
@@ -58,6 +59,7 @@ const App = () => {
                     <Route path="manager" element={<Manager />} />
                     <Route path="customer" element={<Customer />} />
                     <Route path="menu" element={<Menu />} />
+                    <Route path="admin" element={<Admin />} />
                 </Routes>
 
                 <Footer />

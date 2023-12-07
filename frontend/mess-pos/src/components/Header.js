@@ -72,7 +72,16 @@ const Header = () => {
                             </>
                         )}
 
-
+                        {isAuthenticated && (role === "admin" || role === "dev") && (
+                            <>
+                                <LinkContainer to="/admin">
+                                    <Nav.Link>
+                                        <div>Admin</div>
+                                    </Nav.Link> 
+                                </LinkContainer>    
+                            </>
+                        )}
+                        
                         {!isAuthenticated && (
                             <>
                                 <Nav.Link onClick={() => loginWithRedirect()}>
@@ -100,10 +109,15 @@ const Header = () => {
                 </Navbar>
 
                 <p className="mt-4 ms-auto user-welcome">
-                    Welcome,
-                    <span className="notranslate">
-                        {isAuthenticated ? " " + user.name : " Guest"}{" "}
-                    </span>
+                    Logged in as
+                    { isAuthenticated ? (
+                        <span className="notranslate">
+                            {" " + user.name}
+                        </span>
+                    ) : (
+                        " Guest"
+                        
+                    )}
                 </p>
             </header>
             <Outlet />
