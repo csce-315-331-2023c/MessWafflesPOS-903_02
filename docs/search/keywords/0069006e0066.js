@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("inf",["Function"],[["Info",,[[,,,,0,"File2:components/Customer.js:Info"]]]]);

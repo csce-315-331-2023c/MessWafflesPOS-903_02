@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File2:components/Cashier.js","Cashier.js");NDSummary.OnSummaryLoaded("File2:components/Cashier.js",[["JavaScript","JavaScript"]],[["Files","File"]],[[43,0,0,"Cashier.js","Cashier.js"]]);

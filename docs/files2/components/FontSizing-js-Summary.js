@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File2:components/FontSizing.js","FontSizing.js");NDSummary.OnSummaryLoaded("File2:components/FontSizing.js",[["JavaScript","JavaScript"]],[["Files","File"]],[[39,0,0,"FontSizing.js","FontSizing.js"]]);

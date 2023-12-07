@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File2:components/Header.js","Header.js");NDSummary.OnSummaryLoaded("File2:components/Header.js",[["JavaScript","JavaScript"]],[["Files","File"],["Functions","Function"],["Groups","Group"]],[[56,0,0,"Header.js","Header.js"],[57,0,2,"Functions","Functions"],[58,0,1,"Header","Header"]]);

@@ -1,0 +1,1 @@
+﻿NDSummary.OnToolTipsLoaded("File2:components/FontSizing.js",{39:"<div class=\"NDToolTip TFile LJavaScript\"><div class=\"TTSummary\">Provides functions for changing the font size of the website</div></div>"});

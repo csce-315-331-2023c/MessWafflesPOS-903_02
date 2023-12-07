@@ -1,0 +1,1 @@
+﻿NDSummary.OnToolTipsLoaded("File2:components/Cashier.js",{43:"<div class=\"NDToolTip TFile LJavaScript\"><div class=\"TTSummary\">Cashier interface of the POS system</div></div>"});

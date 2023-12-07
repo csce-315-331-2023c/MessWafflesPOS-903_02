@@ -1,1 +1,1 @@
-﻿NDSearch.OnPrefixDataLoaded("res",["Function"],[["restockReport",,[[,"GET /manager/restockReport",,"get/manager/restockreport",0,"File:routes/manager.js:GET/manager/restockReport"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("res",["Function"],[["resetItems",,[[,,,,0,"File2:components/Customer.js:resetItems"]]],["restockReport",,[[,"GET /manager/restockReport",,"get/manager/restockreport",0,"File:routes/manager.js:GET/manager/restockReport"]]]]);

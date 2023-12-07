@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("dri",["Function"],[["DrinksPage",,[[,,,,0,"File2:components/Customer.js:DrinksPage"]]]]);
