@@ -1,1 +1,1 @@
-﻿NDSearch.OnPrefixDataLoaded("add",["Function"],[["AddonPage",,[[,,,,0,"File2:components/Customer.js:AddonPage"]]],["addOrder",,[[,,,,0,"File2:components/Customer.js:addOrder"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("add",["Function"],[["AddonPage",,[[,,,,0,"File2:components/Customer.js:AddonPage"]]],["addOrder",,[[,,,,0,"File2:components/Cashier.js:addOrder"]]]]);
