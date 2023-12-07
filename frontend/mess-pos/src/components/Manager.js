@@ -86,6 +86,8 @@ const Manager = () => {
 
   // Form Submissions
   // Usage Report
+  //Function: usageSubmit
+  //Submits a request for a usage report given a form submission of two dates, renders the report
   const usageSubmit = (event) => {
     event.preventDefault(); // prevents default behavior of event submission
     setLoadingUsage(true);
@@ -103,6 +105,9 @@ const Manager = () => {
   }
 
   // Sales Report
+  //Functions
+  //Function: salesSubmit
+  //Submits a request for a sales report given a form submission of two dates, renders the report
   const salesSubmit = (event) => {
     event.preventDefault();
     setLoadingOrdersSales(true);
@@ -119,6 +124,8 @@ const Manager = () => {
   }
 
   // Trends Report
+  //Function: trendsSubmit
+  //Submits a request for an ordering trends report given a form submission of two dates, renders the report
   const trendsSubmit = (event) => {
     event.preventDefault();
     setLoadingTrends(true);

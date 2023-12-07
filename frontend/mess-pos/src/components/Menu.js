@@ -1,3 +1,5 @@
+//File: Menu.js
+//Renders the Menu page
 import React, {useEffect, useState} from 'react'
 import "./Customer.css"
 import Button from 'react-bootstrap/Button'
@@ -15,6 +17,8 @@ import Card from 'react-bootstrap/Card';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import "../App.css";
 
+//Function: Menu
+//Returns the main menu component
 const Menu = () => {
     const [items, setItems] = useState([]);
     useEffect(() => {
@@ -27,7 +31,8 @@ const Menu = () => {
             })
     },[]);
     var menuItems = [];
-   
+    //Function itemCard
+    //returns a card for an item given its name, price, description, and picture
     function itemCard(item, price, index,description,picture) {
         return (
             <Card style={{ width: '25 rem' }}>
@@ -53,7 +58,8 @@ const Menu = () => {
         menuList.push( itemCard(item.item, item.price, index,item.description,item.picture))
     })
    
-    
+    //Function: MenuPage
+    //Returns rendering of the item cards
     const MenuPage = () => {
         
         return (
