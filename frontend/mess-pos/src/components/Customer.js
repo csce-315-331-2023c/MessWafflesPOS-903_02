@@ -40,6 +40,8 @@ const Customer = () => {
 
     const [price_tot, setTotal] = useState(0);
 
+    const [temperature, setTemperature] = useState(100);
+
     // Function: updateItems
     // Updates the list of items in the order given the name and price of the item
     function updateItems(name, price) {
@@ -426,48 +428,45 @@ const Customer = () => {
 
     // Function: RecItems
     // Returns a render of all Recommended Items based on weather
-    const RecItems = () => {
-        var temp;
+    const RecItems = () => {        
         useEffect(() => {
             axios
                 .get(
                     "https://api.weatherapi.com/v1/current.json?Key=f9d76b0584124e86bfa144719232711&q=77840"
                 )
-                .then((response) => {
-                    temp = response.data.current.temp_f;
-                    console.log(temp);
+                .then((response) => {                    
+                    setTemperature(response.data.current.temp_f);                    
+                    console.log(temperature);
                 })
                 .catch((err) => {
                     console.log(err);
                 });
-        }, []);
-        if (temp <= 60) {
-            return (
-                <Row className="card-body">
-                    {coldWeatherItems.map((item, index) => (
+        }, []);        
+
+        return (
+            <Row className="card-body">
+                { temperature <= 60 ? (
+                    coldWeatherItems.map((item, index) => (
                         <Col key={index} sm={3}>
                             {/* Adjust  based on how many items you want in a row */}
                             <ListGroup>
                                 <ListGroup.Item>{item}</ListGroup.Item>
                             </ListGroup>
                         </Col>
-                    ))}
-                </Row>
-            );
-        } else if (temp >= 70) {
-            return (
-                <Row className="card-body">
-                    {hotWeatherItems.map((item, index) => (
+                    ))
+                 ) : ( temperature >= 70 ? (
+                    hotWeatherItems.map((item, index) => (
                         <Col key={index} sm={3}>
                             {/* Adjust  based on how many items you want in a row */}
                             <ListGroup>
                                 <ListGroup.Item>{item}</ListGroup.Item>
                             </ListGroup>
                         </Col>
-                    ))}
-                </Row>
-            );
-        }
+                    ))
+                 ) : () => {return <div></div>})
+                }
+            </Row>
+        )
     };
 
     // Function: Info
