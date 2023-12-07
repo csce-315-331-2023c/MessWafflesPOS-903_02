@@ -1,3 +1,5 @@
+// File: Manager.js
+// Handles Manager Page
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form'
 import React, {useEffect, useState} from 'react'
@@ -51,6 +53,8 @@ const Manager = () => {
   const dateOrdersArr = [];
 
   // useEffect (on site render)
+  // Function: useEffect
+  // On website render, sets useState variables 'items' and 'inventory' using data received from API calls
   useEffect(() => {
     axios.get('https://messwafflespos.onrender.com/api/manager/items')
       .then(res => {
@@ -70,8 +74,8 @@ const Manager = () => {
 
   // Form Submissions
   // Usage Report
-  //Function: usageSubmit
-  //Submits a request for a usage report given a form submission of two dates, renders the report
+  // Function: usageSubmit
+  // Handles form submission for Usage Report
   const usageSubmit = (event) => {
     event.preventDefault(); // prevents default behavior of event submission
     setLoadingUsage(true);
@@ -89,9 +93,8 @@ const Manager = () => {
   }
 
   // Sales Report
-  //Functions
-  //Function: salesSubmit
-  //Submits a request for a sales report given a form submission of two dates, renders the report
+  // Function: salesSubmit
+  // Handles event submission for Sales Report
   const salesSubmit = (event) => {
     event.preventDefault();
     setLoadingOrdersSales(true);
@@ -108,8 +111,8 @@ const Manager = () => {
   }
 
   // Trends Report
-  //Function: trendsSubmit
-  //Submits a request for an ordering trends report given a form submission of two dates, renders the report
+  // Function: trendsSubmit
+  // Handles form submission for Trends (What Sells Together)
   const trendsSubmit = (event) => {
     event.preventDefault();
     setLoadingTrends(true);
@@ -126,6 +129,8 @@ const Manager = () => {
   }
 
   // Excess Report
+  // Function: excessSubmit
+  // Handles form submission for Excess Report
   const excessSubmit = (event) => {
     event.preventDefault();
     setLoadingExcess(true);
@@ -142,6 +147,8 @@ const Manager = () => {
   }
 
   // Orders Submit
+  // Function: ordersSubmit
+  // Handles form submission for Orders tab
   const ordersSubmit = (event) => {
     event.preventDefault();
     setLoadingOrders(true);
@@ -158,6 +165,8 @@ const Manager = () => {
 
   // Functions
   // Usage Report
+  // Function: processIngredients
+  // Processes data received from an API call upon form submission. Formats data into array to be displayed. Used for Usage Report
   const processIngredients = () => {
     // push all the items purchased into an array
     for(let row of usageOrders.rows) {
@@ -199,6 +208,8 @@ const Manager = () => {
   }
 
   // Sales Report
+  // Function: processOrders
+  // Processes data received from an API call upon form submission. Formats data into array to be displayed. Used for Sales Report
   const processOrders = () => {
     // push all the items purchased into an array
     for(let row of salesOrders.rows) {
@@ -223,6 +234,8 @@ const Manager = () => {
   }
 
   // Excess Report
+  // Function: processExcess
+  // Processes data received from an API call upon form submission. Formats data into array to be displayed. Used for Excess Report
   const processExcess = () => {
     // copy paste code from usage report to get quantity of ingredients used
     // push all the items purchased into an array
@@ -284,6 +297,8 @@ const Manager = () => {
   }
 
   // Trends Report
+  // Function: processTrends
+  // Processes data received from an API call upon form submission. Formats data into array to be displayed. Used for Trends Report
   const processTrends = () => {
     // push pairs of items into a map, count occurances
     const pushToMap = (a, b) => {
@@ -327,6 +342,8 @@ const Manager = () => {
   }
 
   // DateOrders
+  // Function: processDateOrders
+  // Processes data received from an API call upon form submission. Formats data into array to be displayed. Used for Orders Tab
   const processDateOrders = () => {
     console.log(dateOrders);
     for(let row of dateOrders.rows) {
@@ -341,7 +358,9 @@ const Manager = () => {
   }
   
   // Will Code
-    function Inventory() {
+  // Function: Inventory
+  // Returns HTML representation of Inventory from API call
+  function Inventory() {
     const [ings, setIngs] = useState([]);
     useEffect(() => {
         axios.get('https://messwafflespos.onrender.com/api/manager/inventory')
@@ -381,6 +400,8 @@ const Manager = () => {
         </>
     )
   }
+  // Function: updateInventory
+  // Updates an inventory item
   function updateInventory(e){
     e.preventDefault()
     const form = e.target
@@ -395,6 +416,8 @@ const Manager = () => {
             console.log(err);
         });
   }
+  // Function: updateItems
+  // Updates an item
   function updateItems(e){
     e.preventDefault()
     const form = e.target
@@ -410,6 +433,8 @@ const Manager = () => {
             console.log(err);
         });
   }
+  // Function: deleteIng
+  // Deletes an Ingredient
   function deleteIng(e){
     e.preventDefault()
     const form = e.target
@@ -426,6 +451,8 @@ const Manager = () => {
             console.log(err);
         });
   }
+  // Function: deleteItem
+  // Deletes an item
   function deleteItem(e){
     e.preventDefault()
     const form = e.target
@@ -442,6 +469,8 @@ const Manager = () => {
             console.log(err);
         });
   }
+  // Function: Items
+  // Returns HTML for a list of Items from API call
   function Items(){
     const [itemsMenu, setItemsMenu] = useState([]);
     useEffect(() => {
@@ -503,6 +532,8 @@ const Manager = () => {
       </>
   )
   }
+  // Function: restockReport
+  // Displays a list of items below a certain quantity q (given by user input)
   function restockReport(e){
     e.preventDefault()
     const form = e.target
@@ -527,6 +558,8 @@ const Manager = () => {
         
   }
 
+  // Function: deleteOrder
+  // deletes an order
   function deleteOrder(e){
       e.preventDefault();
       const form = e.target;
