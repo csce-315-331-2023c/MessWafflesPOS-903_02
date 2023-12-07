@@ -27,6 +27,35 @@ router.get("/order", async (req, res) => {
     res.send(result);
 });
 
+router.get("/order_no", async (req, res) => {
+    const { order_number } = req.query;
+    console.log(order_number);
+    const result = await db.query(
+        "SELECT item, total_price FROM orders WHERE order_number = $1", [order_number]
+    );
+    res.send(result);
+});
+// router.get("/item_price", async (req, res) => {
+//     const { item } = req.body;
+//     const result = await db.query(
+//         "SELECT price FROM items WHERE item = 1$;"
+//     );
+//     res.send(result);
+// });
+
+// router.delete('/order', async (req, res) => {
+//     const { order_no } = req.body
+//     try {
+//         await db.query('DELETE FROM orders WHERE order_number = $1', [order])
+//         res.status(201).send(`Deleted order ${order_no}`)
+//     }
+//     catch (err) {
+//         console.error(err);
+//         res.status(500).send("Server error");
+//     }
+// });
+
+
 router.post("/order", async (req, res) => {
     const { item, order_date, total_price } = req.body;
     for (const it of item) {
@@ -64,10 +93,10 @@ router.post("/order", async (req, res) => {
     }
 });
 router.post("/updateOrder", async (req, res) => {
-    const { order_number,status } = req.body;
+    const { order_number, status } = req.body;
     try {
         await db.query(
-            "UPDATE orders SET status = $2 WHERE order_number = $1",[order_number,status]
+            "UPDATE orders SET status = $2 WHERE order_number = $1", [order_number, status]
         );
         res.status(201).send(`Updated order ${order_number}`);
     } catch (err) {
