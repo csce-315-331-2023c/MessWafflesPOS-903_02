@@ -1,6 +1,11 @@
+// File: DarkMode.js
+// Provides functions for dark mode for the website
+
 import React, { useEffect, useState } from "react";
 import "../DarkMode.css";
 
+// Function: DarkMode
+// Returns a button that toggles dark mode
 const DarkMode = () => {
     // checking if localStorage is available
     const isLocalStorageAvailable = typeof localStorage !== 'undefined';

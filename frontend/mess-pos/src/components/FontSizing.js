@@ -1,3 +1,6 @@
+// File: FontSizing.js
+// Provides functions for changing the font size of the website
+
 import React, { useEffect, useState } from "react";
 import "../FontSizing.css";
 

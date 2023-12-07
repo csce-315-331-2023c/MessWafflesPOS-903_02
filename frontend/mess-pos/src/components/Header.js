@@ -18,6 +18,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { RoleContext } from "../App";
 import { TranslateScript } from "./Translation";
 
+// Function: Header
+// Returns the header bar for the website, including links, accessibility, and a welcome message
 const Header = () => {
     const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
     const role = React.useContext(RoleContext);

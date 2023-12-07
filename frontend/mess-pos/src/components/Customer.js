@@ -39,21 +39,28 @@ const Customer = () => {
 
     const [price_tot, setTotal] = useState(0);
 
+    // Function: updateItems
+    // Updates the list of items in the order given the name and price of the item
     function updateItems(name, price) {
-
         setItemNames(olary => [...olary, name]);
         setPrices(olary => [...olary, price]);
         setTotal(oldPrice => price_tot + parseFloat(price));
     }
 
+    // Function: resetItems
+    // Resets the list of items in the order
     function resetItems() {
         setItemNames(olary => []);
         setPrices(olary => []);
         setTotal(oldPrice => 0.00);
     }
 
+    // Function: Items
+    // Returns the list of items in the order
     function Items() {
 
+        // Function: removeOrderItem
+        // Removes an item from the order given its name
         function removeOrderItem(i) {
             if (window.confirm('delete ' + i + ' from the order?')) {
                 var array_i = [...Item_names];
@@ -95,11 +102,12 @@ const Customer = () => {
                 <div id="orderInfo" className='card-text'>
                     Total: ${price_tot.toFixed(2)}
                 </div>
-
             </>
         )
     }
 
+    // Function: MenuButton
+    // Returns a button that adds an item to the order
     function MenuButton({ item, price }) {
         const [isLoading, setLoading] = useState(false);
 
@@ -128,6 +136,9 @@ const Customer = () => {
             </Button>
         );
     }
+
+    // Function: PlaceButton
+    // Returns a button that places the order
     function PlaceButton() {
         const [isLoading, setLoading] = useState(false);
 
@@ -158,6 +169,8 @@ const Customer = () => {
         );
     }
 
+    // Function: CancelButton
+    // Returns a button that cancels the order
     function CancelButton() {
         const [isLoading, setLoading] = useState(false);
 
@@ -188,8 +201,8 @@ const Customer = () => {
         );
     }
 
-
-
+    // Function: itemCard
+    // Returns a card for an item given its name, price, description, and picture
     function itemCard(item, price, index, description, picture) {
         return (
             <Card style={{ width: '18rem' }}>
@@ -236,6 +249,9 @@ const Customer = () => {
     var coldWeatherItems = [];
     var hotWeatherItems = [];
     var addonList = [];
+
+    // Function: addOrder
+    // Adds an item to the order given its name and price
     function addOrder(name, price) {
         if (orders.has(name)) {
             orders.set(name, { price: price, quantity: orders.get(name).quantity + 1 })
@@ -246,6 +262,7 @@ const Customer = () => {
         updateItems(name, price);
         console.log(name, orders.get(name).quantity, orders.get(name).price);
     }
+
     entrees.forEach((item, index) => {
         entreesList.push(itemCard(item.item, item.price, index, item.description, item.picture))
     })
@@ -265,8 +282,9 @@ const Customer = () => {
         addonList.push(itemCard(item.item, item.price, index, item.description, item.picture))
     })
 
+    // Function: EntreePage
+    // Returns a render of all Entrees
     const EntreePage = () => {
-
         return (
             <Row className='card-body'>
                 {entreesList.map((item, index) => (
@@ -281,6 +299,8 @@ const Customer = () => {
         );
     }
 
+    // Function: DrinksPage
+    // Returns a render of all Drinks
     const DrinksPage = () => {
 
         return (
@@ -297,6 +317,8 @@ const Customer = () => {
         );
     }
 
+    // Function: SeasonalPage
+    // Returns a render of all Seasonal Items
     const SeasonalPage = () => {
 
         return (
@@ -313,6 +335,8 @@ const Customer = () => {
         );
     }
 
+    // Function: AddonPage
+    // Returns a render of all Add-Ons
     const AddonPage = () => {
 
         return (
@@ -329,6 +353,8 @@ const Customer = () => {
         );
     }
 
+    // Function: RecItems
+    // Returns a render of all Recommended Items based on weather
     const RecItems = () => {
         var temp;
         useEffect(() => {
@@ -370,7 +396,9 @@ const Customer = () => {
             );
         }
     }
-
+    
+    // Function: Info
+    // Returns an offcanvas that displays the current order
     function Info() {
         const [show, setShow] = useState(false);
 
@@ -400,6 +428,8 @@ const Customer = () => {
         );
     }
 
+    // Function: place_order
+    // Places the order using axios
     function place_order() {
         const date = new Date();
         var n = 0;

@@ -1,10 +1,14 @@
+// File: Home.js
+// Home page for the website
+
 import React, {useEffect, useState} from 'react'
 import Image from 'react-bootstrap/Image';
 import Container from "react-bootstrap/esm/Container";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-
+// Function: Home
+// Returns the home page component, including the about section and weather widget
 const Home = () => {
     function Script  () {
         useEffect(() => {
