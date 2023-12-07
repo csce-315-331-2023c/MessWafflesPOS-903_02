@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("tre",["Function"],[["trendsSubmit",,[[,,,,0,"File2:components/Manager.js:trendsSubmit"]]]]);

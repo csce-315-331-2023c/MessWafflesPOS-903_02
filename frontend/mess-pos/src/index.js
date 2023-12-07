@@ -1,5 +1,7 @@
 // File: index.js
 // Main entry point for React frontend
+//
+// Uses <App.js> component to render all other components
 
 import React from "react";
 import ReactDOM from "react-dom";

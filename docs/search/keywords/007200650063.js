@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("rec",["Function"],[["RecItems",,[[,,,,0,"File2:components/Customer.js:RecItems"]]]]);

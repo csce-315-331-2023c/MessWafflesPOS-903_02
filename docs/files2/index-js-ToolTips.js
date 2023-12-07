@@ -1,1 +1,1 @@
-﻿NDContentPage.OnToolTipsLoaded({});
+﻿NDContentPage.OnToolTipsLoaded({35:"<div class=\"NDToolTip TFile LJavaScript\"><div class=\"TTSummary\">Renders all components and routes, including:</div></div>"});

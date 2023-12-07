@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("sal",["Function"],[["salesSubmit",,[[,,,,0,"File2:components/Manager.js:salesSubmit"]]]]);

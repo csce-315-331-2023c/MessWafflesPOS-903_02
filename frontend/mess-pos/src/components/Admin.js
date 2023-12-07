@@ -1,3 +1,6 @@
+// File: Admin.js
+// Admin interface of the POS system
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Tabs, Tab, Table, Button } from "react-bootstrap";

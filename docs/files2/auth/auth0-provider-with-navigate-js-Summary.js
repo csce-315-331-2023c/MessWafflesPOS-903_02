@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File2:auth/auth0-provider-with-navigate.js","auth0-provider-with-navigate.js");NDSummary.OnSummaryLoaded("File2:auth/auth0-provider-with-navigate.js",[["JavaScript","JavaScript"]],[["Files","File"]],[[47,0,0,"auth0-provider-with-navigate.js","auth0-provider-with-navigate.js"]]);

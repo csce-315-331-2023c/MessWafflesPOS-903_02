@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File2:components/Admin.js","Admin.js");NDSummary.OnSummaryLoaded("File2:components/Admin.js",[["JavaScript","JavaScript"]],[["Files","File"]],[[99,0,0,"Admin.js","Admin.js"]]);

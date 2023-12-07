@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File2:components/Home.js","Home.js");NDSummary.OnSummaryLoaded("File2:components/Home.js",[["JavaScript","JavaScript"]],[["Files","File"],["Functions","Function"],["Groups","Group"]],[[49,0,0,"Home.js","Home.js"],[50,0,2,"Functions","Functions"],[51,0,1,"Home","Home"]]);

@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File2:components/Footer.js","Footer.js");NDSummary.OnSummaryLoaded("File2:components/Footer.js",[["JavaScript","JavaScript"]],[["Files","File"]],[[38,0,0,"Footer.js","Footer.js"]]);

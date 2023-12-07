@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("usa",["Function"],[["usageSubmit",,[[,,,,0,"File2:components/Manager.js:usageSubmit"]]]]);

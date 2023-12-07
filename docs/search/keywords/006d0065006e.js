@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("men",["Function","File"],[["Menu",,[[,,,,0,"File2:components/Menu.js:Menu"],[,"Menu.js",,,1,"File2:components/Menu.js:Menu.js"]]],["MenuButton",,[[,,,,0,"File2:components/Customer.js:MenuButton"]]],["MenuPage",,[[,,,,0,"File2:components/Menu.js:MenuPage"]]]]);

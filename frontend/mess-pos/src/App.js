@@ -1,5 +1,16 @@
-// File: App.js
-// Renders all components and routes
+/* File: App.js
+   Renders all components and routes, including:
+
+    - <Header.js>
+    - <Footer.js>
+    - <Home.js>
+    - <Customer.js>
+    - <Menu.js>
+    - <Cashier.js>
+    - <Manager.js>
+    - <Admin.js>
+
+*/
 
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";

@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("tra",["File","Function"],[["translate",,[[,"translate.js",,,0,"File2:components/Translation.js:translate.js"]]],["TranslateElement",,[[,,,,1,"File2:components/Translation.js:TranslateElement"]]],["TranslateScript",,[[,,,,1,"File2:components/Translation.js:TranslateScript"]]]]);

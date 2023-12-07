@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("foo",["File"],[["Footer",,[[,"Footer.js",,,0,"File2:components/Footer.js:Footer.js"]]]]);

@@ -1,0 +1,1 @@
+﻿NDSummary.OnToolTipsLoaded("File2:components/Footer.js",{38:"<div class=\"NDToolTip TFile LJavaScript\"><div class=\"TTSummary\">Footer bar for the website</div></div>"});
