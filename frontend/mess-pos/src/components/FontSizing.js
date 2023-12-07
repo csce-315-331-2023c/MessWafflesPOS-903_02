@@ -4,6 +4,8 @@
 import React, { useEffect, useState } from "react";
 import "../FontSizing.css";
 
+// Function: FontSizing
+// Returns a button that toggles font size from large to small
 const FontSizing = () => {
     // checking if localStorage is available
     const isLocalStorageAvailable = typeof localStorage !== "undefined";
