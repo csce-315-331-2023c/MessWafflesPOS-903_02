@@ -1,1 +1,1 @@
-﻿NDSummary.OnToolTipsLoaded("File2:auth/auth0-provider-with-navigate.js",{});
+﻿NDSummary.OnToolTipsLoaded("File2:auth/auth0-provider-with-navigate.js",{47:"<div class=\"NDToolTip TFile LJavaScript\"><div class=\"TTSummary\">Helper file for Auth0 integration</div></div>"});

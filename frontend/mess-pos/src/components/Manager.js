@@ -1,5 +1,6 @@
 // File: Manager.js
-// Handles Manager Page
+// Manager Interface of the POS system
+
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import React, { useEffect, useState } from "react";
@@ -74,8 +75,6 @@ const Manager = () => {
             });
     }, []);
 
-    // Form Submissions
-    // Usage Report
     // Function: usageSubmit
     // Handles form submission for Usage Report
     const usageSubmit = (event) => {
@@ -97,7 +96,6 @@ const Manager = () => {
             });
     };
 
-    // Sales Report
     // Function: salesSubmit
     // Handles event submission for Sales Report
     const salesSubmit = (event) => {
@@ -118,7 +116,6 @@ const Manager = () => {
             });
     };
 
-    // Trends Report
     // Function: trendsSubmit
     // Handles form submission for Trends (What Sells Together)
     const trendsSubmit = (event) => {
@@ -139,7 +136,6 @@ const Manager = () => {
             });
     };
 
-    // Excess Report
     // Function: excessSubmit
     // Handles form submission for Excess Report
     const excessSubmit = (event) => {
@@ -160,7 +156,6 @@ const Manager = () => {
             });
     };
 
-    // Orders Submit
     // Function: ordersSubmit
     // Handles form submission for Orders tab
     const ordersSubmit = (event) => {
@@ -221,7 +216,6 @@ const Manager = () => {
         }
     };
 
-    // Sales Report
     // Function: processOrders
     // Processes data received from an API call upon form submission. Formats data into array to be displayed. Used for Sales Report
     const processOrders = () => {
@@ -246,7 +240,6 @@ const Manager = () => {
         console.log(itemsQuant);
     };
 
-    // Excess Report
     // Function: processExcess
     // Processes data received from an API call upon form submission. Formats data into array to be displayed. Used for Excess Report
     const processExcess = () => {
@@ -313,7 +306,6 @@ const Manager = () => {
         }
     };
 
-    // Trends Report
     // Function: processTrends
     // Processes data received from an API call upon form submission. Formats data into array to be displayed. Used for Trends Report
     const processTrends = () => {
@@ -358,7 +350,6 @@ const Manager = () => {
         });
     };
 
-    // DateOrders
     // Function: processDateOrders
     // Processes data received from an API call upon form submission. Formats data into array to be displayed. Used for Orders Tab
     const processDateOrders = () => {
@@ -380,7 +371,6 @@ const Manager = () => {
         console.log(dateOrdersArr);
     };
 
-    // Will Code
     // Function: Inventory
     // Returns HTML representation of Inventory from API call
     function Inventory() {
@@ -432,6 +422,7 @@ const Manager = () => {
             </>
         );
     }
+
     // Function: updateInventory
     // Updates/Creates an inventory Item based on form
     function updateInventory(e) {
@@ -452,6 +443,7 @@ const Manager = () => {
                 console.log(err);
             });
     }
+
     // Function: updateItems
     // Updates/Creates an item based on form
     function updateItems(e) {
@@ -473,6 +465,7 @@ const Manager = () => {
                 console.log(err);
             });
     }
+
     // Function: deleteIng
     // Deletes an ingredient based on form
     function deleteIng(e) {

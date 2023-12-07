@@ -1,0 +1,1 @@
+﻿NDSummary.OnToolTipsLoaded("File2:components/Admin.js",{99:"<div class=\"NDToolTip TFile LJavaScript\"><div class=\"TTSummary\">Admin interface of the POS system</div></div>"});

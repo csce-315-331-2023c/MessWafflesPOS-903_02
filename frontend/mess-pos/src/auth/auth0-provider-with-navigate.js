@@ -1,5 +1,5 @@
 // File: auth0-provider-with-navigate.js
-// Helper for Auth0 - redirects to the page the user was on before logging in.
+// Helper file for Auth0 integration
 
 import { Auth0Provider } from "@auth0/auth0-react";
 import React from "react";

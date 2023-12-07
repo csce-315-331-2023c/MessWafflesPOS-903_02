@@ -1,1 +1,1 @@
-﻿NDSearch.OnPrefixDataLoaded("pro",["Function"],[["processIngredients",,[[,,,,0,"File2:components/Manager.js:processIngredients"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("pro",["Function"],[["processDateOrders",,[[,,,,0,"File2:components/Manager.js:processDateOrders"]]],["processExcess",,[[,,,,0,"File2:components/Manager.js:processExcess"]]],["processIngredients",,[[,,,,0,"File2:components/Manager.js:processIngredients"]]],["processOrders",,[[,,,,0,"File2:components/Manager.js:processOrders"]]],["processTrends",,[[,,,,0,"File2:components/Manager.js:processTrends"]]]]);

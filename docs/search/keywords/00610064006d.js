@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("adm",["File"],[["Admin",,[[,"Admin.js",,,0,"File2:components/Admin.js:Admin.js"]]]]);
