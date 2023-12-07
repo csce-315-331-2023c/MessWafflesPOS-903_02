@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("edi",["Function"],[["EditOrders",,[[,,,,0,"File2:components/Cashier.js:EditOrders"]]]]);

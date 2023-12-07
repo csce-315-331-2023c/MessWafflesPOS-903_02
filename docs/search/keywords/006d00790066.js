@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("myf",["Function"],[["MyForm",,[[,,,,0,"File2:components/Cashier.js:MyForm"]]]]);

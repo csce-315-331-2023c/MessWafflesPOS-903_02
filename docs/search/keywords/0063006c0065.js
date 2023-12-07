@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("cle",["Function"],[["clear_orders",,[[,,,,0,"File2:components/Cashier.js:clear_orders"]]]]);
