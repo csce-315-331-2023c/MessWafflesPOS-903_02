@@ -460,7 +460,7 @@ const Cashier = () => {
                     <Tab eventKey="seasonal" title="Seasonal Items">
                         {seasonalList}
                     </Tab>
-                    <Tab eventKey="orders" title="Orders">
+                    <Tab eventKey="orders" title="Pending Orders">
                         <EditOrders />
                     </Tab>
                 </Tabs>
