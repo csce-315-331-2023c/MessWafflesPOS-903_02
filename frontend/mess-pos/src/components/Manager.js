@@ -740,7 +740,7 @@ const Manager = () => {
                         </form>
                     </center>
                 </Tab>
-                <Tab eventKey="usage" title="Usage">
+                <Tab eventKey="usage" title="Usage Report">
                     {/* Product Usage */}
                     <Form onSubmit={usageSubmit}>
                         <Form.Group controlId="date1">
@@ -772,7 +772,7 @@ const Manager = () => {
                         </tbody>
                     </Table>
                 </Tab>
-                <Tab eventKey="sales" title="Sales">
+                <Tab eventKey="sales" title="Sales Report">
                     {/* Sales Report */}
                     <Form onSubmit={salesSubmit}>
                         <Form.Group controlId="date1">
@@ -804,7 +804,7 @@ const Manager = () => {
                         </tbody>
                     </Table>
                 </Tab>
-                <Tab eventKey="excess" title="Excess">
+                <Tab eventKey="excess" title="Excess Report">
                     {/* Excess Report */}
                     <Form onSubmit={excessSubmit}>
                         <Form.Group controlId="date1">
@@ -851,7 +851,7 @@ const Manager = () => {
                         <div id="restockReturn"></div>
                     </center>
                 </Tab>
-                <Tab eventKey="trends" title="Trends">
+                <Tab eventKey="trends" title="Trends Report">
                     {/* Ordering Trends (What sells together) */}
                     <Form onSubmit={trendsSubmit}>
                         <Form.Group controlId="date1">
@@ -885,7 +885,7 @@ const Manager = () => {
                         </tbody>
                     </Table>
                 </Tab>
-                <Tab eventKey="orders" title="Orders">
+                <Tab eventKey="orders" title="Orders by Day">
                     <Form onSubmit={ordersSubmit}>
                         <Form.Group controlId="date1">
                             <Form.Label>Select Date</Form.Label>
