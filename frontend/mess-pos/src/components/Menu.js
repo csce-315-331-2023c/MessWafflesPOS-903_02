@@ -23,7 +23,7 @@ const Menu = () => {
     const [items, setItems] = useState([]);
     useEffect(() => {
         axios
-            .get("https://messwafflespos.onrender.com/api/manager/items")
+            .get("https://project-3-903-02.onrender.com/manager/items")
             .then((response) => {
                 setItems(response.data);
             })

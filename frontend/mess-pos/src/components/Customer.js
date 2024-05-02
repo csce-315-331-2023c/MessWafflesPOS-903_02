@@ -21,7 +21,7 @@ const Customer = () => {
     const [items, setItems] = useState([]);
     useEffect(() => {
         axios
-            .get("https://messwafflespos.onrender.com/api/manager/items")
+            .get("https://project-3-903-02.onrender.com/manager/items")
             .then((response) => {
                 setItems(response.data);
             })
@@ -428,24 +428,24 @@ const Customer = () => {
 
     // Function: RecItems
     // Returns a render of all Recommended Items based on weather
-    const RecItems = () => {        
+    const RecItems = () => {
         useEffect(() => {
             axios
                 .get(
                     "https://api.weatherapi.com/v1/current.json?Key=f9d76b0584124e86bfa144719232711&q=77840"
                 )
-                .then((response) => {                    
-                    setTemperature(response.data.current.temp_f);                    
+                .then((response) => {
+                    setTemperature(response.data.current.temp_f);
                     console.log(temperature);
                 })
                 .catch((err) => {
                     console.log(err);
                 });
-        }, []);        
+        }, []);
 
         return (
             <Row className="card-body">
-                { temperature <= 60 ? (
+                {temperature <= 60 ? (
                     coldWeatherItems.map((item, index) => (
                         <Col key={index} sm={3}>
                             {/* Adjust  based on how many items you want in a row */}
@@ -454,7 +454,7 @@ const Customer = () => {
                             </ListGroup>
                         </Col>
                     ))
-                 ) : ( temperature >= 70 ? (
+                ) : (temperature >= 70 ? (
                     hotWeatherItems.map((item, index) => (
                         <Col key={index} sm={3}>
                             {/* Adjust  based on how many items you want in a row */}
@@ -463,7 +463,7 @@ const Customer = () => {
                             </ListGroup>
                         </Col>
                     ))
-                 ) : () => {return <div></div>})
+                ) : () => { return <div></div> })
                 }
             </Row>
         )
