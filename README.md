@@ -1,7 +1,7 @@
-Fall 2023
+
 # Mess Waffles POS system
 
-website link: 
+website link: https://messwafflespos.onrender.com/
 
 
 # Frontend setup:
