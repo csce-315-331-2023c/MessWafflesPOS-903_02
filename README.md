@@ -75,7 +75,7 @@ Sprint 3 Planning - Meeting Notes (11/26/2023 at 8:30pm CST, Online):
 - Goals for sprint 3 (tasks to complete with general assignees)...
 - 2 APIs implementation (translations and weather) -> Hemanth and Will
 - Accessibility: text resize and dark mode (fix) -> Hemanth and Jude
-- Flesh out manager and cashier pages -> Arvind and Will
+- Flesh out manager and cashier pages -> Arvind, Kris and Will
 - Finish customer page -> Kris
 - Styling overall -> Jude
 
